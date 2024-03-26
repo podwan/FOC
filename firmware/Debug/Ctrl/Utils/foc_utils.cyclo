@@ -1,0 +1,5 @@
+../Ctrl/Utils/foc_utils.cpp:30:7:float _sin(float)	8
+../Ctrl/Utils/foc_utils.cpp:60:7:float _cos(float)	2
+../Ctrl/Utils/foc_utils.cpp:69:7:float _normalizeAngle(float)	2
+../Ctrl/Utils/foc_utils.cpp:76:7:float _electricalAngle(float, int)	1
+../Ctrl/Utils/foc_utils.cpp:84:7:float _sqrtApprox(float)	1

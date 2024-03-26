@@ -1,0 +1,7 @@
+../User/encoder_base.cpp:5:14:float abs(float)	2
+../User/encoder_base.cpp:11:6:virtual void EncoderBase::Update()	3
+../User/encoder_base.cpp:25:7:virtual float EncoderBase::GetVelocity()	2
+../User/encoder_base.cpp:43:6:virtual void EncoderBase::VarInit()	1
+../User/encoder_base.cpp:62:7:virtual float EncoderBase::GetLapAngle()	1
+../User/encoder_base.cpp:68:7:virtual float EncoderBase::GetFullAngle()	1
+../User/encoder_base.cpp:74:9:virtual int32_t EncoderBase::GetRotationCount()	1

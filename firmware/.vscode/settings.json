@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "st_hardware.h": "c",
+        "fdcan.h": "c",
+        "stm32g4xx_hal.h": "c"
+    }
+}
