@@ -2,6 +2,8 @@
 
 #include "userMain.h"
 #include "userTimer.h"
+#include "motor.h"
+#include "foc_utils.h"
 #define PI 3.14159265358979f
 #define PHASE_SHIFT_ANGLE (float)(120.0f / 360.0f * 2.0f * PI)
 
@@ -16,7 +18,7 @@ uint8_t aRxBuffer;
 uint8_t Uart1_Rx_Cnt = 0;
 
 float load_data[5];
-static uint8_t tempData[24] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
+uint8_t tempData[24] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
 uint16_t DAC_temp = 0;
 
@@ -39,8 +41,7 @@ uint8_t HallReadTemp = 0;
 static bool powerLost;
 void userMain(void)
 {
-	static uchar _5msCnt, _30msCnt, _20msCnt, _100msCnt, _250msCnt;
-	static uint _500msCnt;
+
 #if NEED_POWER_OFF_MEMORY
 #include "memory.h"
 	static bool memorized, recalled;
@@ -56,38 +57,34 @@ void userMain(void)
 	}
 #endif
 
-	if (getOneMsFlag())
+	// if (_10ms)
+	// {
+
+	// 	_10ms = 0;
+	// 	display();
+	// }
+
+	// if (_20ms)
+	// {
+	// 	_20ms = 0;
+	// 	beepPolling();
+	// }
+
+	// if (_5ms)
+	// {
+	// 	_5ms = 0;
+	// 	keyScan();
+	// }
+
+	// if (_30ms)
+	// {
+	// 	_30ms = 0;
+	// 	sensoring();
+	// }
+
+	if (get100MsFlag())
 	{
-		// if (_10ms)
-		// {
-
-		// 	_10ms = 0;
-		// 	display();
-		// }
-
-		// if (_20ms)
-		// {
-		// 	_20ms = 0;
-		// 	beepPolling();
-		// }
-
-		// if (_5ms)
-		// {
-		// 	_5ms = 0;
-		// 	keyScan();
-		// }
-
-		// if (_30ms)
-		// {
-		// 	_30ms = 0;
-		// 	sensoring();
-		// }
-
-		// if (_100ms)
-		// {
-		// 	_100ms = 0;
-		// 	appRunning();
-		// }
+		appRunning();
 	}
 }
 
@@ -190,12 +187,20 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 			Ia = (adc1_in1 - IA_Offset) * 0.02197f;
 			Ib = (adc1_in2 - IB_Offset) * 0.02197f;
 			Ic = (adc1_in3 - IC_Offset) * 0.02197f;
+			static float elecAngle;
+			elecAngle += 0.01;
+			if (elecAngle >= _2PI)
+				elecAngle = 0;
 
-			// load_data[0] = Ia;
-			// load_data[1] = Ib;
-			// load_data[2] = Ic;
-			// load_data[3] = 0;
-			// load_data[4] = 0;
+			openLoopFoc(2, elecAngle);
+			// setPhaseVoltage1(2, 0, elecAngle);
+			//  load_data[0] = Ia;
+			//  load_data[1] = Ib;
+			//  load_data[2] = Ic;
+			//  load_data[3] = 0;
+			//  load_data[4] = 0;
+			dealPer100us();
+			// velocityOpenLoop(&fp1, 2, 100);
 
 			memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));
 			HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 6 * 4);

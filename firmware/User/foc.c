@@ -78,7 +78,7 @@ void getABVoltages(FocParameters *fp)
 const char sectorRemap[] = {0, 2, 6, 1, 4, 3, 5};
 
 // 输入Uq、Ud和电角度，输出三路PWM
-void SVPWM(FocParameters *fp)
+static void SVPWM(FocParameters *fp)
 {
     float tFirst, tSecond;
     int d1, d2, d3;

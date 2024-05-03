@@ -28,7 +28,7 @@ static Byte displayDataBuf[NUM_OF_COM];
 #endif
 
 #if NEED_COMMUNICATION
-#include "comm.h"
+// #include "comm.h"
 static uchar commErrCnt;
 static void uartRxProcess();
 static void uartTxProcess();
@@ -117,15 +117,15 @@ void appRunning()
 #endif
     if (_1s)
     {
-
+        // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 6 * 4);
 #if NEED_COMMUNICATION && WITHOUT_POWER_BOARD == 0
-        if (commErrCnt < 10)
-            ++commErrCnt;
-        else if (errNo == 0)
-        {
-            errNo = 3;
-            FAULT_INIT;
-        }
+//        if (commErrCnt < 10)
+//            ++commErrCnt;
+//        else if (errNo == 0)
+//        {
+//            errNo = 3;
+//            FAULT_INIT;
+//        }
 #endif
         // beepOnce();
         _1s = 0;
@@ -136,21 +136,23 @@ void appRunning()
 
 static void uartRxProcess()
 {
-    if (rxUart.toProcessData)
-    {
-
-        if (rxUart.buf[0] == 'X' && rxUart.buf[rxUart.len - 1] == 'K')
-        {
-            commErrCnt = 0;
-        }
-
-        rxUart.len = 0;
-        rxUart.toProcessData = 0;
-    }
+    //    if (rxUart.toProcessData)
+    //    {
+    //
+    //        if (rxUart.buf[0] == 'X' && rxUart.buf[rxUart.len - 1] == 'K')
+    //        {
+    //            commErrCnt = 0;
+    //        }
+    //
+    //        rxUart.len = 0;
+    //        rxUart.toProcessData = 0;
+    //    }
 }
 static void uartTxProcess()
 {
-    sprintf(sendStuff, "K%d%dX\n", (int)devState, (int)workMode);
+#if SEND_RCC_DATA == 0
+    sprintf(tempData, "K%d%dX\n", (int)devState);
+#endif
 }
 #endif
 

@@ -1,3 +1,4 @@
+../User/userTimer.c:14:6:dealPer100us	8	static
 ../User/userTimer.c:29:7:dealPerMs	4	static
 ../User/userTimer.c:168:6:setCrossZero4timer	4	static
 ../User/userTimer.c:174:6:initializeClock	4	static

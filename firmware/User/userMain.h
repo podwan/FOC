@@ -32,7 +32,7 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-
+#define SEND_RCC_DATA 1
 /*===========================================================================*/
 typedef struct
 {
@@ -227,4 +227,5 @@ void userMain(void);
 void setPowerLost();
 bool getPowerLost();
 extern float load_data[5];
+extern uint8_t tempData[24];
 #endif

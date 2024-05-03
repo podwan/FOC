@@ -34,6 +34,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "../../User/app.h"
+#include "../../User/userMain.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -113,7 +114,7 @@ int main(void)
   HAL_OPAMP_Start(&hopamp1);
   HAL_OPAMP_Start(&hopamp2);
   HAL_OPAMP_Start(&hopamp3);
- // HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
+  // HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
   HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
   __HAL_ADC_CLEAR_FLAG(&hadc1, ADC_FLAG_JEOC);
@@ -138,17 +139,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//    HAL_ADC_Start(&hadc1);
-//    HAL_ADC_Start(&hadc2);
-//    Vpoten = HAL_ADC_GetValue(&hadc1);
-//    adc_vbus = HAL_ADC_GetValue(&hadc2);
-//    Vbus = adc_vbus * 3.3f / 4096 * 26;
-//    //		HAL_DAC_SetValue(&hdac1,DAC_CHANNEL_1,DAC_ALIGN_12B_R,DAC_temp);
-//    HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &TxHeader, TxData);
-//    HAL_Delay(10);
+    //    HAL_ADC_Start(&hadc1);
+    //    HAL_ADC_Start(&hadc2);
+    //    Vpoten = HAL_ADC_GetValue(&hadc1);
+    //    adc_vbus = HAL_ADC_GetValue(&hadc2);
+    //    Vbus = adc_vbus * 3.3f / 4096 * 26;
+    //    //		HAL_DAC_SetValue(&hdac1,DAC_CHANNEL_1,DAC_ALIGN_12B_R,DAC_temp);
+    //    HAL_FDCAN_AddMessageToTxFifoQ(&hfdcan1, &TxHeader, TxData);
+    //    HAL_Delay(10);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    userMain();
   }
   /* USER CODE END 3 */
 }

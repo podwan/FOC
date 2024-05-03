@@ -11,19 +11,19 @@ static uchar withoutZeroCnt, powerOnCnt;
 
 static bool _5msFlag, _10msFlag, _20msFlag, _30msFlag, _100msFlag, _500msFlag;
 
-// void dealPer125us()
-// {
-//     static unsigned char cnt;
-//     if (++cnt >= 8)
-//     {
-//         cnt = 0;
-//         dealPerMs();
-//     }
+void dealPer100us()
+{
+    static unsigned char cnt;
+    if (++cnt >= 10)
+    {
+        cnt = 0;
+        dealPerMs();
+    }
 
-// #if ZERO_POLL
-//     zeroPolling();
-// #endif
-// }
+#if ZERO_POLL
+    zeroPolling();
+#endif
+}
 
 // 定时器中断调用
  void dealPerMs()

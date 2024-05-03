@@ -15,6 +15,6 @@
 
 #define U_DC 12.0f
 
-
 void calibrateOffsets(FocParameters *fp, uint32_t adc_a, uint32_t adc_b);
+extern const char sectorRemap[];
 #endif

@@ -4,7 +4,7 @@
 
 #define KEY_ENABLE 0
 #define DISPLAY_ENABLE 0
-#define NEED_COMMUNICATION 0
+#define NEED_COMMUNICATION 1
 #define WITH_NTC 0
 
 #define DEBUG_COM 1

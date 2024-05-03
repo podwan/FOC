@@ -4,14 +4,14 @@
 #include "userMain.h"
 
 // sign function
-#define _sign(a) ( ( (a) < 0 )  ?  -1   : ( (a) > 0 ) )
+#define _sign(a) (((a) < 0) ? -1 : ((a) > 0))
 #ifndef _round
-#define _round(x) ((x)>=0?(long)((x)+0.5f):(long)((x)-0.5f))
+#define _round(x) ((x) >= 0 ? (long)((x) + 0.5f) : (long)((x)-0.5f))
 #endif
-#define _constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
+#define _constrain(amt, low, high) ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)))
 #define _sqrt(a) (_sqrtApprox(a))
-#define _isset(a) ( (a) != (NOT_SET) )
-#define _UNUSED(v) (void) (v)
+#define _isset(a) ((a) != (NOT_SET))
+#define _UNUSED(v) (void)(v)
 #define _powtwo(x) (1 << (x))
 
 // utility defines
@@ -35,28 +35,7 @@
 #define _ACTIVE 1
 #define _NC (NOT_SET)
 
-#define MIN_ANGLE_DETECT_MOVEMENT (_2PI/101.0f)
-
-// dq current structure
-struct DQCurrent_s
-{
-    float d;
-    float q;
-};
-// phase current structure
-struct PhaseCurrent_s
-{
-    float a;
-    float b;
-    float c;
-};
-// dq voltage structs
-struct DQVoltage_s
-{
-    float d;
-    float q;
-};
-
+#define MIN_ANGLE_DETECT_MOVEMENT (_2PI / 101.0f)
 
 /**
  *  Function approximating the sine calculation by using fixed size array
@@ -77,11 +56,11 @@ float _cos(float a);
  * Internally it uses the _sin and _cos functions, but you may wish to
  * provide your own implementation which is more optimized.
  */
-void _sincos(float a, float* s, float* c);
+void _sincos(float a, float *s, float *c);
 
 /**
- * Function approximating atan2 
- * 
+ * Function approximating atan2
+ *
  */
 float _atan2(float y, float x);
 
@@ -90,7 +69,6 @@ float _atan2(float y, float x);
  * @param angle - angle to be normalized
  */
 float _normalizeAngle(float angle);
-
 
 /**
  * Electrical angle calculation

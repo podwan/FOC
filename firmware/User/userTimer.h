@@ -9,7 +9,7 @@
 #define FREQUENCE_JUDGE 0
 #define ZERO_ERR_TIME 1000
 
-void dealPer125us();
+void dealPer100us();
 unsigned char getFrequence();
 bool getOneSecFlag();
 bool getPowerLost();
