@@ -192,7 +192,7 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 			if (elecAngle >= _2PI)
 				elecAngle = 0;
 
-			openLoopFoc(2, elecAngle);
+//			setPhaseVoltage1(2, 0, elecAngle);
 			// setPhaseVoltage1(2, 0, elecAngle);
 			//  load_data[0] = Ia;
 			//  load_data[1] = Ib;

@@ -83,72 +83,72 @@ static void SVPWM(FocParameters *fp)
     float tFirst, tSecond;
     int d1, d2, d3;
 
-    float K = _SQRT3 * PWM_PERIOD_VALUE / U_DC;
-    float X = fp->Ubeta * K;
-    float Y = (_SQRT3 * fp->Ualpha / 2.0f + fp->Ubeta / 2.0f) * K;
-    float Z = (-_SQRT3 * fp->Ualpha / 2.0f + fp->Ubeta / 2.0f) * K;
+    float K = _SQRT3 * HALP_PWM_PERIOD / U_DC;
+    float X = K * fp->Ubeta;
+    float Y = K * (_SQRT3 * fp->Ualpha / 2.0f - fp->Ubeta / 2.0f);
+    float Z = K * (-_SQRT3 * fp->Ualpha / 2.0f - fp->Ubeta / 2.0f);
 
     uint8_t sector = sectorRemap[(X > 0.0f) + ((Y > 0.0f) << 1) + ((Z > 0.0f) << 2)]; // sector = A + 2B + 4C
 
     switch (sector)
     {
     case 1:
-        tFirst = -Z;
+        tFirst = Y;
         tSecond = X;
-
-        d1 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        d1 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d2 = d1 + tFirst;
         d3 = d2 + tSecond;
+
         break;
     case 2:
-        tFirst = Z;
-        tSecond = Y;
-
-        d2 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        tFirst = -Y;
+        tSecond = -Z;
+        d2 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d1 = d2 + tFirst;
         d3 = d1 + tSecond;
+
         break;
     case 3:
         tFirst = X;
-        tSecond = -Y;
-
-        d2 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        tSecond = Z;
+        d2 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d3 = d2 + tFirst;
         d1 = d3 + tSecond;
 
         break;
     case 4:
         tFirst = -X;
-        tSecond = Z;
-
-        d3 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        tSecond = -Y;
+        d3 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d2 = d3 + tFirst;
         d1 = d2 + tSecond;
+
         break;
 
     case 5:
-        tFirst = -Y;
-        tSecond = -Z;
-
-        d3 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        tFirst = Z;
+        tSecond = Y;
+        d3 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d1 = d3 + tFirst;
         d2 = d1 + tSecond;
+
         break;
 
     case 6:
-        tFirst = Y;
+        tFirst = -Z;
         tSecond = -X;
-
-        d1 = (PWM_PERIOD_VALUE - tFirst - tSecond) / 2.0f;
+        d1 = (HALP_PWM_PERIOD - tFirst - tSecond) / 2.0f;
         d3 = d1 + tFirst;
         d2 = d3 + tSecond;
         break;
     }
+#if SEND_RCC_DATA
     load_data[0] = d1;
     load_data[1] = d2;
     load_data[2] = d3;
     load_data[3] = 0;
     load_data[4] = 0;
+#endif
     fp->setPwm(d1, d2, d3); // 输出三路PWM，驱动无刷电机转动
 }
 
@@ -158,22 +158,23 @@ void currentLoop(FocParameters *fp, uint32_t adc_a, uint32_t adc_b)
     float st;
     _sincos(fp->angle_el, &st, &ct);
     //  getPhaseCurrents
-    fp->Ia = (adc_a - fp->offset_ia) * VLOTS_AMPS_RATIO;
-    fp->Ib = (adc_b - fp->offset_ib) * VLOTS_AMPS_RATIO;
+    float Ia = (adc_a - fp->offset_ia) * VLOTS_AMPS_RATIO;
+    float Ib = (adc_b - fp->offset_ib) * VLOTS_AMPS_RATIO;
     //  clarke
-    fp->Ialpha = fp->Ia;
-    fp->Ibeta = _1_SQRT3 * fp->Ia + _2_SQRT3 * fp->Ib;
+    float Ialpha = Ia;
+    float Ibeta = _1_SQRT3 * Ia + _2_SQRT3 * Ib;
     // park
-    fp->Id = fp->Ialpha * ct + fp->Ibeta * st;
-    fp->Iq = fp->Ibeta * ct - fp->Ialpha * st;
+    float Id = Ialpha * ct + Ibeta * st;
+    float Iq = Ibeta * ct - Ialpha * st;
+    // low pass filter
+    Id = lpfOperator(&fp->lpf, Id);
+    Iq = lpfOperator(&fp->lpf, Iq);
     // PID
-    fp->Id = lpfOperator(&fp->lpf, fp->Id);
-    fp->Iq = lpfOperator(&fp->lpf, fp->Iq);
-    fp->Ud = pidOperator(&fp->pid_id, fp->IdGoal - fp->Id);
-    fp->Uq = pidOperator(&fp->pid_iq, fp->IqGoal - fp->Iq);
+    float Ud = pidOperator(&fp->pid_id, fp->IdGoal - Id);
+    float Uq = pidOperator(&fp->pid_iq, fp->IqGoal - Iq);
     // revPark
-    fp->Ualpha = fp->Ud * ct - fp->Uq * st;
-    fp->Ubeta = fp->Uq * ct + fp->Ud * st;
+    fp->Ualpha = Ud * ct - Uq * st;
+    fp->Ubeta = Uq * ct + Ud * st;
     // SVPWM
     SVPWM(fp);
 }

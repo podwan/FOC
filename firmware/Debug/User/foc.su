@@ -5,4 +5,4 @@
 ../User/foc.c:58:6:getDQVoltages	24	static
 ../User/foc.c:72:6:getABVoltages	24	static
 ../User/foc.c:81:13:SVPWM	56	static
-../User/foc.c:155:6:currentLoop	40	static
+../User/foc.c:155:6:currentLoop	72	static

@@ -34,7 +34,7 @@ void setPhaseVoltage(float Uq, float Ud, float angle_el)
 {
 	Uq = _constraint(Uq, -5.0f, 5.0f);
 	// angle_el = _normalizeAngle(angle_el); // 使用MT6701计算电角度时，已限制角度范围
-	
+
 	static float Ts = 1.0f;
 	float Ta, Tb, Tc;
 	float t1, t2, t3, t4, t5, t6, t7;
