@@ -1,7 +1,0 @@
-../Ctrl/Signal/io_signal_base.cpp:4:6:void IoSignalBase::Init(uint16_t)	16	static
-../Ctrl/Signal/io_signal_base.cpp:11:6:void IoSignalBase::ConfigMode(IoSignalBase::Mode_t)	16	static
-../Ctrl/Signal/io_signal_base.cpp:20:6:void IoSignalBase::UpdateSignals()	16	static
-../Ctrl/Signal/io_signal_base.cpp:42:6:void IoSignalBase::StepDirInterface::SetSubdivide(uint16_t)	16	static
-../Ctrl/Signal/io_signal_base.cpp:63:6:void IoSignalBase::StepDirInterface::Init(uint16_t)	16	static
-../Ctrl/Signal/io_signal_base.cpp:70:6:void IoSignalBase::StepDirInterface::UpdateSignals()	16	static
-../Ctrl/Signal/io_signal_base.cpp:102:6:void IoSignalBase::StepDirInterface::RefreshStepCountDirection()	16	static

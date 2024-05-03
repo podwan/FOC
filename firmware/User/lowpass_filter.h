@@ -1,24 +1,6 @@
 #ifndef LOWPASS_FILTER_H
 #define LOWPASS_FILTER_H
-
 #include "userMain.h"
-#include "math_utils.h"
+float lpfOperator(LowPassFilter *lfp, float x);
 
-class LowPassFilter
-{
-public:
-    LowPassFilter() = default;
-
-    explicit LowPassFilter(float _timeConstant)
-        : outputLast(0.0f)
-    {
-    }
-
-    float operator()(float _input);
-    float timeConstant;
-
-protected:
-    float outputLast;
-};
-
-#endif
+#endif // LOWPASS_FILTER_H

@@ -1,1 +1,2 @@
-../User/pid.cpp:3:7:float PidController::operator()(float)	40	static
+../User/pid.c:5:7:pidOperator	40	static
+../User/pid.c:43:6:reset	16	static

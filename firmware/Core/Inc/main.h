@@ -7,12 +7,13 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
+  * <h2><center>&copy; Copyright (c) 2023 STMicroelectronics.
+  * All rights reserved.</center></h2>
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
+  * This software component is licensed by ST under BSD 3-Clause license,
+  * the "License"; You may not use this file except in compliance with the
+  * License. You may obtain a copy of the License at:
+  *                        opensource.org/licenses/BSD-3-Clause
   *
   ******************************************************************************
   */
@@ -57,10 +58,19 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define Button3_Pin GPIO_PIN_13
+#define Button3_GPIO_Port GPIOC
+#define Button3_EXTI_IRQn EXTI15_10_IRQn
 #define LED2_Pin GPIO_PIN_4
 #define LED2_GPIO_Port GPIOC
 #define LED1_Pin GPIO_PIN_6
 #define LED1_GPIO_Port GPIOC
+#define Button1_Pin GPIO_PIN_10
+#define Button1_GPIO_Port GPIOC
+#define Button1_EXTI_IRQn EXTI15_10_IRQn
+#define Button2_Pin GPIO_PIN_11
+#define Button2_GPIO_Port GPIOC
+#define Button2_EXTI_IRQn EXTI15_10_IRQn
 
 /* USER CODE BEGIN Private defines */
 
