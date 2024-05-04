@@ -1,8 +1,7 @@
-../User/userMain.c:42:6:userMain	2
-../User/userMain.c:91:6:setPowerLost	1
-../User/userMain.c:95:6:HAL_GPIO_EXTI_Callback	3
-../User/userMain.c:126:6:HAL_UART_RxCpltCallback	2
+../User/userMain.c:32:6:userMain	3
+../User/userMain.c:86:6:setPowerLost	1
+../User/userMain.c:90:6:HAL_GPIO_EXTI_Callback	3
 D:\ST\STM32CubeIDE_1.14.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/stdio.h:220:5:fputc	2
-../User/userMain.c:156:6:HAL_ADCEx_InjectedConvCpltCallback	5
-../User/userMain.c:215:6:HAL_TIM_IC_CaptureCallback	1
-../User/userMain.c:267:6:FDCAN_Config	1
+../User/userMain.c:129:6:HAL_ADCEx_InjectedConvCpltCallback	5
+../User/userMain.c:189:6:HAL_TIM_IC_CaptureCallback	1
+../User/userMain.c:241:6:FDCAN_Config	1

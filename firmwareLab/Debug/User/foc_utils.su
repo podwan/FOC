@@ -1,0 +1,3 @@
+../User/foc_utils.c:6:29:_sin	32	static
+../User/foc_utils.c:43:29:_cos	24	static
+../User/foc_utils.c:50:28:_sincos	24	static

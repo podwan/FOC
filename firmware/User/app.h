@@ -1,46 +1,38 @@
 #ifndef __APP_H
 #define __APP_H
+
 #include "userMain.h"
 
-#define KEY_ENABLE 0
-#define DISPLAY_ENABLE 0
-#define NEED_COMMUNICATION 1
-#define WITH_NTC 0
 
-#define DEBUG_COM 1
-#define DEBUG_SEG 0
 
-#define POWER_ON_INIT        \
-    {                        \
-        devState = POWER_ON; \
+#define WORK_INIT                                    \
+    {                                                \
+        devState = WORK;                             \
+        flashCnt = 0;                                \
+        HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);    \
+        HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);    \
+        HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);    \
+        HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1); \
+        HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2); \
+        HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3); \
     }
 
 #define STANDBY_INIT        \
     {                       \
         devState = STANDBY; \
+        flashCnt = 0;       \
     }
+#ifdef __cplusplus // 使用C语言的方式编译方法名。
+extern "C"
+{
+#endif
 
-#define SET_INIT        \
-    {                   \
-        devState = SET; \
-    }
+    void appInit();
+#ifdef __cplusplus
+}
+#endif
 
-#define WORK_INIT        \
-    {                    \
-        devState = WORK; \
-    }
-
-#define FAULT_INIT        \
-    {                     \
-        devState = FAULT; \
-    }
-
-#define TEST_INIT        \
-    {                    \
-        devState = TEST; \
-    }
-
-void appInit();
 void appRunning();
-extern uint showStuff;
+extern float txA, txB, txC;
+
 #endif
