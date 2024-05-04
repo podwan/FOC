@@ -1,0 +1,5 @@
+C:\ST\STM32CubeIDE_1.11.0\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/c++/12.3.1/cmath:279:3:constexpr float std::fmod(float, float)	16	static
+../User/math_utils.cpp:23:7:float SinApprox(float)	16	static
+../User/math_utils.cpp:41:7:float CosApprox(float)	24	static
+../User/math_utils.cpp:50:7:float Normalize(float)	24	static
+../User/math_utils.cpp:60:7:float SqrtApprox(float)	24	static

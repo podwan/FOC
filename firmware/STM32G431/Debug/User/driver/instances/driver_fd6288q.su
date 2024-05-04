@@ -1,0 +1,3 @@
+../User/driver/instances/driver_fd6288q.cpp:4:6:virtual bool DriverFD6288QBase::Init()	16	static
+../User/driver/instances/driver_fd6288q.cpp:10:6:virtual void DriverFD6288QBase::SetVoltage(float, float, float)	24	static
+../User/driver/instances/driver_fd6288q.cpp:24:6:virtual void DriverFD6288QBase::SetEnable(bool)	16	static

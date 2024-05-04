@@ -1,0 +1,2 @@
+../User/userTimer.cpp:12:6:void dealPer100us()	2
+../User/userTimer.cpp:24:6:bool getOneMsFlag()	2

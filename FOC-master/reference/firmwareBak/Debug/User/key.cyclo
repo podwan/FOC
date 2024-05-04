@@ -1,0 +1,4 @@
+../User/key.c:5:6:getKeyFlags	8
+../User/key.c:59:6:keyScan	42
+../User/key.c:255:6:getKeyState	5
+../User/key.c:274:6:keyScanLoop	1

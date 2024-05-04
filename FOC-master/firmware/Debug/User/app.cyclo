@@ -1,0 +1,5 @@
+../User/app.c:19:6:appInit	1
+../User/app.c:24:6:appRunning	2
+../User/app.c:50:13:standingBy	2
+../User/app.c:65:13:working	3
+../User/app.c:94:13:txDataProcess	1

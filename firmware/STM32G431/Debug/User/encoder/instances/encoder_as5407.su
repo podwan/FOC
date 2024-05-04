@@ -1,0 +1,4 @@
+../User/encoder/instances/encoder_as5407.cpp:3:6:void EncoderAS5047Base::Init()	16	static
+../User/encoder/instances/encoder_as5407.cpp:13:7:virtual float EncoderAS5047Base::getRawAngle()	16	static
+../User/encoder/instances/encoder_as5407.cpp:18:10:uint16_t EncoderAS5047Base::GetRawData()	24	static,ignoring_inline_asm
+../User/encoder/instances/encoder_as5407.cpp:35:9:uint8_t EncoderAS5047Base::SpiCalcEvenParity(uint16_t)	24	static

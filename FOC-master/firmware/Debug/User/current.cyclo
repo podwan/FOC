@@ -1,0 +1,4 @@
+../User/current.c:5:6:getCurrentOffsets	2
+../User/current.c:21:6:getPhaseCurrents	1
+../User/current.c:35:6:getABCurrents	1
+../User/current.c:48:6:getDQCurrents	1

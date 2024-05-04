@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "usermain.h": "c",
+        "bit": "c",
+        "compare": "c",
+        "cstddef": "c",
+        "limits": "c",
+        "type_traits": "c",
+        "xutility": "c",
+        "current.h": "c"
+    }
+}

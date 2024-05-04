@@ -1,0 +1,6 @@
+../User/encoder/encoder_base.cpp:5:14:float abs(float)	16	static
+../User/encoder/encoder_base.cpp:10:6:void EncoderBase::VarInit()	16	static
+../User/encoder/encoder_base.cpp:28:6:void EncoderBase::update()	32	static
+../User/encoder/encoder_base.cpp:49:7:float EncoderBase::getFullAngle()	16	static
+../User/encoder/encoder_base.cpp:53:7:float EncoderBase::getLapAngle()	16	static
+../User/encoder/encoder_base.cpp:57:7:float EncoderBase::getVelocity()	16	static

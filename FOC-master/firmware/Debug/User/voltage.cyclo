@@ -1,0 +1,4 @@
+../User/voltage.c:6:6:getDQVoltages	1
+../User/voltage.c:20:6:getABVoltages	1
+../User/voltage.c:29:6:setSVPWM	9
+../User/voltage.c:103:6:setPhaseVoltage	11

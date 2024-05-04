@@ -1,0 +1,4 @@
+../User/key.cpp:5:6:uint getKeyFlags()	8
+../User/key.cpp:59:6:void keyScan()	54
+../User/key.cpp:255:6:void getKeyState(KeyState*)	5
+../User/key.cpp:274:6:void keyScanLoop(void*)	1
