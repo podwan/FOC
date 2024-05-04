@@ -10,8 +10,6 @@ C_SRCS += \
 ../User/comm.c \
 ../User/current.c \
 ../User/foc_utils.c \
-../User/key.c \
-../User/led.c \
 ../User/lowpass_filter.c \
 ../User/mt6701.c \
 ../User/pid.c \
@@ -25,8 +23,6 @@ OBJS += \
 ./User/comm.o \
 ./User/current.o \
 ./User/foc_utils.o \
-./User/key.o \
-./User/led.o \
 ./User/lowpass_filter.o \
 ./User/mt6701.o \
 ./User/pid.o \
@@ -40,8 +36,6 @@ C_DEPS += \
 ./User/comm.d \
 ./User/current.d \
 ./User/foc_utils.d \
-./User/key.d \
-./User/led.d \
 ./User/lowpass_filter.d \
 ./User/mt6701.d \
 ./User/pid.d \
@@ -57,7 +51,7 @@ User/%.o User/%.su User/%.cyclo: ../User/%.c User/subdir.mk
 clean: clean-User
 
 clean-User:
-	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/bldcMotor.cyclo ./User/bldcMotor.d ./User/bldcMotor.o ./User/bldcMotor.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/current.cyclo ./User/current.d ./User/current.o ./User/current.su ./User/foc_utils.cyclo ./User/foc_utils.d ./User/foc_utils.o ./User/foc_utils.su ./User/key.cyclo ./User/key.d ./User/key.o ./User/key.su ./User/led.cyclo ./User/led.d ./User/led.o ./User/led.su ./User/lowpass_filter.cyclo ./User/lowpass_filter.d ./User/lowpass_filter.o ./User/lowpass_filter.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/pid.cyclo ./User/pid.d ./User/pid.o ./User/pid.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su ./User/voltage.cyclo ./User/voltage.d ./User/voltage.o ./User/voltage.su
+	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/bldcMotor.cyclo ./User/bldcMotor.d ./User/bldcMotor.o ./User/bldcMotor.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/current.cyclo ./User/current.d ./User/current.o ./User/current.su ./User/foc_utils.cyclo ./User/foc_utils.d ./User/foc_utils.o ./User/foc_utils.su ./User/lowpass_filter.cyclo ./User/lowpass_filter.d ./User/lowpass_filter.o ./User/lowpass_filter.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/pid.cyclo ./User/pid.d ./User/pid.o ./User/pid.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su ./User/voltage.cyclo ./User/voltage.d ./User/voltage.o ./User/voltage.su
 
 .PHONY: clean-User
 

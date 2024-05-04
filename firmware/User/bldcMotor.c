@@ -11,7 +11,7 @@ void motorInit()
 {
     fp1.pole_pairs = 7;
     fp1.setPwm = setPwm1;
-    fp1.getElecAngle = getElecAngle1;
+   fp1.getElecAngle = getElecAngle1;
     fp1.zeroElectricAngleOffSet = 0;
 }
 
@@ -21,6 +21,7 @@ static void setPwm1(unsigned short int a, unsigned short int b, unsigned short i
     TIM1->CCR2 = b;
     TIM1->CCR3 = c;
 }
+
 
 static float getElecAngle1(FocParameters *fp)
 {

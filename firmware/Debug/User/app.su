@@ -1,5 +1,10 @@
-../User/app.c:18:6:appInit	8	static
-../User/app.c:23:6:appRunning	8	static
-../User/app.c:49:13:standingBy	8	static
-../User/app.c:64:13:working	4	static
-../User/app.c:93:13:txDataProcess	32	static
+../User/app.c:44:6:appInit	8	static
+../User/app.c:49:6:appRunning	8	static
+../User/app.c:137:13:uartRxProcess	4	static
+../User/app.c:151:13:uartTxProcess	4	static
+../User/app.c:197:13:poweringOn	4	static
+../User/app.c:272:13:standingby	4	static
+../User/app.c:275:13:setting	4	static
+../User/app.c:278:13:working	4	static
+../User/app.c:282:13:testing	4	static
+../User/app.c:286:13:faulting	4	static

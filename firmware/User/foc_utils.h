@@ -1,5 +1,5 @@
-#ifndef FOCUTILS_H
-#define FOCUTILS_H
+#ifndef FOCUTILS_LIB_H
+#define FOCUTILS_LIB_H
 
 #include "userMain.h"
 

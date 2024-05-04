@@ -4,8 +4,7 @@
 #include "userTimer.h"
 #include "bldcMotor.h"
 #include "foc_utils.h"
-#include "bldcMotor.h"
-#include "comm.h"
+#include "voltage.h"
 #define PHASE_SHIFT_ANGLE (float)(120.0f / 360.0f * 2.0f * PI)
 
 extern DMA_HandleTypeDef hdma_usart3_tx;
@@ -76,11 +75,6 @@ void userMain(void)
 	{
 		appRunning();
 	}
-
-	if (get500MsFlag())
-	{
-		printLog();
-	}
 }
 
 void setPowerLost()
@@ -118,6 +112,28 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	 */
 }
 
+// void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//{
+//	/* Prevent unused argument(s) compilation warning */
+//	UNUSED(huart);
+//	if (Uart1_Rx_Cnt >= 255)
+//	{
+//		Uart1_Rx_Cnt = 0;
+//		memset(RxBuffer, 0x00, sizeof(RxBuffer));
+//		HAL_UART_Transmit(&huart3, (uint8_t *)"????", 10, 0xFFFF);
+//	}
+//	else
+//	{
+//		RxBuffer[Uart1_Rx_Cnt++] = aRxBuffer;
+//		//		Uart1_Rx_Cnt = 0;
+//		//		memset(RxBuffer,0x00,sizeof(RxBuffer));
+//	}
+//	HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
+//	/* NOTE: This function should not be modified, when the callback is needed,
+//			 the HAL_UART_TxHalfCpltCallback can be implemented in the user file.
+//	 */
+// }
+
 int fputc(int ch, FILE *f)
 {
 	while ((USART3->ISR & 0X40) == 0)
@@ -133,7 +149,6 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 	UNUSED(hadc);
 	if (hadc == &hadc1)
 	{
-		// foc(&fp1);
 		if (ADC_offset == 0)
 		{
 			cnt++;
@@ -165,14 +180,15 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 			elecAngle += 0.01;
 			if (elecAngle >= _2PI)
 				elecAngle = 0;
-			// setPhaseVoltage(&fp1, 2, 0, elecAngle);
-			setPhaseVoltage1(2, 0, elecAngle);
+
+			setPhaseVoltage(&fp1, 2, 0, elecAngle);
+
 			dealPer100us();
 #if SHOW_WAVE
 
-			// load_data[0] = fp1.d1;
-			// load_data[1] = fp1.d2;
-			// load_data[2] = fp1.d3;
+			load_data[0] = fp1.d1;
+			load_data[1] = fp1.d2;
+			load_data[2] = fp1.d3;
 			load_data[3] = 0;
 			load_data[4] = 0;
 			memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));

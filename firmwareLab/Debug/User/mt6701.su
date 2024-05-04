@@ -1,4 +1,0 @@
-../User/mt6701.c:6:10:MT6701_GetRawData	24	static
-../User/mt6701.c:37:7:MT6701_GetRawAngle	16	static
-../User/mt6701.c:44:7:MT6701_GetFullAngle	16	static
-../User/mt6701.c:64:7:MT6701_GetVelocity	32	static

@@ -36,7 +36,6 @@
 #include <string.h>
 #include "../../User/app.h"
 #include "../../User/userMain.h"
-extern uint8_t aRxBuffer;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -108,6 +107,7 @@ int main(void)
   MX_OPAMP3_Init();
   MX_TIM1_Init();
   MX_COMP1_Init();
+  MX_DAC1_Init();
   MX_DAC3_Init();
   MX_FDCAN1_Init();
   MX_TIM4_Init();
@@ -116,7 +116,7 @@ int main(void)
   HAL_OPAMP_Start(&hopamp1);
   HAL_OPAMP_Start(&hopamp2);
   HAL_OPAMP_Start(&hopamp3);
-  HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
+  // HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
   HAL_ADCEx_Calibration_Start(&hadc1, ADC_SINGLE_ENDED);
   HAL_ADCEx_Calibration_Start(&hadc2, ADC_SINGLE_ENDED);
   __HAL_ADC_CLEAR_FLAG(&hadc1, ADC_FLAG_JEOC);
@@ -130,7 +130,7 @@ int main(void)
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
   HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 3000);
   HAL_DAC_Start(&hdac3, DAC_CHANNEL_1);
-  //  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
   HAL_COMP_Start(&hcomp1);
   HAL_TIMEx_HallSensor_Start_IT(&htim4);
   FDCAN_Config();

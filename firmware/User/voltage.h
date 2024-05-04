@@ -22,5 +22,5 @@
 void getDQVoltages(FocParameters *fp);
 void getABVoltages(FocParameters *fp);
 void setPhaseVoltage(FocParameters *fp, float Uq, float Ud, float angle_el);
-void setPhaseVoltage1(float Uq, float Ud, float angle_el);
+extern const char sectorRemap[];
 #endif

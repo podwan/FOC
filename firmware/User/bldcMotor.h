@@ -11,5 +11,5 @@ void motorInit();
 void foc(FocParameters *fp, uint32_t adc_a, uint32_t adc_b);
 extern FocParameters fp1;
 void getZeroElecAngle(FocParameters *fp);
-// void setPhaseVoltage1(Uq, Ud, angle_el);
+void setPhaseVoltage1(FocParameters *fp, float Uq, float Ud, float angle_el);
 #endif

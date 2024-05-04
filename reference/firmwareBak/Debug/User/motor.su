@@ -1,4 +1,5 @@
-../User/motor.c:8:6:motorInit	4	static
-../User/motor.c:17:6:velocityOpenLoop	24	static
-../User/motor.c:25:13:setPwm1	16	static
-../User/motor.c:32:6:setPhaseVoltage1	80	static
+../User/motor.c:9:6:motorInit	4	static
+../User/motor.c:18:6:velocityOpenLoop	24	static
+../User/motor.c:26:13:setPwm1	16	static
+../User/motor.c:33:14:getElecAngle1	24	static
+../User/motor.c:38:6:getZeroElecAngle	16	static

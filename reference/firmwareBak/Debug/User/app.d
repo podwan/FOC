@@ -1,4 +1,4 @@
-User/app.o: ../User/app.c ../User/userTimer.h ../User/userMain.h \
+User/app.o: ../User/app.c ../User/app.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
@@ -41,8 +41,9 @@ User/app.o: ../User/app.c ../User/userTimer.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
- ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/app.h ../User/motor.h
-../User/userTimer.h:
+ ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/led.h ../User/key.h \
+ ../User/comm.h ../User/mt6701.h ../User/bldcMotor.h
+../User/app.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -90,5 +91,8 @@ User/app.o: ../User/app.c ../User/userTimer.h ../User/userMain.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
-../User/app.h:
-../User/motor.h:
+../User/led.h:
+../User/key.h:
+../User/comm.h:
+../User/mt6701.h:
+../User/bldcMotor.h:

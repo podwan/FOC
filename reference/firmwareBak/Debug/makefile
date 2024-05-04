@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := focTemplateBak
+BUILD_ARTIFACT_NAME := focTemplate
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-focTemplateBak.elf \
+focTemplate.elf \
 
 MAP_FILES += \
-focTemplateBak.map \
+focTemplate.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-focTemplateBak.list \
+focTemplate.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: focTemplateBak.elf secondary-outputs
+main-build: focTemplate.elf secondary-outputs
 
 # Tool invocations
-focTemplateBak.elf focTemplateBak.map: $(OBJS) $(USER_OBJS) G:\workSpace\FOC\reference\firmwareBak\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "focTemplateBak.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"G:\workSpace\FOC\reference\firmwareBak\STM32G431CBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="focTemplateBak.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+focTemplate.elf focTemplate.map: $(OBJS) $(USER_OBJS) G:\workSpace\FOC\firmware\STM32G431CBUX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "focTemplate.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"G:\workSpace\FOC\firmware\STM32G431CBUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="focTemplate.map" -Wl,--gc-sections -static -L../Middlewares/ST/ARM/DSP/Lib --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,14 +71,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-focTemplateBak.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "focTemplateBak.list"
+focTemplate.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "focTemplate.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) default.size.stdout focTemplateBak.elf focTemplateBak.list focTemplateBak.map
+	-$(RM) default.size.stdout focTemplate.elf focTemplate.list focTemplate.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

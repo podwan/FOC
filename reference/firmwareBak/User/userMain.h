@@ -7,6 +7,8 @@ typedef unsigned long ulong;
 
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+
 #include "stm32g4xx_hal.h"
 #include "tim.h"
 #include "adc.h"
@@ -33,31 +35,16 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SEND_RCC_DATA 1
+#define SHOW_WAVE 1
 /*===========================================================================*/
+
 typedef struct
 {
     float Tf;     //!< Low pass filter time constant
     float dt;     // 0.0f ~ 0.3f(300ms)
     float y_prev; //!< filtered value in previous execution step
 } LowPassFilter;
-/*===========================================================================*/
-typedef enum
-{
-    TORQUE,
-    VELOCITY,
-    ANGLE,
-    VELOCITY_OPEN_LOOP,
-    ANGLE_OPEN_LOOP
-} ControlType;
-/*===========================================================================*/
-typedef enum
-{
-    MOTOR_STOP,
-    MOTOR_START,
-    MOTOR_WAIT,
-    MOTOR_RUN,
-} MotorState;
+
 /*===========================================================================*/
 
 typedef struct
@@ -73,8 +60,26 @@ typedef struct
     float Ts;            // PID调节周期
 } PidController;
 /*===========================================================================*/
+typedef enum
+{
+    TORQUE,
+    VELOCITY,
+    ANGLE,
+    VELOCITY_OPEN_LOOP,
+    ANGLE_OPEN_LOOP
+} ControlType;
+/*===========================================================================*/
+typedef enum
+{
+    CALIBRATE,
+    MOTOR_START,
+    MOTOR_WAIT,
+    MOTOR_RUN,
+} MotorState;
+/*===========================================================================*/
 typedef struct
 {
+
     MotorState motorState;
     ControlType controlType;
     //  angle
@@ -107,8 +112,8 @@ typedef struct
     void (*setPwm)(unsigned short int, unsigned short int, unsigned short int);
 
 } FocParameters;
-/*===========================================================================*/
 
+/*===========================================================================*/
 typedef enum
 {
     false,
@@ -147,20 +152,9 @@ typedef enum
 typedef enum
 {
     NONE_KEY,
-    ONnOFF_SHORT,
-    ONnOFF_LONG,
-    ONE_CUP_SHORT,
-    TWO_CUP_SHORT,
-    ONE_CUP_LONG,
-    TWO_CUP_LONG,
-    STEAM_LONG,
-    STEAM_SHORT,
-    RESET_WORKED_TIMES_KEY,
-    RESET_COFFEE_TIME_KEY,
-    MENU_SHORT,
-    TEST_KEY,
-    RESET_KEY,
-    VERSION_KEY
+    USER1_SHORT,
+    USER2_SHORT,
+    USER3_SHORT,
 } KeyState;
 
 typedef union
@@ -242,6 +236,5 @@ typedef struct
 void userMain(void);
 void setPowerLost();
 bool getPowerLost();
-extern float load_data[5];
-extern uint8_t tempData[24];
+
 #endif

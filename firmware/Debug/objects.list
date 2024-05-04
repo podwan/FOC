@@ -48,8 +48,6 @@
 "./User/comm.o"
 "./User/current.o"
 "./User/foc_utils.o"
-"./User/key.o"
-"./User/led.o"
 "./User/lowpass_filter.o"
 "./User/mt6701.o"
 "./User/pid.o"
