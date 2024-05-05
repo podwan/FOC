@@ -3,6 +3,7 @@
         "usermain.h": "c",
         "voltage.h": "c",
         "as5407.h": "c",
-        "foc_utils.h": "c"
+        "foc_utils.h": "c",
+        "mt6701.h": "c"
     }
 }

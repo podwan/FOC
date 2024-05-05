@@ -19,9 +19,9 @@
         TIM1->CCR3 = p3;         \
     }
 
-void getDQVoltages(BldcMotor *motor);
-void getABVoltages(BldcMotor *motor);
-void setPhaseVoltage(BldcMotor *motor, float Uq, float Ud, float angle_el);
-void setSVPWM(BldcMotor *motor);
+void getDQVoltages(FocMotor *motor);
+void getABVoltages(FocMotor *motor);
+void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el);
+void setSVPWM(FocMotor *motor);
 extern const char sectorRemap[];
 #endif

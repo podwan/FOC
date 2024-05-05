@@ -1,8 +1,14 @@
 
 #include "current.h"
-#include "foc_utils.h"
+#include "math_utils.h"
+
+// float adc2current(uint32_t adc)
+// {
+//     return adc * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO;
+// }
+
 // Function finding zero offsets of the ADC
-void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds)
+void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds)
 {
     // find adc offset = zero current voltage
     motor->offset_ia = 0;
@@ -10,15 +16,15 @@ void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_
     // read the adc voltage  times ( arbitrary number )
     for (int i = 0; i < rounds; i++)
     {
-        motor->offset_ia += adc_a;
-        motor->offset_ib += adc_b;
+        motor->offset_ia += ADC_2_CURRENT(adc_a);
+        motor->offset_ib += ADC_2_CURRENT(adc_b);
     }
     // calculate the mean offsets
     motor->offset_ia = motor->offset_ia / rounds;
     motor->offset_ib = motor->offset_ib / rounds;
 }
 // read all three phase currents (if possible 2 or 3)
-void getPhaseCurrents(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
+void getPhaseCurrents(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
     motor->Ia = (adc_a - motor->offset_ia) * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO; // amps
     motor->Ib = (adc_b - motor->offset_ib) * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO; // amps
@@ -32,7 +38,7 @@ void getPhaseCurrents(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
 /*============================================================================*/
 //   calculating Alpha Beta currents from phase currents
 //   - function calculating Clarke transform of the phase currents
-void getABCurrents(BldcMotor *motor)
+void getABCurrents(FocMotor *motor)
 {
     motor->Ialpha = motor->Ia;
     motor->Ibeta = _1_SQRT3 * motor->Ia + _2_SQRT3 * motor->Ib;
@@ -45,7 +51,7 @@ void getABCurrents(BldcMotor *motor)
 // function used with the foc algorihtm
 //   calculating D and Q currents from Alpha Beta currents and electrical angle
 //   - function calculating Clarke transform of the phase currents
-void getDQCurrents(BldcMotor *motor)
+void getDQCurrents(FocMotor *motor)
 {
     float ct;
     float st;

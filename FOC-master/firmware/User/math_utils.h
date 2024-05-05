@@ -1,5 +1,5 @@
-#ifndef FOCUTILS_LIB_H
-#define FOCUTILS_LIB_H
+#ifndef MATHUTILS_LIB_H
+#define MATHUTILS_LIB_H
 
 #include "userMain.h"
 

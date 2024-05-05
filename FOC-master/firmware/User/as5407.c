@@ -1,5 +1,5 @@
 #include "as5407.h"
-#include "foc_utils.h"
+#include "math_utils.h"
 static unsigned int rotationCount, rotationCount_Last;
 
 // https://blog.csdn.net/weixin_42416680/article/details/132197502

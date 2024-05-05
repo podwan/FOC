@@ -1,9 +1,9 @@
 #include "voltage.h"
-#include "foc_utils.h"
+#include "math_utils.h"
 #include "comm.h"
 
 const char sectorRemap[] = {0, 2, 6, 1, 4, 3, 5};
-void getDQVoltages(BldcMotor *motor)
+void getDQVoltages(FocMotor *motor)
 {
 
     motor->Id = lpfOperator(&motor->lpf, motor->Id);
@@ -17,7 +17,7 @@ void getDQVoltages(BldcMotor *motor)
 // Ualpha = Ud * Cosθr - Uq * Sinθr
 // Ubeta = Uq * Cosθr + Ud * Sinθr
 /*============================================================================*/
-void getABVoltages(BldcMotor *motor)
+void getABVoltages(FocMotor *motor)
 {
     float ct;
     float st;
@@ -26,7 +26,7 @@ void getABVoltages(BldcMotor *motor)
     motor->Ubeta = motor->Uq * ct + motor->Ud * st;
 }
 
-void setSVPWM(BldcMotor *motor)
+void setSVPWM(FocMotor *motor)
 {
     uint32_t d1, d2, d3;
     float tFirst = 0, tSecond = 0;
@@ -96,11 +96,11 @@ void setSVPWM(BldcMotor *motor)
     motor->d3 = d3;
 #endif
 
-    motor->setPwm(d1, d2, d3);
+    motor->startPwm(d1, d2, d3);
 }
 
 // Park逆变换*SVPWM
-void setPhaseVoltage(BldcMotor *motor, float Uq, float Ud, float angle_el)
+void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
 
     Uq = _constrain(Uq, -UqMAX, UqMAX);
@@ -180,5 +180,5 @@ void setPhaseVoltage(BldcMotor *motor, float Uq, float Ud, float angle_el)
     motor->d3 = d3;
 #endif
 
-    motor->setPwm(d1, d2, d3);
+    motor->updatePwm(d1, d2, d3);
 }

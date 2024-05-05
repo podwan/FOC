@@ -7,13 +7,13 @@
 C_SRCS += \
 ../User/app.c \
 ../User/as5407.c \
-../User/bldcMotor.c \
 ../User/comm.c \
 ../User/current.c \
-../User/foc_utils.c \
+../User/focMotor.c \
 ../User/key.c \
 ../User/led.c \
 ../User/lowpass_filter.c \
+../User/math_utils.c \
 ../User/mt6701.c \
 ../User/pid.c \
 ../User/time_utils.c \
@@ -24,13 +24,13 @@ C_SRCS += \
 OBJS += \
 ./User/app.o \
 ./User/as5407.o \
-./User/bldcMotor.o \
 ./User/comm.o \
 ./User/current.o \
-./User/foc_utils.o \
+./User/focMotor.o \
 ./User/key.o \
 ./User/led.o \
 ./User/lowpass_filter.o \
+./User/math_utils.o \
 ./User/mt6701.o \
 ./User/pid.o \
 ./User/time_utils.o \
@@ -41,13 +41,13 @@ OBJS += \
 C_DEPS += \
 ./User/app.d \
 ./User/as5407.d \
-./User/bldcMotor.d \
 ./User/comm.d \
 ./User/current.d \
-./User/foc_utils.d \
+./User/focMotor.d \
 ./User/key.d \
 ./User/led.d \
 ./User/lowpass_filter.d \
+./User/math_utils.d \
 ./User/mt6701.d \
 ./User/pid.d \
 ./User/time_utils.d \
@@ -63,7 +63,7 @@ User/%.o User/%.su User/%.cyclo: ../User/%.c User/subdir.mk
 clean: clean-User
 
 clean-User:
-	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/as5407.cyclo ./User/as5407.d ./User/as5407.o ./User/as5407.su ./User/bldcMotor.cyclo ./User/bldcMotor.d ./User/bldcMotor.o ./User/bldcMotor.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/current.cyclo ./User/current.d ./User/current.o ./User/current.su ./User/foc_utils.cyclo ./User/foc_utils.d ./User/foc_utils.o ./User/foc_utils.su ./User/key.cyclo ./User/key.d ./User/key.o ./User/key.su ./User/led.cyclo ./User/led.d ./User/led.o ./User/led.su ./User/lowpass_filter.cyclo ./User/lowpass_filter.d ./User/lowpass_filter.o ./User/lowpass_filter.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/pid.cyclo ./User/pid.d ./User/pid.o ./User/pid.su ./User/time_utils.cyclo ./User/time_utils.d ./User/time_utils.o ./User/time_utils.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su ./User/voltage.cyclo ./User/voltage.d ./User/voltage.o ./User/voltage.su
+	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/as5407.cyclo ./User/as5407.d ./User/as5407.o ./User/as5407.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/current.cyclo ./User/current.d ./User/current.o ./User/current.su ./User/focMotor.cyclo ./User/focMotor.d ./User/focMotor.o ./User/focMotor.su ./User/key.cyclo ./User/key.d ./User/key.o ./User/key.su ./User/led.cyclo ./User/led.d ./User/led.o ./User/led.su ./User/lowpass_filter.cyclo ./User/lowpass_filter.d ./User/lowpass_filter.o ./User/lowpass_filter.su ./User/math_utils.cyclo ./User/math_utils.d ./User/math_utils.o ./User/math_utils.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/pid.cyclo ./User/pid.d ./User/pid.o ./User/pid.su ./User/time_utils.cyclo ./User/time_utils.d ./User/time_utils.o ./User/time_utils.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su ./User/voltage.cyclo ./User/voltage.d ./User/voltage.o ./User/voltage.su
 
 .PHONY: clean-User
 

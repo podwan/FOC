@@ -4,7 +4,7 @@
 #include "key.h"
 #include "comm.h"
 #include "mt6701.h"
-#include "bldcMotor.h"
+#include "focMotor.h"
 #include "as5407.h"
 
 static DevState devState;
@@ -93,12 +93,16 @@ static void working(void)
 #include "mt6701.h"
 static void txDataProcess()
 {
-    // uint val;
-    // uint angle;
-    // getZeroElecAngle(&motor1);
-    getElecAngle(&motor1);
 
-    sprintf(txBuffer, "zeroAngle: %f, rawAngle: %f\n", motor1.zeroElectricAngleOffSet, motor1.angle_el);
+    // uint rawData;
+    // float fullAngle;
+    // getZeroElecAngle(&motor1);
+    // getElecAngle(&motor1);
+    // float rawAngle = MT6701_GetRawAngle();
+    //  sprintf(txBuffer, " rawAnle: %f\n", rawAngle);
+    // sprintf(txBuffer, "zeroAngle: %f, rawAngle: %f\n", motor1.zeroElectricAngleOffSet, motor1.angle_el);
     // sprintf(txBuffer, "rawData: %u, rawAnle: %f, fullAngle: %f\n", rawData, rawAngle, fullAngle);
     // sprintf(txBuffer, "rawAnle: %f, eAngle: %f\n", rawAngle, motor1.angle_el);
+
+    sprintf(txBuffer, " offset_ia: %f, offset_ib: %f\n", motor1.offset_ia, motor1.offset_ib);
 }

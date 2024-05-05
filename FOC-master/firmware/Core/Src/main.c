@@ -112,7 +112,7 @@ int main(void)
   MX_TIM4_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  appInit();
+
   HAL_OPAMP_Start(&hopamp1);
   HAL_OPAMP_Start(&hopamp2);
   HAL_OPAMP_Start(&hopamp3);
@@ -128,6 +128,7 @@ int main(void)
   TIM1->CCR4 = 8000 - 2;
   HAL_TIM_Base_Start(&htim1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+  appInit();
   HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 3000);
   HAL_DAC_Start(&hdac3, DAC_CHANNEL_1);
   //  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);

@@ -10,8 +10,10 @@
 #define ADC_REF 3.3f
 #define ADC_VLOTS_RADIO ADC_REF / ADC_MAX
 
-void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds);
-void getPhaseCurrents(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b);
-void getABCurrents(BldcMotor *motor);
-void getDQCurrents(BldcMotor *motor);
+#define ADC_2_CURRENT(adc) adc *ADC_VLOTS_RADIO *VLOTS_AMPS_RATIO
+
+void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds);
+void getPhaseCurrents(FocMotor *motor, uint32_t adc_a, uint32_t adc_b);
+void getABCurrents(FocMotor *motor);
+void getDQCurrents(FocMotor *motor);
 #endif

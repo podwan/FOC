@@ -42,7 +42,7 @@ User/userMain.o: ../User/userMain.c ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/userTimer.h \
- ../User/bldcMotor.h ../User/foc_utils.h ../User/voltage.h ../User/comm.h
+ ../User/focMotor.h ../User/math_utils.h ../User/voltage.h ../User/comm.h
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -91,7 +91,7 @@ User/userMain.o: ../User/userMain.c ../User/userMain.h \
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
 ../User/userTimer.h:
-../User/bldcMotor.h:
-../User/foc_utils.h:
+../User/focMotor.h:
+../User/math_utils.h:
 ../User/voltage.h:
 ../User/comm.h:

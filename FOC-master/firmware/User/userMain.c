@@ -2,9 +2,9 @@
 
 #include "userMain.h"
 #include "userTimer.h"
-#include "bldcMotor.h"
-#include "foc_utils.h"
-#include "bldcMotor.h"
+#include "focMotor.h"
+#include "math_utils.h"
+#include "focMotor.h"
 #include "voltage.h"
 #include "comm.h"
 #define PHASE_SHIFT_ANGLE (float)(120.0f / 360.0f * 2.0f * PI)
@@ -33,55 +33,22 @@ static bool powerLost;
 void userMain(void)
 {
 
-#if NEED_POWER_OFF_MEMORY
-#include "memory.h"
-	static bool memorized, recalled;
-	if (!recalled)
-	{
-		recalled = 1;
-		recall();
-	}
-	if (powerLost && !memorized)
-	{
-		memorize();
-		memorized = 1;
-	}
-#endif
-
-	// if (_10ms)
-	// {
-
-	// 	_10ms = 0;
-	// 	display();
-	// }
-
-	// if (_20ms)
-	// {
-	// 	_20ms = 0;
-	// 	beepPolling();
-	// }
-
 	// if (_5ms)
 	// {
 	// 	_5ms = 0;
 	// 	keyScan();
 	// }
 
-	// if (_30ms)
-	// {
-	// 	_30ms = 0;
-	// 	sensoring();
-	// }
-
 	if (get100MsFlag())
 	{
 		appRunning();
 	}
-
+#if SHOW_WAVE == 0
 	if (get500MsFlag())
 	{
 		printLog();
 	}
+#endif
 }
 
 void setPowerLost()
@@ -129,57 +96,15 @@ int fputc(int ch, FILE *f)
 
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-	static uint8_t cnt;
+	
 	/* Prevent unused argument(s) compilation warning */
 	UNUSED(hadc);
 	if (hadc == &hadc1)
 	{
 		foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
-		// if (ADC_offset == 0)
-		// {
-		// 	cnt++;
-		// 	adc1_in1 = hadc1.Instance->JDR1;
-		// 	adc1_in2 = hadc2.Instance->JDR1;
-		// 	adc1_in3 = hadc1.Instance->JDR2;
-		// 	IA_Offset += adc1_in1;
-		// 	IB_Offset += adc1_in2;
-		// 	IC_Offset += adc1_in3;
-		// 	if (cnt >= 10)
-		// 	{
-		// 		ADC_offset = 1;
-		// 		IA_Offset = IA_Offset / 10;
-		// 		IB_Offset = IB_Offset / 10;
-		// 		IC_Offset = IC_Offset / 10;
-		// 	}
-		// }
-		// else
-		// {
-
-		// 	adc1_in1 = hadc1.Instance->JDR1;
-		// 	adc1_in3 = hadc1.Instance->JDR2;
-		// 	adc1_in2 = hadc2.Instance->JDR1;
-
-		// 	Ia = (adc1_in1 - IA_Offset) * 0.02197f;
-		// 	Ib = (adc1_in2 - IB_Offset) * 0.02197f;
-		// 	Ic = (adc1_in3 - IC_Offset) * 0.02197f;
-		static float elecAngle;
-		elecAngle += 0.01;
-		if (elecAngle >= _2PI)
-			elecAngle = 0;
-		// setPhaseVoltage(&motor1, 2, 0, elecAngle);
 
 		dealPer100us();
-#if SHOW_WAVE
 
-		load_data[0] = motor1.d1;
-		load_data[1] = motor1.d2;
-		load_data[2] = motor1.d3;
-		load_data[3] = 0;
-		load_data[4] = 0;
-		memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));
-		HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 6 * 4);
-#endif
-		// }
 	}
 
 	/* NOTE : This function should not be modified. When the callback is needed,

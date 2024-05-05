@@ -41,7 +41,7 @@ User/as5407.o: ../User/as5407.c ../User/as5407.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
- ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/foc_utils.h
+ ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/math_utils.h
 ../User/as5407.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -90,4 +90,4 @@ User/as5407.o: ../User/as5407.c ../User/as5407.h ../User/userMain.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
-../User/foc_utils.h:
+../User/math_utils.h:
