@@ -26,8 +26,8 @@ void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t
 // read all three phase currents (if possible 2 or 3)
 void getPhaseCurrents(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
-    motor->Ia = (adc_a - motor->offset_ia) * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO; // amps
-    motor->Ib = (adc_b - motor->offset_ib) * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO; // amps
+    motor->Ia = ADC_2_CURRENT(adc_a) - motor->offset_ia; // amps
+    motor->Ib = ADC_2_CURRENT(adc_b) - motor->offset_ib;
 }
 
 /*============================================================================*/
