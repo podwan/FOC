@@ -2,11 +2,6 @@
 #include "current.h"
 #include "math_utils.h"
 
-// float adc2current(uint32_t adc)
-// {
-//     return adc * ADC_VLOTS_RADIO * VLOTS_AMPS_RATIO;
-// }
-
 // Function finding zero offsets of the ADC
 void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds)
 {

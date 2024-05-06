@@ -465,7 +465,6 @@ void BLDCMotor::move(float new_target)
   if (motion_cnt++ < motion_downsample)
     return;
   motion_cnt = 0;
-
   // shaft angle/velocity need the update() to be called first
   // get shaft angle
   // TODO sensor precision: the shaft_angle actually stores the complete position, including full rotations, as a float

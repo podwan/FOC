@@ -19,11 +19,9 @@ int count_output=0;
 
 void loop() 
 {
-
   //设置PID
   DFOC_M0_SET_ANGLE_PID(0.3,0,0,0);
   DFOC_M0_set_Force_Angle(serial_motor_target());
   //接收串口
   serialReceiveUserCommand();
-
 }
