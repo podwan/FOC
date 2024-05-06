@@ -1,4 +1,0 @@
-../Core/Src/main.c:75:5:main	1
-../Core/Src/main.c:153:6:SystemClock_Config	3
-../Core/Src/main.c:196:6:HAL_ADCEx_InjectedConvCpltCallback	5
-../Core/Src/main.c:272:6:Error_Handler	1

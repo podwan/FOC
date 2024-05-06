@@ -1,7 +1,0 @@
-../User/app.cpp:18:6:void appRunning()	8	static
-../User/app.cpp:44:13:void standingBy()	8	static
-../User/app.cpp:59:13:void working()	4	static
-../User/app.cpp:89:17:uint16_t SpiTransmitAndRead16Bits(uint16_t)	24	static
-../User/app.cpp:140:10:uint16_t getRawData()	16	static
-../User/app.cpp:154:7:float getRawAngle()	8	static
-../User/app.cpp:159:13:void txDataProcess()	24	static

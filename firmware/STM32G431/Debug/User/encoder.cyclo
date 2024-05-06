@@ -1,4 +1,0 @@
-../User/encoder.cpp:4:6:virtual void Encoder::SpiInit()	1
-../User/encoder.cpp:9:6:void Encoder::spiSelect()	1
-../User/encoder.cpp:13:6:void Encoder::spiUnselect()	1
-../User/encoder.cpp:18:10:virtual uint16_t Encoder::SpiTransmitAndRead16Bits(uint16_t)	12

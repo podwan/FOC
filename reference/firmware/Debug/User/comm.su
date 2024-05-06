@@ -1,0 +1,5 @@
+../User/comm.c:14:6:HAL_UART_RxCpltCallback	16	static
+../User/comm.c:26:6:log_DMA_TX	272	static
+../User/comm.c:43:6:FOC_log	272	static
+../User/comm.c:60:6:printLog	8	static
+../User/comm.c:73:6:uartRcv	16	static

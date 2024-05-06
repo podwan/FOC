@@ -1,5 +1,0 @@
-../User/foc.c:6:6:foc	3
-../User/foc.c:47:6:getCurrentOffsets	2
-../User/foc.c:64:6:getPhaseCurrents	1
-../User/foc.c:70:6:setPhaseVoltage	11
-../User/foc.c:153:6:currentLoop	1

@@ -1,3 +1,0 @@
-../User/encoder/instances/encoder_tle5012.cpp:3:10:uint16_t EncoderAS5047Base::getRawData()	1
-../User/encoder/instances/encoder_tle5012.cpp:17:7:virtual float EncoderAS5047Base::getRawAngle()	1
-../User/encoder/instances/encoder_tle5012.cpp:22:7:virtual float EncoderAS5047Base::getVelocity()	2
