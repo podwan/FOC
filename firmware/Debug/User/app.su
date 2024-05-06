@@ -1,0 +1,5 @@
+../User/app.c:19:6:appInit	8	static
+../User/app.c:24:6:appRunning	8	static
+../User/app.c:50:13:standingBy	8	static
+../User/app.c:65:13:working	4	static
+../User/app.c:94:13:txDataProcess	48	static

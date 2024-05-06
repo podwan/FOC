@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "usart.h": "c",
-        "main.h": "c",
-        "arm_math.h": "c",
-        "cmath": "c"
-    }
-}

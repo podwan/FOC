@@ -1,0 +1,3 @@
+../User/encoder.c:4:6:encoderInit	24	static
+../User/encoder.c:18:6:encoderUpdate	24	static
+../User/encoder.c:31:7:getVelocity	24	static

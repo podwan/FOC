@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "math_utils.h": "c",
-        "main.h": "c",
-        "stm32g4xx_hal.h": "c"
-    }
-}

@@ -1,5 +1,0 @@
-../User/encoder/instances/../encoder_base.h:7:7:EncoderBase::EncoderBase()	1
-../User/encoder/instances/encoder_as5407.h:6:7:EncoderAS5047Base::EncoderAS5047Base()	1
-../User/encoder.h:12:5:Encoder::Encoder(SPI_HandleTypeDef*, uint32_t)	1
-../User/motor.cpp:3:33:void __static_initialization_and_destruction_0(int, int)	3
-../User/motor.cpp:3:33:cpp)	1
