@@ -1,4 +1,4 @@
 ../User/voltage.c:7:6:getDQVoltages	24	static
 ../User/voltage.c:21:6:getABVoltages	24	static
 ../User/voltage.c:30:6:setSVPWM	56	static
-../User/voltage.c:105:6:setPhaseVoltage	80	static
+../User/voltage.c:101:6:setPhaseVoltage	80	static

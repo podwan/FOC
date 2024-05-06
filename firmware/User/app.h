@@ -3,7 +3,7 @@
 
 #include "userMain.h"
 
-
+#define CURRENT_MAX 0.2f
 
 #define WORK_INIT                                    \
     {                                                \

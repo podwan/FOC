@@ -1,6 +1,19 @@
 #include "pid.h"
 #include "math_utils.h"
 
+void pidInit(PidController *pidController, float _P, float _I, float _D, float _ramp, float _limit, float _Ts)
+{
+    pidController->P = _P;
+    pidController->I = _I;
+    pidController->D = _D;
+    pidController->output_ramp = _ramp;
+    pidController->limit = _limit;
+    pidController->Ts = _Ts;
+    pidController->error_prev = 0;
+    pidController->output_prev = 0;
+    pidController->integral_prev = 0;
+}
+
 // PID controller function
 float pidOperator(PidController *pidController, float error)
 {

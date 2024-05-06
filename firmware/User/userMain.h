@@ -75,6 +75,7 @@ typedef struct
 /*===========================================================================*/
 typedef enum
 {
+    TORQUE,
     VELOCITY,
     ANGLE,
     VELOCITY_OPEN_LOOP,
@@ -104,6 +105,7 @@ typedef struct
     ControlType controlType;
     TorqueType torqueType;
     float Ts;
+    float velocity_limit;
     //  angle
     float zeroElectricAngleOffSet;
     uint8_t pole_pairs;
@@ -122,8 +124,9 @@ typedef struct
     // pid
     PidController pid_id;
     PidController pid_iq;
+    PidController currentLoopPID;
     // filter
-    LowPassFilter lpf;
+    LowPassFilter IqFilter;
     // volatges
     float Ud;
     float Uq;

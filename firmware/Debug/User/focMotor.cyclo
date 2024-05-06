@@ -1,8 +1,8 @@
-../User/focMotor.c:18:6:motorInit	1
-../User/focMotor.c:50:13:startPwm1	1
-../User/focMotor.c:59:13:stopPwm1	1
-../User/focMotor.c:69:13:updatePwm1	1
-../User/focMotor.c:76:6:setZeroElecAngle	1
-../User/focMotor.c:85:6:getElecAngle	1
-../User/focMotor.c:92:6:foc	3
-../User/focMotor.c:144:14:velocityOpenloop	2
+../User/focMotor.c:20:6:motorInit	1
+../User/focMotor.c:53:13:startPwm1	1
+../User/focMotor.c:62:13:stopPwm1	1
+../User/focMotor.c:72:13:updatePwm1	1
+../User/focMotor.c:79:6:setZeroElecAngle	1
+../User/focMotor.c:88:6:getElecAngle	1
+../User/focMotor.c:95:6:foc	7
+../User/focMotor.c:173:14:velocityOpenloop	2

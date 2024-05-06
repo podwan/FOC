@@ -1,1 +1,2 @@
-../User/lowpass_filter.c:3:7:lpfOperator	1
+../User/lowpass_filter.c:3:6:lpfInit	1
+../User/lowpass_filter.c:10:7:lpfOperator	1

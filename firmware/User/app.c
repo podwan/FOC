@@ -111,14 +111,33 @@ static void txDataProcess()
     HAL_ADC_Start(&hadc1);
     HAL_ADC_Start(&hadc2);
     Vpoten = HAL_ADC_GetValue(&hadc1);
+
     goalVelocity = Vpoten / 4095.0f * GET_MAX_VELOCITY(MOTOR1_MAX_RPM);
+    float goalTorqueV = Vpoten / 4095.0f * UqMAX;
+    float goalTorqueC = Vpoten / 4095.0f * CURRENT_MAX;
     adc_vbus = HAL_ADC_GetValue(&hadc2);
     Vbus = adc_vbus * 3.3f / 4096 * 26;
-    sprintf(txBuffer, "Vpoten: %u,goalVelocity:%f Vbus:%f\n", Vpoten, goalVelocity, Vbus);
-    target = goalVelocity;
 
+    if (motor1.controlType == VELOCITY || motor1.controlType == VELOCITY_OPEN_LOOP)
+    {
+        target = goalVelocity;
+        sprintf(txBuffer, "goalVelocity:%f angle:%f, velocity:%f\n", goalVelocity, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+    }
+    else if (motor1.controlType == TORQUE)
+    {
+        if (motor1.torqueType == VOLTAGE)
+        {
+            target = goalTorqueV;
+            sprintf(txBuffer, "goalTorqueV:%f angle:%f, velocity:%f\n", goalTorqueV, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+        }
+        else
+        {
+            target = goalTorqueC;
+            sprintf(txBuffer, "goalTorqueC:%f angle:%f, velocity:%f\n", goalTorqueC, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+        }
+    }
     // float velocity = motor1.getVelocity(100);
-    sprintf(txBuffer, " velocity: %f\n", motor1.magEncoder.velocity);
+    // sprintf(txBuffer, " velocity: %f\n", motor1.magEncoder.velocity);
 
     // float x = 100 * 1e-3f;
     // sprintf(txBuffer, " x: %f\n", x);

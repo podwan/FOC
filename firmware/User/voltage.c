@@ -7,8 +7,8 @@ const char sectorRemap[] = {0, 2, 6, 1, 4, 3, 5};
 void getDQVoltages(FocMotor *motor)
 {
 
-    motor->Id = lpfOperator(&motor->lpf, motor->Id);
-    motor->Iq = lpfOperator(&motor->lpf, motor->Iq);
+    //    motor->Id = lpfOperator(&motor->lpf, motor->Id);
+    //    motor->Iq = lpfOperator(&motor->lpf, motor->Iq);
 
     motor->Ud = pidOperator(&motor->pid_id, motor->IdGoal - motor->Id);
     motor->Uq = pidOperator(&motor->pid_iq, motor->IqGoal - motor->Iq);
@@ -92,11 +92,7 @@ void setSVPWM(FocMotor *motor)
 
         break;
     }
-#if SHOW_WAVE
-    motor->d1 = d1;
-    motor->d2 = d2;
-    motor->d3 = d3;
-#endif
+
 
     motor->startPwm(d1, d2, d3);
 }
@@ -105,7 +101,7 @@ void setSVPWM(FocMotor *motor)
 void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
 
-    // Uq = _constrain(Uq, -UqMAX, UqMAX);
+    Uq = _constrain(Uq, -UqMAX, UqMAX);
 
     float ct;
     float st;
@@ -182,11 +178,7 @@ void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el)
 
         break;
     }
-#if SHOW_WAVE
-    motor->d1 = d1;
-    motor->d2 = d2;
-    motor->d3 = d3;
-#endif
+
 
     motor->updatePwm(d1, d2, d3);
 }
