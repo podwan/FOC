@@ -226,10 +226,10 @@ typedef enum
 
 typedef struct
 {
-    unsigned char index;
-    unsigned char buf[MAX_LEN];
-    unsigned char len;
-    unsigned char toProcessData;
+    uint16_t index;
+    char buf[MAX_LEN];
+    uint16_t len;
+    bool toProcessData;
 } Uart;
 
 typedef struct

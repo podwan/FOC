@@ -4,20 +4,30 @@
 #include "pid.h"
 #include "app.h"
 
-char txBuffer[50];
-Uart rxUart;
+char txBuffer[USART_BUFFER_SIZE];
+char rxBuffer[USART_BUFFER_SIZE];
+static Uart rxUart;
 uint8_t aRxBuffer;
 float comm1, comm2, comm3, comm4, comm5, comm6, comm7, comm8, comm9, comm10, comm11;
 float load_data[5];
 uint8_t tempData[24] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-  if (huart->Instance == USART3)
-  {
-    uartRcv(aRxBuffer);
+// void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+// {
+//   if (huart->Instance == USART3)
+//   {
+//     // uartRcv(aRxBuffer);
 
-    HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
+//     // HAL_UART_Receive_IT(&huart3, (uint8_t *)&aRxBuffer, 1);
+//   }
+// }
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+{
+  if (huart == &huart3)
+  {
+    HAL_UART_Transmit_DMA(&huart3, rxBuffer, Size);
+    HAL_UARTEx_ReceiveToIdle_DMA(&huart3, rxBuffer, sizeof(rxBuffer));
   }
 }
 /**
@@ -65,9 +75,9 @@ void printLog()
   printf("bldcMotor.focTarget=%.2f, velocity=%.2f, ShaftAngle=%.2f\n", bldcMotor.focTarget, shaftVelocity, shaftAngle);
   // printf("bldcMotor.focTarget=%.2f, RPM=%d\n", bldcMotor.focTarget, getRPM());
 #elif SHOW_WAVE == 0
-  HAL_UART_Transmit(&huart3, (uint8_t *)txBuffer, strlen(txBuffer), 100);
-  // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer));
-  memset(txBuffer, '\0', sizeof(txBuffer));
+  // HAL_UART_Transmit(&huart3, (uint8_t *)txBuffer, strlen(txBuffer), 100);
+  HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, strlen(txBuffer));
+  // memset(txBuffer, '\0', sizeof(txBuffer));
 #endif
 }
 
