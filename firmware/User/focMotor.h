@@ -9,7 +9,7 @@
 #define U_DC 12.0f
 #define UqMAX (U_DC * _1_SQRT3)
 
-#define MOTOR1_MAX_RPM 3840.0f
+#define MOTOR1_MAX_RPM 3000.0f
 #define GET_MAX_VELOCITY(MAX_RPM) MAX_RPM / 60.0f * _2PI
 
 #define PWM_GENERATE(p1, p2, p3) \

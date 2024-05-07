@@ -41,7 +41,8 @@ User/comm.o: ../User/comm.c ../User/comm.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
- ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/mt6701.h ../User/pid.h
+ ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/mt6701.h ../User/pid.h \
+ ../User/app.h
 ../User/comm.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -92,3 +93,4 @@ User/comm.o: ../User/comm.c ../User/comm.h ../User/userMain.h \
 ../Core/Inc/spi.h:
 ../User/mt6701.h:
 ../User/pid.h:
+../User/app.h:

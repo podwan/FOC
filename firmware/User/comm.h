@@ -9,7 +9,7 @@
 
 void printLog(void);
 void uartRcv(const char buf);
-void commander_run(void);
+void commander_run(FocMotor *motor);
 void communicationLoop(void *argument);
 void FOC_log(const char *format, ...);
 void log_DMA_TX(const char *format, ...);
@@ -19,5 +19,5 @@ extern char txBuffer[];
 extern float load_data[5];
 extern uint8_t tempData[24];
 extern uint8_t aRxBuffer;
-extern float target;
+
 #endif

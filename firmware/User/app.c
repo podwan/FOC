@@ -10,38 +10,39 @@
 #include "pid.h"
 #include "lowpass_filter.h"
 #include "current.h"
+#include "userTimer.h"
 static DevState devState;
 static KeyState keyState;
 static uchar flashCnt;
 static void txDataProcess();
 float txA, txB, txC;
 static FocMotor motor1;
-float target;
+float focTarget;
 
 static void standingBy();
 static void working(void);
 static void updatePwm1(unsigned short int a, unsigned short int b, unsigned short int c);
-static void startPwm1();
-static void stopPwm1();
+// static void startPwm1();
+// static void stopPwm1();
 
-static void startPwm1()
-{
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
-}
-static void stopPwm1()
-{
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_3);
-}
+// static void startPwm1()
+// {
+//     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+//     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+//     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+//     HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+//     HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+//     HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+// }
+// static void stopPwm1()
+// {
+//     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
+//     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
+//     HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
+//     HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_1);
+//     HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
+//     HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_3);
+// }
 
 static void updatePwm1(unsigned short int a, unsigned short int b, unsigned short int c)
 {
@@ -59,13 +60,27 @@ static void motorInit()
     motor1.zeroElectricAngleOffSet = 0;
     motor1.Ts = 100 * 1e-6f;
     motor1.torqueType = CURRENT;
-    motor1.controlType = TORQUE;
+    motor1.controlType = ANGLE;
+
     encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
-    motor1.velocity_limit = 200.0f;
-    //    motor1.startPwm();
+    // motor1.velocity_limit = 200.0f;
+    motor1.IqGoal = 0.15f;
     setZeroElecAngle(&motor1);
     // motor1.stopPwm();
-    pidInit(&motor1.currentLoopPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
+
+    if (motor1.controlType == TORQUE && motor1.torqueType == CURRENT)
+        pidInit(&motor1.currentPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
+    else if (motor1.controlType == VELOCITY && motor1.torqueType == CURRENT)
+    {
+        pidInit(&motor1.currentPID, 0.5, 50, 0, 100000, 12.4, motor1.Ts);
+        pidInit(&motor1.velocityPID, 3, 2, 0, 100000, 0.5, motor1.Ts);
+    }
+    else if (motor1.controlType == ANGLE && motor1.torqueType == CURRENT)
+    {
+        pidInit(&motor1.currentPID, 1.25, 50, 0, 100000, 12.4, motor1.Ts);
+        pidInit(&motor1.anglePID, 0.5, 0, 0.003, 100000, 0.1, motor1.Ts);
+    }
+
     lpfInit(&motor1.IqFilter, 0.05, motor1.Ts);
     encoderUpdate(&motor1.magEncoder);
     getElecAngle(&motor1);
@@ -92,7 +107,7 @@ void appRunning()
 {
 
     getKeyState(&keyState);
-    commander_run();
+    commander_run(&motor1);
     if (++flashCnt >= 10)
         flashCnt = 0;
 
@@ -142,17 +157,17 @@ static void working(void)
     {
         //  if (bldcMotor.controlMode == VELOCITY)
         // {
-        //     if (bldcMotor.target == 0)
+        //     if (bldcMotor.focTarget == 0)
         //     {
-        //         bldcMotor.target = 23;
+        //         bldcMotor.focTarget = 23;
         //     }
-        //     else if (bldcMotor.target == 23)
+        //     else if (bldcMotor.focTarget == 23)
         //     {
-        //         bldcMotor.target = -23;
+        //         bldcMotor.focTarget = -23;
         //     }
-        //     else if (bldcMotor.target == -23)
+        //     else if (bldcMotor.focTarget == -23)
         //     {
-        //         bldcMotor.target = 23;
+        //         bldcMotor.focTarget = 23;
         //     }
         // }
     }
@@ -185,24 +200,28 @@ static void txDataProcess()
     adc_vbus = HAL_ADC_GetValue(&hadc2);
     Vbus = adc_vbus * 3.3f / 4096 * 26;
 
-    if (motor1.controlType == VELOCITY || motor1.controlType == VELOCITY_OPEN_LOOP)
+    if (motor1.controlType == VELOCITY)
     {
-        target = goalVelocity;
-        sprintf(txBuffer, "goalVelocity:%f angle:%f, velocity:%f\n", goalVelocity, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+        motor1.target = goalVelocity;
+        sprintf(txBuffer, "goalVelocity:%f fullAngle:%f, velocity:%f\n", goalVelocity, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
     }
     else if (motor1.controlType == TORQUE)
     {
         if (motor1.torqueType == VOLTAGE)
         {
-            target = goalTorqueV;
-            sprintf(txBuffer, "goalTorqueV:%f angle:%f, velocity:%f\n", goalTorqueV, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+        	motor1.target = goalTorqueV;
+            sprintf(txBuffer, "goalTorqueV:%f fullAngle:%f, velocity:%f\n", goalTorqueV, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
         }
         else
         {
-            target = goalTorqueC;
-            sprintf(txBuffer, "goalTorqueC:%f angle:%f, velocity:%f\n", goalTorqueC, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+        	motor1.target = goalTorqueC;
+            sprintf(txBuffer, "goalTorqueC:%f fullAngle:%f, velocity:%f\n", goalTorqueC, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
             // sprintf(txBuffer, "eAngle:%f\n", motor1.angle_el);
         }
+    }
+    else if (motor1.controlType == ANGLE)
+    {
+        sprintf(txBuffer, "focTarget:%f fullAngle:%f, velocity:%f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
     }
     // float velocity = motor1.getVelocity(100);
     // sprintf(txBuffer, " velocity: %f\n", motor1.magEncoder.velocity);
@@ -228,12 +247,12 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 #if SHOW_WAVE
         load_data[0] = motor1.d1;
         load_data[1] = motor1.d2;
-        load_data[2] = motor1.d3;
-        // load_data[0] = motor1.Ialpha;
-        // load_data[1] = motor1.Ibeta;
-
+        // load_data[2] = motor1.d3;
+        //  load_data[0] = motor1.Ialpha;
+        //  load_data[1] = motor1.Ibeta;
+        load_data[2] = focTarget;
         load_data[3] = motor1.Iq;
-        load_data[4] = motor1.Id;
+        load_data[4] = motor1.magEncoder.velocity;
         // load_data[3] = motor1.offset_ia;
         // load_data[4] = motor1.offset_ib;
 

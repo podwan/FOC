@@ -97,7 +97,7 @@ void getABVoltages(FocMotor *motor)
 // }
 
 // Park逆变换*SVPWM
-void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el)
+void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
 
     Uq = _constrain(Uq, -UqMAX, UqMAX);

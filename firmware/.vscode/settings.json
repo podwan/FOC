@@ -6,6 +6,9 @@
         "foc_utils.h": "c",
         "mt6701.h": "c",
         "comm.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "focmotor.h": "c",
+        "math_utils.h": "c",
+        "usertimer.h": "c"
     }
 }

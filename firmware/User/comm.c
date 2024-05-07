@@ -2,6 +2,7 @@
 #include "comm.h"
 #include "mt6701.h"
 #include "pid.h"
+#include "app.h"
 
 char txBuffer[50];
 Uart rxUart;
@@ -61,8 +62,8 @@ void FOC_log(const char *format, ...)
 void printLog()
 {
 #if CALI_PID
-  printf("bldcMotor.target=%.2f, velocity=%.2f, ShaftAngle=%.2f\n", bldcMotor.target, shaftVelocity, shaftAngle);
-  // printf("bldcMotor.target=%.2f, RPM=%d\n", bldcMotor.target, getRPM());
+  printf("bldcMotor.focTarget=%.2f, velocity=%.2f, ShaftAngle=%.2f\n", bldcMotor.focTarget, shaftVelocity, shaftAngle);
+  // printf("bldcMotor.focTarget=%.2f, RPM=%d\n", bldcMotor.focTarget, getRPM());
 #elif SHOW_WAVE == 0
   HAL_UART_Transmit(&huart3, (uint8_t *)txBuffer, strlen(txBuffer), 100);
   // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer));
@@ -98,7 +99,7 @@ void uartRcv(const char buf)
   }
 }
 
-void commander_run(void)
+void commander_run(FocMotor *motor)
 {
   if (rxUart.toProcessData == 1)
   {
@@ -110,12 +111,13 @@ void commander_run(void)
       // sprintf(sndBuff, "Hello World!\r\n");
       // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)sndBuff, sizeof(sndBuff));
       sprintf(txBuffer, "Hello World!\r\n");
-      // printf("%s", sndBuff);
+      printLog();
       break;
     case 'T': // T6.28
 
-      target = atof((const char *)(rxUart.buf + 1));
-      sprintf(txBuffer, "Target=%.2f\r\n", target);
+      motor->target = atof((const char *)(rxUart.buf + 1));
+      sprintf(txBuffer, "Target=%.2f\r\n", focTarget);
+      printLog();
       // printf("%s", sndBuff);
       // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)sndBuff, sizeof(sndBuff));
       break;

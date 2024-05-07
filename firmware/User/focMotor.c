@@ -10,13 +10,11 @@
 #include "pid.h"
 #include "lowpass_filter.h"
 
-
-
 void setZeroElecAngle(FocMotor *motor)
 {
-    setPhaseVoltage(motor, 0.0f, 2.0f, 0.0f);
+    setTorque(motor, 0.0f, 2.0f, 0.0f);
     delay(1500);
-    setPhaseVoltage(motor, 0.0f, 0.0f, 0.0f);
+    setTorque(motor, 0.0f, 0.0f, 0.0f);
     encoderUpdate(&motor->magEncoder);
     motor->zeroElectricAngleOffSet = _normalizeAngle(motor->pole_pairs * motor->magEncoder.shaftAngle); // 测量电角度零位偏差
 }
@@ -31,7 +29,7 @@ static float velocityOpenloop(FocMotor *motor, float target_velocity);
 void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
 
-    static bool calibrateOffset;
+    // static bool calibrateOffset;
 
     // if (!calibrateOffset)
     // {
@@ -39,75 +37,90 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
     //     calibrateOffset = 1;
     // }
     // else
+    // {
+    getPhaseCurrents(motor, adc_a, adc_b);
+    getABCurrents(motor);
+    getDQCurrents(motor);
+    motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
+    // static float elecAngle;
+    // elecAngle += 0.01;
+
+    // if (elecAngle >= _2PI)
+    //     elecAngle = 0;
+
+    // setTorque(motor, 2, 0, elecAngle);
+
+    encoderUpdate(&motor->magEncoder);
+    getVelocity(&motor->magEncoder);
+    getElecAngle(motor);
+    float IqRef;
+    switch (motor->controlType)
     {
-        getPhaseCurrents(motor, adc_a, adc_b);
-        getABCurrents(motor);
-        getDQCurrents(motor);
-        // static float elecAngle;
-        // elecAngle += 0.01;
-
-        // if (elecAngle >= _2PI)
-        //     elecAngle = 0;
-
-        // setPhaseVoltage(motor, 2, 0, elecAngle);
-
-        encoderUpdate(&motor->magEncoder);
-        getVelocity(&motor->magEncoder);
-        getElecAngle(motor);
-
-        switch (motor->controlType)
+    case TORQUE:
+        if (motor->torqueType == VOLTAGE)
         {
-        case TORQUE:
-            if (motor->torqueType == VOLTAGE)
-            {
-                target = _constrain(target, -UqMAX, UqMAX);
-                setPhaseVoltage(motor, target, 0, motor->angle_el);
-            }
-            else // CURRENT
-            {
-                motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
-                motor->Uq = pidOperator(&motor->currentLoopPID, target - motor->Iq);
-                setPhaseVoltage(motor, motor->Uq, 0, motor->angle_el);
-            }
-            break;
-
-        case VELOCITY_OPEN_LOOP:
-            // 开环速度函数
-            velocityOpenloop(motor, target);
-            break;
+            motor->target = _constrain(motor->target, -UqMAX, UqMAX);
+            setTorque(motor, motor->target, 0, motor->angle_el);
         }
+        else // CURRENT
+        {
+            motor->Uq = pidOperator(&motor->currentPID, motor->target - motor->Iq);
+            setTorque(motor, motor->Uq, 0, motor->angle_el);
+        }
+        break;
 
-        // getABCurrents(motor);
-        // getDQCurrents(motor);
-        // getDQVoltages(motor);
-        // getABVoltages(motor);
-        // setSVPWM(motor);
+        // case VELOCITY_OPEN_LOOP:
+        //     // 开环速度函数
+        //     velocityOpenloop(motor, motor->target);
+        //     break;
 
+    case VELOCITY:
+        float velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
+        IqRef = pidOperator(&motor->velocityPID, velocityErr);
+        motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+        setTorque(motor, motor->Uq, 0, motor->angle_el);
+        break;
+
+    case ANGLE:
+        IqRef = pidOperator(&motor->velocityPID, motor->target - motor->magEncoder.fullAngle);
+        motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+        setTorque(motor, motor->Uq, 0, motor->angle_el);
+        break;
     }
+
+    // getABCurrents(motor);
+    // getDQCurrents(motor);
+    // getDQVoltages(motor);
+    // getABVoltages(motor);
+    // setSVPWM(motor);
+    // }
 }
 
-static float velocityOpenloop(FocMotor *motor, float target_velocity)
-{
-    static float shaft_angle;
-    //   通过乘以时间间隔和目标速度来计算需要转动的机械角度，存储在 shaft_angle 变量中。在此之前，还需要对轴角度进行归一化，以确保其值在 0 到 2π 之间。
-    shaft_angle = _normalizeAngle(shaft_angle + target_velocity * motor->Ts);
-    // 以目标速度为 10 rad/s 为例，如果时间间隔是 1 秒，则在每个循环中需要增加 10 * 1 = 10 弧度的角度变化量，才能使电机转动到目标速度。
-    // 如果时间间隔是 0.1 秒，那么在每个循环中需要增加的角度变化量就是 10 * 0.1 = 1 弧度，才能实现相同的目标速度。因此，电机轴的转动角度取决于目标速度和时间间隔的乘积。
-    // load_data[3] = shaft_angle;
+// static float velocityOpenloop(FocMotor *motor, float target_velocity)
+// {
+//     static float shaft_angle;
+//     //   通过乘以时间间隔和目标速度来计算需要转动的机械角度，存储在 shaft_angle 变量中。在此之前，还需要对轴角度进行归一化，以确保其值在 0 到 2π 之间。
+//     shaft_angle = _normalizeAngle(shaft_angle + target_velocity * motor->Ts);
+//     // 以目标速度为 10 rad/s 为例，如果时间间隔是 1 秒，则在每个循环中需要增加 10 * 1 = 10 弧度的角度变化量，才能使电机转动到目标速度。
+//     // 如果时间间隔是 0.1 秒，那么在每个循环中需要增加的角度变化量就是 10 * 0.1 = 1 弧度，才能实现相同的目标速度。因此，电机轴的转动角度取决于目标速度和时间间隔的乘积。
+//     // load_data[3] = shaft_angle;
 
-    if (motor->torqueType == VOLTAGE)
-    {
-        float Uq = U_DC / 3;
-        setPhaseVoltage(motor, Uq, 0, _electricalAngle(shaft_angle, 7));
-    }
-    else // CURRENT
-    {
-    }
-}
+//     if (motor->torqueType == VOLTAGE)
+//     {
+//         float Uq = U_DC / 3;
+//         setTorque(motor, Uq, 0, _electricalAngle(shaft_angle, 7));
+//     }
+//     else // CURRENT
+//     {
+//         motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
+//         motor->Uq = pidOperator(&motor->currentPID, motor->IqGoal - motor->Iq);
+//         setTorque(motor, motor->Uq, 0, _electricalAngle(shaft_angle, 7));
+//     }
+// }
 // float angleOpenloop(FocMotor *motor, float target_angle)
 // {
 //     static float shaft_angle, shaft_velocity;
-//     // calculate the necessary angle to move from current position towards target angle
+//     // calculate the necessary angle to move from current position towards motor->target angle
 //     // with maximal velocity (velocity_limit)
 //     // TODO sensor precision: this calculation is not numerically precise. The angle can grow to the point
 //     //                        where small position changes are no longer captured by the precision of floats
@@ -133,7 +146,7 @@ static float velocityOpenloop(FocMotor *motor, float target_velocity)
 //     }
 //     // set the maximal allowed voltage (voltage_limit) with the necessary angle
 //     // sensor precision: this calculation is OK due to the normalisation
-//     setPhaseVoltage(Uq, 0, _electricalAngle(_normalizeAngle(shaft_angle), pole_pairs));
+//     setTorque(Uq, 0, _electricalAngle(_normalizeAngle(shaft_angle), pole_pairs));
 
 //     // save timestamp for next call
 //     open_loop_timestamp = now_us;

@@ -35,7 +35,7 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SHOW_WAVE 1
+#define SHOW_WAVE 0
 
 typedef struct
 {
@@ -77,8 +77,8 @@ typedef enum
     TORQUE,
     VELOCITY,
     ANGLE,
-    VELOCITY_OPEN_LOOP,
-    ANGLE_OPEN_LOOP
+    // VELOCITY_OPEN_LOOP,
+    // ANGLE_OPEN_LOOP
 } ControlType;
 /*===========================================================================*/
 typedef enum
@@ -99,12 +99,11 @@ typedef enum
 typedef struct
 {
     MagEncoder magEncoder;
-    //////////////////////////
     MotorState motorState;
     ControlType controlType;
     TorqueType torqueType;
     float Ts;
-    float velocity_limit;
+    float target;
     //  angle
     float zeroElectricAngleOffSet;
     uint8_t pole_pairs;
@@ -123,7 +122,9 @@ typedef struct
     // pid
     PidController pid_id;
     PidController pid_iq;
-    PidController currentLoopPID;
+    PidController currentPID;
+    PidController velocityPID;
+    PidController anglePID;
     // filter
     LowPassFilter IqFilter;
     // volatges

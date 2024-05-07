@@ -8,7 +8,7 @@
 
 void getDQVoltages(FocMotor *motor);
 void getABVoltages(FocMotor *motor);
-void setPhaseVoltage(FocMotor *motor, float Uq, float Ud, float angle_el);
+void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el);
 void setSVPWM(FocMotor *motor);
 extern const char sectorRemap[];
 #endif

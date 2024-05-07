@@ -34,5 +34,5 @@ extern "C"
 
 void appRunning();
 extern float txA, txB, txC;
-
+extern float focTarget;
 #endif

@@ -7,6 +7,10 @@
 #include "focMotor.h"
 #include "voltage.h"
 #include "comm.h"
+#include "app.h"
+#include "key.h"
+
+
 #define PHASE_SHIFT_ANGLE (float)(120.0f / 360.0f * 2.0f * PI)
 
 extern DMA_HandleTypeDef hdma_usart3_tx;
@@ -42,7 +46,7 @@ void userMain(void)
 	{
 		appRunning();
 	}
-#if SHOW_WAVE == 0
+#if SHOW_WAVE == 0 //&& COMMAMNDER == 0
 	if (get500MsFlag())
 	{
 		printLog();
@@ -62,7 +66,6 @@ int fputc(int ch, FILE *f)
 	USART3->TDR = (uint8_t)ch;
 	return ch;
 }
-
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
