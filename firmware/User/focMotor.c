@@ -9,72 +9,8 @@
 #include "encoder.h"
 #include "pid.h"
 #include "lowpass_filter.h"
-FocMotor motor1;
-float target;
-static void updatePwm1(unsigned short int a, unsigned short int b, unsigned short int c);
-static void getElecAngle1(FocMotor *motor);
-static void startPwm1();
-static void stopPwm1();
 
-// should be called before interruption enabled
-void motorInit()
-{
-    motor1.pole_pairs = 7;
-    motor1.startPwm = startPwm1;
-    motor1.stopPwm = stopPwm1;
-    motor1.updatePwm = updatePwm1;
-    motor1.zeroElectricAngleOffSet = 0;
-    motor1.Ts = 100 * 1e-6f;
-    motor1.torqueType = CURRENT;
-    motor1.controlType = TORQUE;
-    encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
-    motor1.velocity_limit = 200.0f;
-    motor1.startPwm();
-    setZeroElecAngle(&motor1);
-    motor1.stopPwm();
-    pidInit(&motor1.currentLoopPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
-    lpfInit(&motor1.IqFilter, 0.05, motor1.Ts);
-    encoderUpdate(&motor1.magEncoder);
-    getElecAngle(&motor1);
-    FOC_log("[zeroAngleOffset]:%f\r\n", motor1.zeroElectricAngleOffSet);
-    FOC_log("[zeroAngle]:%f\r\n", motor1.angle_el);
-    // while (1)
-    // {
-    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_SET);
-    //     delay(1000);
-    //     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_15, GPIO_PIN_RESET);
-    //     encoderUpdate(&motor1.magEncoder);
-    //     getElecAngle(&motor1); // 观察电角度是否为0
-    //     FOC_log("[zeroAngleOffset]:%f\r\n", motor1.zeroElectricAngleOffSet);
-    //     FOC_log("[zeroAngle]:%f\r\n", motor1.angle_el);
-    // }
-}
 
-static void startPwm1()
-{
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
-    HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
-}
-static void stopPwm1()
-{
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_1);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
-    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_3);
-}
-
-static void updatePwm1(unsigned short int a, unsigned short int b, unsigned short int c)
-{
-    TIM1->CCR1 = a;
-    TIM1->CCR2 = b;
-    TIM1->CCR3 = c;
-}
 
 void setZeroElecAngle(FocMotor *motor)
 {
@@ -97,14 +33,16 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
     static bool calibrateOffset;
 
-    if (!calibrateOffset)
-    {
-        getCurrentOffsets(&motor1, adc_a, adc_b, 100);
-        calibrateOffset = 1;
-    }
-    else
+    // if (!calibrateOffset)
+    // {
+    //     getCurrentOffsets(motor, adc_a, adc_b, 100);
+    //     calibrateOffset = 1;
+    // }
+    // else
     {
         getPhaseCurrents(motor, adc_a, adc_b);
+        getABCurrents(motor);
+        getDQCurrents(motor);
         // static float elecAngle;
         // elecAngle += 0.01;
 
@@ -127,15 +65,9 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
             }
             else // CURRENT
             {
-                getABCurrents(motor);
-                getDQCurrents(motor);
                 motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
-                // pidOperator(&motor->currentLoopPID, 0.1 - motor->Iq)
-
-                setPhaseVoltage(motor, pidOperator(&motor->currentLoopPID, target - motor->Iq), 0, motor->angle_el);
-
-                // getABVoltages(motor);
-                // setSVPWM(motor);
+                motor->Uq = pidOperator(&motor->currentLoopPID, target - motor->Iq);
+                setPhaseVoltage(motor, motor->Uq, 0, motor->angle_el);
             }
             break;
 
@@ -147,26 +79,10 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
         // getABCurrents(motor);
         // getDQCurrents(motor);
-
         // getDQVoltages(motor);
         // getABVoltages(motor);
         // setSVPWM(motor);
 
-#if SHOW_WAVE
-        load_data[0] = motor1.d1;
-        load_data[1] = motor1.d2;
-        load_data[2] = motor1.d3;
-        // load_data[0] = motor1.Ialpha;
-        // load_data[1] = motor1.Ibeta;
-        // load_data[2] = motor1.Iq;
-        load_data[3] = motor1.Iq;
-        // load_data[0] = motor->offset_ia;
-        // load_data[1] = motor->offset_ib;
-        // load_data[3] = motor1.Ia;
-        load_data[4] = motor1.Id;
-        memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));
-        HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 6 * 4);
-#endif
     }
 }
 

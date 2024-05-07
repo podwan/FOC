@@ -3,7 +3,7 @@
 #include "mt6701.h"
 #include "pid.h"
 
-char txBuffer[256];
+char txBuffer[50];
 Uart rxUart;
 uint8_t aRxBuffer;
 float comm1, comm2, comm3, comm4, comm5, comm6, comm7, comm8, comm9, comm10, comm11;
@@ -64,7 +64,7 @@ void printLog()
   printf("bldcMotor.target=%.2f, velocity=%.2f, ShaftAngle=%.2f\n", bldcMotor.target, shaftVelocity, shaftAngle);
   // printf("bldcMotor.target=%.2f, RPM=%d\n", bldcMotor.target, getRPM());
 #elif SHOW_WAVE == 0
-  HAL_UART_Transmit(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer), 1000);
+  HAL_UART_Transmit(&huart3, (uint8_t *)txBuffer, strlen(txBuffer), 100);
   // HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer));
   memset(txBuffer, '\0', sizeof(txBuffer));
 #endif

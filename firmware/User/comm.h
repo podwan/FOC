@@ -15,7 +15,7 @@ void FOC_log(const char *format, ...);
 void log_DMA_TX(const char *format, ...);
 extern Uart rxUart;
 extern float comm1, comm2, comm3, comm4, comm5, comm6, comm7, comm8, comm9, comm10, comm11;
-extern char txBuffer[256];
+extern char txBuffer[];
 extern float load_data[5];
 extern uint8_t tempData[24];
 extern uint8_t aRxBuffer;

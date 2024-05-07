@@ -35,7 +35,7 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SHOW_WAVE 0
+#define SHOW_WAVE 1
 
 typedef struct
 {
@@ -46,7 +46,6 @@ typedef struct
     float shaftAngle;
     float fullAngle;
     float velocity;
-    // below should be inited by  user
     float Ts; // update period in microsecond
     float (*getRawAngle)(void);
 } MagEncoder;
@@ -134,8 +133,6 @@ typedef struct
     float Ubeta;
     uint32_t d1, d2, d3;
     void (*updatePwm)(unsigned short int, unsigned short int, unsigned short int);
-    void (*startPwm)();
-    void (*stopPwm)();
 } FocMotor;
 
 /*===========================================================================*/
@@ -147,10 +144,7 @@ typedef enum
 
 typedef enum
 {
-    POWER_ON,
-    POWER_OFF,
     STANDBY,
-    PREHEAT,
     WORK,
     TEST,
     FAULT,

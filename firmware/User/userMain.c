@@ -33,11 +33,10 @@ static bool powerLost;
 void userMain(void)
 {
 
-	// if (_5ms)
-	// {
-	// 	_5ms = 0;
-	// 	keyScan();
-	// }
+	if (get5MsFlag())
+	{
+		keyScan();
+	}
 
 	if (get100MsFlag())
 	{
@@ -55,36 +54,6 @@ void setPowerLost()
 {
 	powerLost = 1;
 }
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	/* Prevent unused argument(s) compilation warning */
-	UNUSED(GPIO_Pin);
-	if (Button3_Pin == GPIO_Pin)
-	{
-		Motor_state = ~Motor_state;
-		if (0 == Motor_state)
-		{
-			HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_1);
-			HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_2);
-			HAL_TIM_PWM_Stop(&htim1, TIM_CHANNEL_3);
-			HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_1);
-			HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_2);
-			HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_3);
-		}
-		else
-		{
-			HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-			HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-			HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-			HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
-			HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
-			HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
-		}
-	}
-	/* NOTE: This function should not be modified, when the callback is needed,
-			 the HAL_GPIO_EXTI_Callback could be implemented in the user file
-	 */
-}
 
 int fputc(int ch, FILE *f)
 {
@@ -94,23 +63,6 @@ int fputc(int ch, FILE *f)
 	return ch;
 }
 
-void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
-{
-	
-	/* Prevent unused argument(s) compilation warning */
-	UNUSED(hadc);
-	if (hadc == &hadc1)
-	{
-		foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
-
-		dealPer100us();
-
-	}
-
-	/* NOTE : This function should not be modified. When the callback is needed,
-			  function HAL_ADCEx_InjectedConvCpltCallback must be implemented in the user file.
-	*/
-}
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {

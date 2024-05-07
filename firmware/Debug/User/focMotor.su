@@ -1,8 +1,4 @@
-../User/focMotor.c:20:6:motorInit	8	static
-../User/focMotor.c:53:13:startPwm1	8	static
-../User/focMotor.c:62:13:stopPwm1	8	static
-../User/focMotor.c:72:13:updatePwm1	16	static
-../User/focMotor.c:79:6:setZeroElecAngle	16	static
-../User/focMotor.c:88:6:getElecAngle	16	static
-../User/focMotor.c:95:6:foc	24	static
-../User/focMotor.c:173:14:velocityOpenloop	24	static
+../User/focMotor.c:15:6:setZeroElecAngle	16	static
+../User/focMotor.c:24:6:getElecAngle	16	static
+../User/focMotor.c:31:6:foc	24	static
+../User/focMotor.c:89:14:velocityOpenloop	24	static

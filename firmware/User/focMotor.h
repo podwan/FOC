@@ -19,10 +19,8 @@
         TIM1->CCR3 = p3;         \
     }
 
-void motorInit();
 void getElecAngle(FocMotor *motor);
 void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b);
-extern FocMotor motor1;
 void setZeroElecAngle(FocMotor *motor);
 void setPhaseVoltage1(FocMotor *motor, float Uq, float Ud, float angle_el);
 #endif

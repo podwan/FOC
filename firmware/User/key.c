@@ -77,49 +77,49 @@ void keyScan()
         }
     }
 
-//    if (keyStruct[0].preKeyValue == NO_TRIG)
-//    {
-//        if (keyFlags == (K(1) | K(2) | K(3) | K(4)))
-//        {
-//            if (keyStruct[0].preKeyValue == NO_TRIG)
-//            {
-//                if (keyStruct[0].keyType == SHORT || keyStruct[0].keyType == CONTINUOUS)
-//                {
-//                    keyStruct[0].trigType = TRIG_SHORT;
-//                    keyStruct[0].preKeyValue = TRIG_SHORT;
-//                }
-//                else if (keyStruct[0].keyType == LONG_WITH_SHORT || keyStruct[0].keyType == LONG)
-//                {
-//                    if (++keyStruct[0].trigCnt >= KEY0_LONG_CNT)
-//                    {
-//                        keyStruct[0].trigCnt = 0;
-//                        keyStruct[0].trigType = TRIG_LONG;
-//                        keyStruct[0].preKeyValue = TRIG_LONG;
-//                    }
-//                }
-//            }
-//        }
-//    }
-//    else if (keyStruct[0].keyType == CONTINUOUS)
-//    {
-//        if (keyStruct[0].preKeyValue == TRIG_SHORT) // short key
-//        {
-//            if (++keyStruct[0].trigCnt >= CONTINUOUS_TRIG_CNT)
-//            {
-//                keyStruct[0].trigCnt = 0;
-//                keyStruct[0].trigType = TRIG_LONG; // long
-//                keyStruct[0].preKeyValue = TRIG_LONG;
-//            }
-//        }
-//        else if (keyStruct[0].preKeyValue == TRIG_LONG) // long key
-//        {
-//            if (++keyStruct[0].trigCnt >= CONTINUOUS_INTEVAL)
-//            {
-//                keyStruct[0].trigCnt = 0;
-//                keyStruct[0].trigType = keyStruct[1].preKeyValue;
-//            }
-//        }
-//    }
+    //    if (keyStruct[0].preKeyValue == NO_TRIG)
+    //    {
+    //        if (keyFlags == (K(1) | K(2) | K(3) | K(4)))
+    //        {
+    //            if (keyStruct[0].preKeyValue == NO_TRIG)
+    //            {
+    //                if (keyStruct[0].keyType == SHORT || keyStruct[0].keyType == CONTINUOUS)
+    //                {
+    //                    keyStruct[0].trigType = TRIG_SHORT;
+    //                    keyStruct[0].preKeyValue = TRIG_SHORT;
+    //                }
+    //                else if (keyStruct[0].keyType == LONG_WITH_SHORT || keyStruct[0].keyType == LONG)
+    //                {
+    //                    if (++keyStruct[0].trigCnt >= KEY0_LONG_CNT)
+    //                    {
+    //                        keyStruct[0].trigCnt = 0;
+    //                        keyStruct[0].trigType = TRIG_LONG;
+    //                        keyStruct[0].preKeyValue = TRIG_LONG;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //    else if (keyStruct[0].keyType == CONTINUOUS)
+    //    {
+    //        if (keyStruct[0].preKeyValue == TRIG_SHORT) // short key
+    //        {
+    //            if (++keyStruct[0].trigCnt >= CONTINUOUS_TRIG_CNT)
+    //            {
+    //                keyStruct[0].trigCnt = 0;
+    //                keyStruct[0].trigType = TRIG_LONG; // long
+    //                keyStruct[0].preKeyValue = TRIG_LONG;
+    //            }
+    //        }
+    //        else if (keyStruct[0].preKeyValue == TRIG_LONG) // long key
+    //        {
+    //            if (++keyStruct[0].trigCnt >= CONTINUOUS_INTEVAL)
+    //            {
+    //                keyStruct[0].trigCnt = 0;
+    //                keyStruct[0].trigType = keyStruct[1].preKeyValue;
+    //            }
+    //        }
+    //    }
 
     if (keyStruct[1].preKeyValue == NO_TRIG)
     {
@@ -271,15 +271,15 @@ void getKeyState(KeyState *keyState)
     }
 }
 
-void keyScanLoop(void *argument)
-{
-    keyStruct[0].keyType = SHORT;
-    keyStruct[1].keyType = SHORT;
-    keyStruct[2].keyType = SHORT;
-    keyStruct[3].keyType = SHORT;
-    for (;;)
-    {
-        keyScan();
-    
-    }
-}
+// void keyScanLoop(void *argument)
+// {
+//     keyStruct[0].keyType = SHORT;
+//     keyStruct[1].keyType = SHORT;
+//     keyStruct[2].keyType = SHORT;
+//     keyStruct[3].keyType = SHORT;
+//     for (;;)
+//     {
+//         keyScan();
+
+//     }
+// }
