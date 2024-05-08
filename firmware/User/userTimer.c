@@ -9,7 +9,7 @@ static bool crossZero4timer;
 static bool powerLost, crossZero;
 static uchar withoutZeroCnt, powerOnCnt;
 
-static bool _5msFlag, _10msFlag, _20msFlag, _30msFlag, _100msFlag, _500msFlag;
+static bool _5msFlag, _10msFlag, _20msFlag, _30msFlag, _100msFlag, _500msFlag, _1s;
 
 void dealPer100us()
 {
@@ -26,10 +26,10 @@ void dealPer100us()
 }
 
 // 定时器中断调用
- void dealPerMs()
+void dealPerMs()
 {
     static unsigned char _5msCnt, _30msCnt, _20msCnt, _100msCnt, _10msCnt;
-    static uint _500msCnt;
+    static uint _500msCnt, _1000msCnt;
     if (++_5msCnt >= 5)
     {
         _5msCnt = 0;
@@ -64,6 +64,11 @@ void dealPer100us()
     {
         _500msCnt = 0;
         _500msFlag = 1;
+    }
+    if (++_1000msCnt >= 1000)
+    {
+        _1000msCnt = 0;
+        _1s = 1;
     }
 #if FREQUENCE_JUDGE
 

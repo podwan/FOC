@@ -1,7 +1,0 @@
-../User/focMotor.c:15:6:motorInit	8	static
-../User/focMotor.c:43:13:startPwm1	8	static
-../User/focMotor.c:52:13:stopPwm1	8	static
-../User/focMotor.c:62:13:updatePwm1	16	static
-../User/focMotor.c:69:6:getZeroElecAngle	24	static
-../User/focMotor.c:78:6:getElecAngle	24	static
-../User/focMotor.c:83:6:foc	24	static

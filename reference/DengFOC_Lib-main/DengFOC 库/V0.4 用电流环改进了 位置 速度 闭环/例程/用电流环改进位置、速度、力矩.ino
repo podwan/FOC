@@ -33,10 +33,10 @@ void loop()
   DFOC_M0_setVelocity(serial_motor_target());
 
   // 位置-速度-力（加入电流环后）
-  //  DFOC_M0_SET_ANGLE_PID(1,0,0,100000,30);
-  //  DFOC_M0_SET_VEL_PID(0.02,1,0,100000,0.5);
-  //  DFOC_M0_SET_CURRENT_PID(5,200,0,100000);
-  //  DFOC_M0_set_Velocity_Angle(serial_motor_target());
+   DFOC_M0_SET_ANGLE_PID(1,0,0,100000,30);
+   DFOC_M0_SET_VEL_PID(0.02,1,0,100000,0.5);
+   DFOC_M0_SET_CURRENT_PID(5,200,0,100000);
+   DFOC_M0_set_Velocity_Angle(serial_motor_target());
 
   // 电流力矩
   DFOC_M0_SET_CURRENT_PID(5, 200, 0, 100000);

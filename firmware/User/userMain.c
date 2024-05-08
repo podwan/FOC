@@ -10,7 +10,6 @@
 #include "app.h"
 #include "key.h"
 
-
 #define PHASE_SHIFT_ANGLE (float)(120.0f / 360.0f * 2.0f * PI)
 
 extern DMA_HandleTypeDef hdma_usart3_tx;
@@ -47,10 +46,10 @@ void userMain(void)
 		appRunning();
 	}
 #if SHOW_WAVE == 0 //&& COMMAMNDER == 0
-	if (get500MsFlag())
+	// if (get500MsFlag())
+	if (getOneSecFlag())
 	{
-		      
-		//printLog();
+		printLog();
 	}
 #endif
 }

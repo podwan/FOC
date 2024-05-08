@@ -1,4 +1,0 @@
-../User/current.c:11:6:getCurrentOffsets	40	static
-../User/current.c:27:6:getPhaseCurrents	32	static
-../User/current.c:41:6:getABCurrents	16	static
-../User/current.c:54:6:getDQCurrents	24	static

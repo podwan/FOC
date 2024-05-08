@@ -33,6 +33,7 @@ extern "C"
 #endif
 
 void appRunning();
+// void txDataProcess();
 extern float txA, txB, txC;
-extern float focTarget;
+// extern float focTarget;
 #endif

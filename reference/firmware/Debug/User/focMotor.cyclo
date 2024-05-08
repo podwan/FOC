@@ -1,7 +1,0 @@
-../User/focMotor.c:15:6:motorInit	1
-../User/focMotor.c:43:13:startPwm1	1
-../User/focMotor.c:52:13:stopPwm1	1
-../User/focMotor.c:62:13:updatePwm1	1
-../User/focMotor.c:69:6:getZeroElecAngle	1
-../User/focMotor.c:78:6:getElecAngle	1
-../User/focMotor.c:83:6:foc	2
