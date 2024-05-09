@@ -5,7 +5,7 @@
 
 void encoderInit(MagEncoder *encoder, float _Ts, float (*_getRawAngle)(void));
 void encoderUpdate(MagEncoder *encoder);
-void getVelocity(MagEncoder *encoder);
+float getVelocity(MagEncoder *encoder);
 // float getMechanicalAngle();
 // float getFullAngle();
 

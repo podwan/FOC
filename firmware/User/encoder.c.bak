@@ -28,7 +28,7 @@ void encoderUpdate(MagEncoder *encoder)
     encoder->fullAngle = (float)encoder->full_rotations * _2PI + encoder->angle_prev;
 }
 
-void  getVelocity(MagEncoder *encoder)
+float getVelocity(MagEncoder *encoder)
 {
     // 速度计算
     float vel = ((float)(encoder->full_rotations - encoder->vel_full_rotations) * _2PI + (encoder->angle_prev - encoder->vel_angle_prev)) / encoder->Ts;

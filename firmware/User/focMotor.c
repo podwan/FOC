@@ -26,47 +26,66 @@ void getElecAngle(FocMotor *motor)
 
 void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
-
-    getPhaseCurrents(motor, adc_a, adc_b);
-    getABCurrents(motor);
-    getDQCurrents(motor);
-    motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
-
-    encoderUpdate(&motor->magEncoder);
-    getVelocity(&motor->magEncoder);
-    getElecAngle(motor);
-    float IqRef;
-    switch (motor->controlType)
+    if (motor->state == MOTOR_CALIBRATE)
     {
-    case TORQUE:
-        if (motor->torqueType == VOLTAGE)
+        getCurrentOffsets(motor, adc_a, adc_b, 100);
+        getZeroElecAngle(motor);
+        encoderUpdate(&motor->magEncoder);
+        getElecAngle(motor);
+        FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
+        // gotCurrentOffset = 1;
+        motor->state = MOTOR_READY;
+        FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
+    }
+    else
+    {
+        getPhaseCurrents(motor, adc_a, adc_b);
+        getABCurrents(motor);
+        getDQCurrents(motor);
+        motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
+
+        encoderUpdate(&motor->magEncoder);
+        getVelocity(&motor->magEncoder);
+        getElecAngle(motor);
+        float IqRef;
+
+        if (motor->state == MOTOR_START)
         {
-            setTorque(motor, motor->target, 0, motor->angle_el);
-        }
-        else // CURRENT
-        {
-            motor->Uq = pidOperator(&motor->currentPID, motor->target - motor->Iq);
+            switch (motor->controlType)
+            {
+            case TORQUE:
+                if (motor->torqueType == VOLTAGE)
+                {
+                    motor->Uq = motor->target;
+                    // motor->Uq = UqMAX;
+                }
+                else // CURRENT
+                {
+                    motor->Uq = pidOperator(&motor->currentPID, motor->target - motor->Iq);
+                    // setTorque(motor, motor->Uq, 0, motor->angle_el);
+                }
+                break;
+
+            case VELOCITY:
+                float velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
+                IqRef = pidOperator(&motor->velocityPID, velocityErr);
+                motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+                // setTorque(motor, motor->Uq, 0, motor->angle_el);
+                break;
+
+            case ANGLE:
+
+                float velocityRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
+                velocityErr = (velocityRef - motor->magEncoder.velocity) * 180 * _PI;
+                IqRef = pidOperator(&motor->velocityPID, velocityErr);
+                motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+
+                // IqRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
+                // motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+
+                break;
+            }
             setTorque(motor, motor->Uq, 0, motor->angle_el);
         }
-        break;
-
-    case VELOCITY:
-        float velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
-        IqRef = pidOperator(&motor->velocityPID, velocityErr);
-        motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
-        setTorque(motor, motor->Uq, 0, motor->angle_el);
-        break;
-
-    case ANGLE:
-
-        float velocityRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
-        velocityErr = (velocityRef - motor->magEncoder.velocity) * 180 * _PI;
-        IqRef = pidOperator(&motor->velocityPID, velocityErr);
-        motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
-
-        // IqRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
-        // motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
-        setTorque(motor, motor->Uq, 0, motor->angle_el);
-        break;
     }
 }

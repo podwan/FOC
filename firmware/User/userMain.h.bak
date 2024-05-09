@@ -77,6 +77,8 @@ typedef enum
     TORQUE,
     VELOCITY,
     ANGLE,
+    // VELOCITY_OPEN_LOOP,
+    // ANGLE_OPEN_LOOP
 } ControlType;
 /*===========================================================================*/
 typedef enum
@@ -88,15 +90,16 @@ typedef enum
 /*===========================================================================*/
 typedef enum
 {
-    MOTOR_CALIBRATE,
-    MOTOR_READY,
+    CALIBRATE,
     MOTOR_START,
+    MOTOR_WAIT,
+    MOTOR_RUN,
 } MotorState;
 /*===========================================================================*/
 typedef struct
 {
     MagEncoder magEncoder;
-    MotorState state;
+    MotorState motorState;
     ControlType controlType;
     TorqueType torqueType;
     float Ts;
@@ -114,8 +117,8 @@ typedef struct
     float Ibeta;
     float Id;
     float Iq;
-    // float IdGoal;
-    // float IqGoal;
+    float IdGoal;
+    float IqGoal;
     // pid
     PidController pid_id;
     PidController pid_iq;

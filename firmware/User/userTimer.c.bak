@@ -1,12 +1,16 @@
 #include "userTimer.h"
-static bool  _1s, _1ms;
+static bool crossZero4timer, _1s, _1ms;
 static unsigned int _1msCnt;
+static unsigned char zeroCnt;
 static unsigned char frequence;
-static bool powerLost, crossZero;
+static void zeroPolling();
 
+static bool crossZero4timer;
+static bool powerLost, crossZero;
+static uchar withoutZeroCnt, powerOnCnt;
 
 static bool _5msFlag, _10msFlag, _20msFlag, _30msFlag, _100msFlag, _500msFlag, _1s;
-static void dealPerMs();
+
 void dealPer100us()
 {
     static unsigned char cnt;
@@ -16,9 +20,13 @@ void dealPer100us()
         dealPerMs();
     }
 
+#if ZERO_POLL
+    zeroPolling();
+#endif
 }
 
-static void dealPerMs()
+// 定时器中断调用
+void dealPerMs()
 {
     static unsigned char _5msCnt, _30msCnt, _20msCnt, _100msCnt, _10msCnt;
     static uint _500msCnt, _1000msCnt;
@@ -122,11 +130,51 @@ static void dealPerMs()
 #endif
     _1ms = 1;
 
+#if CROSS_ZERO_POWER_OFF_DECTECTION
+    if (powerLost == 0 && ++withoutZeroCnt > 200)
+    {
+        powerLost = 1;
+        withoutZeroCnt = 0;
+        memorize();
+        // beepOnce();
+    }
+#else
+    if (withoutZeroCnt < ZERO_ERR_TIME)
+        withoutZeroCnt++;
+#endif
 
-
-
+    // #if ZERO_DETEC
+    //     {
+    //         static uchar i, j;
+    //         // idleState == 1
+    //         if (ZERO_IO == 0)
+    //         {
+    //             j = 0;
+    //             if (++i >= 5)
+    //             {
+    //                 i = 0;
+    //                 crossZero = 1;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             i = 0;
+    //             if (++j >= 15)
+    //             {
+    //                 j = 0;
+    //                 crossZero = 0;
+    //             }
+    //         }
+    //         //	else
+    //     }
+    // #endif
 }
 
+void setCrossZero4timer()
+{
+    crossZero4timer = 1;
+    withoutZeroCnt = 0;
+}
 
 void initializeClock()
 {
@@ -143,7 +191,25 @@ unsigned char getFrequence()
     return frequence;
 }
 
-
+#if ZERO_POLL
+static void zeroPolling()
+{
+    static bool tik;
+    if (tik != ZERO_IO)
+    {
+        tik = !tik;
+        crossZero4timer = 1;
+        withoutZeroCnt = 0;
+#if CROSS_ZERO_POWER_OFF_DECTECTION
+        if (powerLost && ++powerOnCnt > 10)
+        {
+            powerLost = 0;
+            powerOnCnt = 0;
+        }
+#endif
+    }
+}
+#endif
 
 bool getOneSecFlag()
 {
@@ -172,6 +238,13 @@ bool getPowerLost()
     return powerLost;
 }
 
+bool getZeroErr()
+{
+    if (withoutZeroCnt == ZERO_ERR_TIME)
+        return 1;
+    else
+        return 0;
+}
 
 bool getCrossZero()
 {

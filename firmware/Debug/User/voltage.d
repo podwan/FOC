@@ -42,7 +42,7 @@ User/voltage.o: ../User/voltage.c ../User/voltage.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/math_utils.h \
- ../User/comm.h ../User/focMotor.h
+ ../User/comm.h ../User/focMotor.h ../User/pid.h
 ../User/voltage.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -94,3 +94,4 @@ User/voltage.o: ../User/voltage.c ../User/voltage.h ../User/userMain.h \
 ../User/math_utils.h:
 ../User/comm.h:
 ../User/focMotor.h:
+../User/pid.h:

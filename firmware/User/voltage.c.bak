@@ -2,7 +2,6 @@
 #include "math_utils.h"
 #include "comm.h"
 #include "focMotor.h"
-#include "pid.h"
 
 const char sectorRemap[] = {0, 2, 6, 1, 4, 3, 5};
 void getDQVoltages(FocMotor *motor)
@@ -11,8 +10,8 @@ void getDQVoltages(FocMotor *motor)
     //    motor->Id = lpfOperator(&motor->lpf, motor->Id);
     //    motor->Iq = lpfOperator(&motor->lpf, motor->Iq);
 
-//    motor->Ud = pidOperator(&motor->pid_id, motor->IdGoal - motor->Id);
-//    motor->Uq = pidOperator(&motor->pid_iq, motor->IqGoal - motor->Iq);
+    motor->Ud = pidOperator(&motor->pid_id, motor->IdGoal - motor->Id);
+    motor->Uq = pidOperator(&motor->pid_iq, motor->IqGoal - motor->Iq);
 }
 /*============================================================================*/
 // Park逆变换
@@ -176,12 +175,11 @@ void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
         d2 = d3 + tSecond;
 
         break;
-
     }
-    // #if SHOW_WAVE
+// #if SHOW_WAVE
     motor->d1 = d1;
     motor->d2 = d2;
     motor->d3 = d3;
-    // #endif
+// #endif
     motor->updatePwm(d1, d2, d3);
 }
