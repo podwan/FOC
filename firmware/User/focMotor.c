@@ -9,6 +9,7 @@
 #include "encoder.h"
 #include "pid.h"
 #include "lowpass_filter.h"
+#include "app.h"
 
 void getZeroElecAngle(FocMotor *motor)
 {
@@ -29,13 +30,12 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
     if (motor->state == MOTOR_CALIBRATE)
     {
         getCurrentOffsets(motor, adc_a, adc_b, 100);
+        FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
         getZeroElecAngle(motor);
         encoderUpdate(&motor->magEncoder);
         getElecAngle(motor);
         FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
-        // gotCurrentOffset = 1;
         motor->state = MOTOR_READY;
-        FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
     }
     else
     {
@@ -48,7 +48,6 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
         getVelocity(&motor->magEncoder);
         getElecAngle(motor);
         float IqRef;
-
         if (motor->state == MOTOR_START)
         {
             switch (motor->controlType)
@@ -85,6 +84,7 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
                 break;
             }
+
             setTorque(motor, motor->Uq, 0, motor->angle_el);
         }
     }

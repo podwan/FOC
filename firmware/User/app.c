@@ -14,6 +14,8 @@
 static DevState devState;
 static KeyState keyState;
 static uchar flashCnt;
+float load_data[7];
+uint8_t tempData[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
 float txA, txB, txC;
 static FocMotor motor1;
@@ -40,10 +42,6 @@ static void motorInit()
     motor1.controlType = TORQUE;
     motor1.state = MOTOR_CALIBRATE;
     encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
-    // motor1.velocity_limit = 200.0f;
-//    motor1.IqGoal = 0.15f;
-
-    // motor1.stopPwm();
 
     if (motor1.controlType == TORQUE && motor1.torqueType == CURRENT)
         pidInit(&motor1.currentPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
@@ -184,6 +182,8 @@ static void working(void)
 void txDataProcess()
 {
     sprintf(txBuffer, "target:%f fullAngle:%f, velocity:%f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity);
+
+    // sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
 }
 
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
@@ -207,17 +207,28 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
         dealPer100us();
 
 #if SHOW_WAVE
-        load_data[0] = motor1.d1;
-        load_data[1] = motor1.d2;
-        load_data[2] = motor1.d3;
-        //  load_data[0] = motor1.Ialpha;
-        //  load_data[1] = motor1.Ibeta;
-        load_data[3] = motor1.Uq;
-        load_data[4] = motor1.Iq;
-        // load_data[3] = motor1.offset_ia;
-        // load_data[4] = motor1.offset_ib;
+        // load_data[0] = motor1.d1;
+        // load_data[1] = motor1.d2;
+        // load_data[2] = motor1.d3;
+        // load_data[3] = motor1.Uq;
+        // load_data[4] = motor1.Iq;
+        // load_data[5] = motor1.magEncoder.velocity;
+
+        // load_data[0] = motor1.Ia;
+        // load_data[1] = motor1.Ib;
+
+        load_data[0] = hadc1.Instance->JDR1;
+        load_data[1] = hadc2.Instance->JDR1;
+        load_data[2] = hadc1.Instance->JDR2;
+
+        load_data[3] = motor1.Ialpha;
+        load_data[4] = motor1.Ibeta;
+
+        load_data[5] = motor1.Id;
+        load_data[6] = motor1.Iq;
+
         memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));
-        HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 6 * 4);
+        HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 8 * 4);
 #endif
     }
     HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);

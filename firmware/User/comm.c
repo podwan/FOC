@@ -9,8 +9,6 @@ char rxBuffer[USART_BUFFER_SIZE];
 bool toProcessData;
 uint8_t aRxBuffer;
 float comm1, comm2, comm3, comm4, comm5, comm6, comm7, comm8, comm9, comm10, comm11;
-float load_data[5];
-uint8_t tempData[24] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
 void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
@@ -70,8 +68,6 @@ void printLog()
   HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer));
 #endif
 }
-
-
 
 void commander_run(FocMotor *motor)
 {

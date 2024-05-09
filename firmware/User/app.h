@@ -37,5 +37,5 @@ extern "C"
 void appRunning();
 // void txDataProcess();
 extern float txA, txB, txC;
-// extern float focTarget;
+extern float load_data[];
 #endif
