@@ -42,9 +42,9 @@ User/app.o: ../User/app.c ../User/app.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/led.h ../User/key.h \
- ../User/comm.h ../User/mt6701.h ../User/as5407.h ../User/focMotor.h \
- ../User/math_utils.h ../User/encoder.h ../User/pid.h \
- ../User/lowpass_filter.h ../User/current.h ../User/userTimer.h
+ ../User/comm.h ../User/mt6701.h ../User/focMotor.h ../User/math_utils.h \
+ ../User/encoder.h ../User/pid.h ../User/lowpass_filter.h \
+ ../User/current.h ../User/userTimer.h ../User/voltage.h
 ../User/app.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -97,7 +97,6 @@ User/app.o: ../User/app.c ../User/app.h ../User/userMain.h \
 ../User/key.h:
 ../User/comm.h:
 ../User/mt6701.h:
-../User/as5407.h:
 ../User/focMotor.h:
 ../User/math_utils.h:
 ../User/encoder.h:
@@ -105,3 +104,4 @@ User/app.o: ../User/app.c ../User/app.h ../User/userMain.h \
 ../User/lowpass_filter.h:
 ../User/current.h:
 ../User/userTimer.h:
+../User/voltage.h:

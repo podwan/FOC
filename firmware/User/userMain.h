@@ -35,7 +35,7 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SHOW_WAVE 0
+#define SHOW_WAVE 1
 
 typedef struct
 {
@@ -117,8 +117,8 @@ typedef struct
     // float IdGoal;
     // float IqGoal;
     // pid
-    PidController pid_id;
-    PidController pid_iq;
+    PidController pidId;
+    PidController pidIq;
     PidController currentPID;
     PidController velocityPID;
     PidController anglePID;
@@ -129,8 +129,10 @@ typedef struct
     float Uq;
     float Ualpha;
     float Ubeta;
-    uint32_t d1, d2, d3;
+    float Ta, Tb, Tc;
     void (*updatePwm)(unsigned short int, unsigned short int, unsigned short int);
+    void (*startPwm)();
+    void (*stopPwm)();
 } FocMotor;
 
 /*===========================================================================*/

@@ -3,7 +3,7 @@
 #include "mt6701.h"
 #include "pid.h"
 #include "app.h"
-
+// 串口采用DMA 空闲中断模式，参考keysking@bilibili
 char txBuffer[USART_BUFFER_SIZE];
 char rxBuffer[USART_BUFFER_SIZE];
 bool toProcessData;

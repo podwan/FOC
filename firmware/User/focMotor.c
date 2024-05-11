@@ -4,7 +4,6 @@
 #include "voltage.h"
 #include "current.h"
 #include "time_utils.h"
-#include "as5407.h"
 #include "comm.h"
 #include "encoder.h"
 #include "pid.h"
@@ -35,6 +34,7 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
         encoderUpdate(&motor->magEncoder);
         getElecAngle(motor);
         FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
+        motor->stopPwm();
         motor->state = MOTOR_READY;
     }
     else
@@ -48,27 +48,28 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
         getVelocity(&motor->magEncoder);
         getElecAngle(motor);
         float IqRef;
+        float velocityErr;
         if (motor->state == MOTOR_START)
         {
             switch (motor->controlType)
             {
             case TORQUE:
-                if (motor->torqueType == VOLTAGE)
-                {
-                    motor->Uq = motor->target;
-                    // motor->Uq = UqMAX;
-                }
-                else // CURRENT
-                {
-                    motor->Uq = pidOperator(&motor->currentPID, motor->target - motor->Iq);
-                    // setTorque(motor, motor->Uq, 0, motor->angle_el);
-                }
+
+                // motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+                motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
+                // motor->Uq = 3;
                 break;
 
             case VELOCITY:
-                float velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
-                IqRef = pidOperator(&motor->velocityPID, velocityErr);
-                motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+                if (motor->torqueType == VOLTAGE)
+                {
+                }
+                else
+                {
+                    velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
+                    IqRef = pidOperator(&motor->velocityPID, velocityErr);
+                    motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+                }
                 // setTorque(motor, motor->Uq, 0, motor->angle_el);
                 break;
 

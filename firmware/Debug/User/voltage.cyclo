@@ -1,3 +1,4 @@
 ../User/voltage.c:8:6:getDQVoltages	1
 ../User/voltage.c:22:6:getABVoltages	1
-../User/voltage.c:32:6:setTorque	11
+../User/voltage.c:32:6:setTorque	15
+../User/voltage.c:240:6:svpwm_test	2

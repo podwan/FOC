@@ -43,8 +43,8 @@ User/focMotor.o: ../User/focMotor.c ../User/focMotor.h ../User/userMain.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/math_utils.h \
  ../User/mt6701.h ../User/voltage.h ../User/current.h \
- ../User/time_utils.h ../User/as5407.h ../User/comm.h ../User/encoder.h \
- ../User/pid.h ../User/lowpass_filter.h ../User/app.h
+ ../User/time_utils.h ../User/comm.h ../User/encoder.h ../User/pid.h \
+ ../User/lowpass_filter.h ../User/app.h
 ../User/focMotor.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -98,7 +98,6 @@ User/focMotor.o: ../User/focMotor.c ../User/focMotor.h ../User/userMain.h \
 ../User/voltage.h:
 ../User/current.h:
 ../User/time_utils.h:
-../User/as5407.h:
 ../User/comm.h:
 ../User/encoder.h:
 ../User/pid.h:

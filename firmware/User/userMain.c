@@ -22,8 +22,6 @@ uint16_t IA_Offset, IB_Offset, IC_Offset;
 uint16_t adc1_in1, adc1_in2, adc1_in3, Vpoten, adc_vbus;
 uint8_t ADC_offset = 0;
 
-FDCAN_RxHeaderTypeDef RxHeader;
-FDCAN_TxHeaderTypeDef TxHeader;
 uint8_t RxData[8] = {NULL};
 uint8_t TxData[8] = {NULL};
 
@@ -117,31 +115,4 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 	/* NOTE : This function should not be modified, when the callback is needed,
 			  the HAL_TIM_IC_CaptureCallback could be implemented in the user file
 	 */
-}
-
-void FDCAN_Config(void)
-{
-	// FDCAN_FilterTypeDef sFilterConfig;
-
-	// HAL_FDCAN_ActivateNotification(&hfdcan1, FDCAN_IT_RX_FIFO0_NEW_MESSAGE, 0);
-
-	// sFilterConfig.IdType = FDCAN_EXTENDED_ID;
-	// sFilterConfig.FilterIndex = 0;
-	// sFilterConfig.FilterType = FDCAN_FILTER_RANGE;
-	// sFilterConfig.FilterConfig = FDCAN_FILTER_TO_RXFIFO0;
-	// sFilterConfig.FilterID1 = 0x00000000;
-	// sFilterConfig.FilterID2 = 0x01ffffff;
-	// HAL_FDCAN_ConfigFilter(&hfdcan1, &sFilterConfig);
-
-	// TxHeader.Identifier = 0x1B;
-	// TxHeader.IdType = FDCAN_EXTENDED_ID;
-	// TxHeader.TxFrameType = FDCAN_DATA_FRAME;
-	// TxHeader.DataLength = FDCAN_DLC_BYTES_8;
-	// TxHeader.ErrorStateIndicator = FDCAN_ESI_ACTIVE;
-	// TxHeader.BitRateSwitch = FDCAN_BRS_OFF;
-	// TxHeader.FDFormat = FDCAN_CLASSIC_CAN;
-	// TxHeader.TxEventFifoControl = FDCAN_NO_TX_EVENTS;
-	// TxHeader.MessageMarker = 0x52;
-
-	// HAL_FDCAN_Start(&hfdcan1);
 }
