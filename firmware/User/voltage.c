@@ -28,25 +28,25 @@ void getABVoltages(FocMotor *motor)
     motor->Ubeta = motor->Uq * ct + motor->Ud * st;
 }
 #if 1
-// Park逆变换*SVPWM
+// Park逆变换+SVPWM
 void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
     static float Ts = 1.0f;
-    float Ta, Tb, Tc;
+
     float t1, t2, t3, t4, t5, t6, t7;
     float sum, k_svpwm;
     float ct;
     float st;
     _sincos(angle_el, &st, &ct);
     // Park逆变换
-    float U_alpha = -Uq * st + Ud * ct;
-    float U_beta = Uq * ct + Ud * st;
+    float Ualpha = -Uq * st + Ud * ct;
+    float Ubeta = Uq * ct + Ud * st;
 
     // 扇区判断
     float K = _SQRT3 * Ts / U_DC; // SVPWM调制比
-    float u1 = U_beta * K;
-    float u2 = (0.8660254f * U_alpha - 0.5f * U_beta) * K; // sqrt(3)/2 = 0.8660254
-    float u3 = (-0.8660254f * U_alpha - 0.5f * U_beta) * K;
+    float u1 = Ubeta * K;
+    float u2 = (_SQRT3_2 * Ualpha - 0.5f * Ubeta) * K; // sqrt(3)/2 = 0.8660254
+    float u3 = (-_SQRT3_2 * Ualpha - 0.5f * Ubeta) * K;
 
     uint8_t sector = (u1 > 0.0f) + ((u2 > 0.0f) << 1) + ((u3 > 0.0f) << 2); // sector = A + 2B + 4C
 

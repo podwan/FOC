@@ -37,6 +37,7 @@ typedef unsigned long ulong;
 #define MAX_LEN 20
 #define SHOW_WAVE 1
 
+
 typedef struct
 {
     float angle_prev;           // 最后一次调用 getSensorAngle() 的输出结果，用于得到完整的圈数和速度
@@ -74,7 +75,7 @@ typedef struct
 /*===========================================================================*/
 typedef enum
 {
-    TORQUE,
+    VELOCITY_OPEN_LOOP,
     VELOCITY,
     ANGLE,
 } ControlType;
@@ -124,6 +125,8 @@ typedef struct
     PidController anglePID;
     // filter
     LowPassFilter IqFilter;
+    LowPassFilter velocityFilter;
+
     // volatges
     float Ud;
     float Uq;
@@ -255,5 +258,5 @@ typedef struct
 void userMain(void);
 void setPowerLost();
 bool getPowerLost();
-
+int map(int x, int in_min, int in_max, int out_min, int out_max);
 #endif

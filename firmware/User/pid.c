@@ -26,7 +26,7 @@ float pidOperator(PidController *pidController, float error)
     // u_ik = u_ik_1  + I*Ts/2*(ek + ek_1)
     float integral = pidController->integral_prev + pidController->I * pidController->Ts * 0.5f * (error + pidController->error_prev);
     // antiwindup - limit the output
-    integral = _constrain(integral, -(pidController->limit), pidController->limit);
+    integral = _constrain(integral, -pidController->limit, pidController->limit);
     // Discrete derivation
     // u_dk = D(ek - ek_1)/Ts
     float derivative = pidController->D * (error - pidController->error_prev) / pidController->Ts;

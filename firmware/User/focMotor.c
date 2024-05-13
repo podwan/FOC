@@ -12,11 +12,11 @@
 
 void getZeroElecAngle(FocMotor *motor)
 {
-    setTorque(motor, 0.0f, 2.0f, 0.0f);
-    delay(1000);
-    setTorque(motor, 0.0f, 0.0f, 0.0f);
+    setTorque(motor, 0.0f, U_DC / 4, 0.0f);
+    delay(500);
     encoderUpdate(&motor->magEncoder);
     motor->zeroElectricAngleOffSet = _normalizeAngle(motor->pole_pairs * motor->magEncoder.shaftAngle); // 测量电角度零位偏差
+    setTorque(motor, 0.0f, 0.0f, 0.0f);
 }
 
 void getElecAngle(FocMotor *motor)
@@ -39,34 +39,43 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
     }
     else
     {
+        float IqRef;
+        float velocityErr, angleErr;
+
         getPhaseCurrents(motor, adc_a, adc_b);
         getABCurrents(motor);
         getDQCurrents(motor);
         motor->Iq = lpfOperator(&motor->IqFilter, motor->Iq);
 
         encoderUpdate(&motor->magEncoder);
-        getVelocity(&motor->magEncoder);
+        motor->magEncoder.velocity = lpfOperator(&motor->velocityFilter, motor->magEncoder.velocity);
         getElecAngle(motor);
-        float IqRef;
-        float velocityErr;
+
         if (motor->state == MOTOR_START)
         {
             switch (motor->controlType)
             {
-            case TORQUE:
+            // case TORQUE:
 
-                // motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
-                motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
-                // motor->Uq = 3;
+            //     // motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+            //     motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
+            //     // motor->Uq = 3;
+            //     break;
+            case VELOCITY_OPEN_LOOP: // 用于验证setTorque（SVPWM)函数及编码器测速（驱动）方向
+                static float shaftAngle;
+                shaftAngle = _normalizeAngle(shaftAngle + motor->target * motor->Ts);
+                motor->angle_el = _electricalAngle(shaftAngle, motor->pole_pairs);
+                motor->Uq = -U_DC / 4;
                 break;
-
             case VELOCITY:
                 if (motor->torqueType == VOLTAGE)
                 {
+                    velocityErr = motor->target - motor->magEncoder.velocity;
+                    motor->Uq = pidOperator(&motor->velocityPID, velocityErr);
                 }
                 else
                 {
-                    velocityErr = (motor->target - motor->magEncoder.velocity) * 180 * _PI;
+                    velocityErr = (motor->target - motor->magEncoder.velocity) * 180 / _PI;
                     IqRef = pidOperator(&motor->velocityPID, velocityErr);
                     motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
                 }
@@ -74,12 +83,18 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 break;
 
             case ANGLE:
-
-                float velocityRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
-                velocityErr = (velocityRef - motor->magEncoder.velocity) * 180 * _PI;
-                IqRef = pidOperator(&motor->velocityPID, velocityErr);
-                motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
-
+                if (motor->torqueType == VOLTAGE)
+                {
+                    angleErr = motor->target - motor->magEncoder.fullAngle;
+                    motor->Uq = pidOperator(&motor->anglePID, angleErr);
+                }
+                else
+                {
+                    float velocityRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
+                    velocityErr = (velocityRef - motor->magEncoder.velocity) * 180 * _PI;
+                    IqRef = pidOperator(&motor->velocityPID, velocityErr);
+                    motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+                }
                 // IqRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
                 // motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
 

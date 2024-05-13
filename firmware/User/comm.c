@@ -60,10 +60,8 @@ void FOC_log(const char *format, ...)
 
 void printLog()
 {
-#if CALI_PID
-  printf("bldcMotor.focTarget=%.2f, velocity=%.2f, ShaftAngle=%.2f\n", bldcMotor.focTarget, shaftVelocity, shaftAngle);
-  // printf("bldcMotor.focTarget=%.2f, RPM=%d\n", bldcMotor.focTarget, getRPM());
-#elif SHOW_WAVE == 0
+
+#if SHOW_WAVE == 0
   txDataProcess();
   HAL_UART_Transmit_DMA(&huart3, (uint8_t *)txBuffer, sizeof(txBuffer));
 #endif

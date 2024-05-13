@@ -2,4 +2,4 @@
 ../User/comm.c:25:6:log_DMA_TX	2
 ../User/comm.c:44:6:FOC_log	2
 ../User/comm.c:61:6:printLog	1
-../User/comm.c:72:6:commander_run	4
+../User/comm.c:70:6:commander_run	4
