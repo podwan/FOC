@@ -12,6 +12,7 @@ void encoderInit(MagEncoder *encoder, float _Ts, float (*_getRawAngle)(void))
     encoder->velocity = 0;
     encoder->Ts = _Ts;
     encoder->getRawAngle = _getRawAngle;
+    encoder->direction = UNKNOWN;
 }
 
 void encoderUpdate(MagEncoder *encoder)
@@ -35,3 +36,5 @@ void encoderUpdate(MagEncoder *encoder)
     encoder->vel_full_rotations = encoder->full_rotations;
     encoder->velocity = val;
 }
+
+

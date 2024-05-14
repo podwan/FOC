@@ -27,7 +27,7 @@ void getABVoltages(FocMotor *motor)
     motor->Ualpha = motor->Ud * ct - motor->Uq * st;
     motor->Ubeta = motor->Uq * ct + motor->Ud * st;
 }
-#if 1
+#if 0
 // Park逆变换+SVPWM
 void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
@@ -152,7 +152,7 @@ void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
     // step4：6路PWM输出
     motor->updatePwm(HALP_PWM_PERIOD * motor->Ta, HALP_PWM_PERIOD * motor->Tb, HALP_PWM_PERIOD * motor->Tc);
 }
-#else
+#elif 0
 void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
 {
     static float Ts = 1.0f;
@@ -235,8 +235,51 @@ void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
 
     motor->updatePwm(HALP_PWM_PERIOD * motor->Ta, HALP_PWM_PERIOD * motor->Tb, HALP_PWM_PERIOD * motor->Tc);
 }
-#endif
+#elif 1
 
+void setTorque(FocMotor *motor, float Uq, float Ud, float angle_el)
+{
+
+    float center;
+    float _ca, _sa;
+    float Ualpha, Ubeta;
+    float Ua, Ub, Uc;
+
+    // Sinusoidal PWM modulation
+    // Inverse Park + Clarke transformation
+    _sincos(angle_el, &_sa, &_ca);
+
+    // Inverse park transform
+    Ualpha = _ca * Ud - _sa * Uq; // -sin(angle) * Uq;
+    Ubeta = _sa * Ud + _ca * Uq;  //  cos(angle) * Uq;
+
+    // Clarke transform
+    Ua = Ualpha;
+    Ub = -0.5f * Ualpha + _SQRT3_2 * Ubeta;
+    Uc = -0.5f * Ualpha - _SQRT3_2 * Ubeta;
+
+    center = UqMAX / 2;
+
+    // discussed here: https://community.simplefoc.com/t/embedded-world-2023-stm32-cordic-co-processor/3107/165?u=candas1
+    // a bit more info here: https://microchipdeveloper.com/mct5001:which-zsm-is-best
+    // Midpoint Clamp
+    float Umin = min(Ua, min(Ub, Uc));
+    float Umax = max(Ua, max(Ub, Uc));
+    center -= (Umax + Umin) / 2;
+
+    Ua += center;
+    Ub += center;
+    Uc += center;
+
+    motor->Ta = _constrain(Ua / U_DC, 0.0f, 1.0f);
+    motor->Tb = _constrain(Ub / U_DC, 0.0f, 1.0f);
+    motor->Tc = _constrain(Uc / U_DC, 0.0f, 1.0f);
+
+    motor->updatePwm(HALP_PWM_PERIOD * motor->Ta, HALP_PWM_PERIOD * motor->Tb, HALP_PWM_PERIOD * motor->Tc);
+    // set the voltages in driver
+    // driver->setPwm(Ua, Ub, Uc);
+}
+#endif
 void svpwm_test(FocMotor *motor, float Uq, float acc)
 {
     motor->angle_el += acc;

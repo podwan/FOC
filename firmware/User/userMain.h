@@ -35,8 +35,18 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SHOW_WAVE 1
+#define SHOW_WAVE 0
+#define SHOW_SVPWM 1
 
+/**
+ *  Direction structure
+ */
+typedef enum
+{
+    CW = 1,     // clockwise
+    CCW = -1,   // counter clockwise
+    UNKNOWN = 0 // not yet known or invalid state
+} Direction;
 
 typedef struct
 {
@@ -48,6 +58,7 @@ typedef struct
     float fullAngle;
     float velocity;
     float Ts; // update period in microsecond
+    Direction direction;
     float (*getRawAngle)(void);
 } MagEncoder;
 /*===========================================================================*/
@@ -75,6 +86,7 @@ typedef struct
 /*===========================================================================*/
 typedef enum
 {
+    TORQUE,
     VELOCITY_OPEN_LOOP,
     VELOCITY,
     ANGLE,
@@ -120,11 +132,12 @@ typedef struct
     // pid
     PidController pidId;
     PidController pidIq;
-    PidController currentPID;
+    // PidController currentPID;
     PidController velocityPID;
     PidController anglePID;
     // filter
     LowPassFilter IqFilter;
+    LowPassFilter IdFilter;
     LowPassFilter velocityFilter;
 
     // volatges
@@ -258,5 +271,5 @@ typedef struct
 void userMain(void);
 void setPowerLost();
 bool getPowerLost();
-int map(int x, int in_min, int in_max, int out_min, int out_max);
+float map(float x, float in_min, float in_max, float out_min, float out_max);
 #endif

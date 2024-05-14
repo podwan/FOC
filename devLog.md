@@ -13,3 +13,7 @@ error: remote origin already exists.表示远程仓库已存在。
 
 1. 用VOFA输出波形时，将波特率设置到115200出现不显示，改到921600后恢复正常
 2. 编译时警告函数没有声明，程序能运行，但出现数据错乱
+
+# 2024/5/14
+
+电流环 https://blog.csdn.net/jdhfusk/article/details/120646346

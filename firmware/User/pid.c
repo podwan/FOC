@@ -24,6 +24,8 @@ float pidOperator(PidController *pidController, float error)
     float proportional = pidController->P * error;
     // Tustin transform of the integral part
     // u_ik = u_ik_1  + I*Ts/2*(ek + ek_1)
+    float a = 0.5f * (error + pidController->error_prev);
+    float b = pidController->I * pidController->Ts;
     float integral = pidController->integral_prev + pidController->I * pidController->Ts * 0.5f * (error + pidController->error_prev);
     // antiwindup - limit the output
     integral = _constrain(integral, -pidController->limit, pidController->limit);

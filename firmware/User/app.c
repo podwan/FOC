@@ -58,24 +58,25 @@ static void motorInit()
     motor1.stopPwm = stopPwm1;
     motor1.zeroElectricAngleOffSet = 0;
     motor1.Ts = 100 * 1e-6f;
-    motor1.torqueType = VOLTAGE;
-    motor1.controlType = ANGLE;
+    motor1.torqueType = CURRENT;
+    motor1.controlType = TORQUE;
     motor1.state = MOTOR_CALIBRATE;
     encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
 
-    if (motor1.torqueType == CURRENT)
+    if (motor1.controlType == TORQUE && motor1.torqueType == CURRENT)
     {
+
         float kp, ki;
-        kp = 5;
-        // ki = 200;
-        pidInit(&motor1.pidId, kp, ki, 0, 100000, UqMAX, motor1.Ts);
-        pidInit(&motor1.pidIq, kp, ki, 0, 100000, UqMAX, motor1.Ts);
+        kp = 2.5;
+        // ki = 2.5;
+        pidInit(&motor1.pidId, kp, ki, 0, 0, UqMAX, motor1.Ts);
+        pidInit(&motor1.pidIq, kp, ki, 0, 0, UqMAX, motor1.Ts);
     }
     else if (motor1.controlType == VELOCITY)
     {
         if (motor1.torqueType == CURRENT)
         {
-            pidInit(&motor1.currentPID, 0.5, 50, 0, 100000, 12.4, motor1.Ts);
+            //            pidInit(&motor1.currentPID, 0.5, 50, 0, 100000, 12.4, motor1.Ts);
             pidInit(&motor1.velocityPID, 3, 2, 0, 100000, 0.5, motor1.Ts);
         }
         else
@@ -87,13 +88,13 @@ static void motorInit()
     {
         if (motor1.torqueType == CURRENT)
         {
-            pidInit(&motor1.currentPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
+            //            pidInit(&motor1.currentPID, 5, 200, 0, 100000, 12.4, motor1.Ts);
             pidInit(&motor1.velocityPID, 0.02, 1, 0, 100000, 0.5, motor1.Ts);
             pidInit(&motor1.anglePID, 1, 0, 0, 100000, 30, motor1.Ts);
         }
         else
         {
-            pidInit(&motor1.anglePID, 0.05, 0, 0, 0, UqMAX, motor1.Ts);
+            pidInit(&motor1.anglePID, 0.3, 0.001, 0, 0, UqMAX / 2, motor1.Ts);
         }
 
         // pidInit(&motor1.currentPID, 1.25, 50, 0, 100000, 12.4, motor1.Ts);
@@ -101,6 +102,7 @@ static void motorInit()
     }
 
     lpfInit(&motor1.IqFilter, 0.05, motor1.Ts);
+    lpfInit(&motor1.IdFilter, 0.05, motor1.Ts);
     lpfInit(&motor1.velocityFilter, 0.01, motor1.Ts);
 }
 void appInit()
@@ -128,8 +130,8 @@ void appRunning()
     goalVelocity = map(Vpoten, 0, 4095, -MAX_VELOCITY, MAX_VELOCITY);
 
     // goalVelocity = Vpoten / 4095.0f * MAX_VELOCITY;
-    float goalTorqueV = Vpoten / 4095.0f * UqMAX;
-    float goalTorqueC = Vpoten / 4095.0f * CURRENT_MAX;
+    float goalTorqueV = map(Vpoten, 0, 4095, -UqMAX - 5, UqMAX + 5);
+    float goalTorqueC = map(Vpoten, 0, 4095, -CURRENT_MAX, CURRENT_MAX);
 
     adc_vbus = HAL_ADC_GetValue(&hadc2);
 
@@ -137,12 +139,19 @@ void appRunning()
 
     if (motor1.controlType == VELOCITY || motor1.controlType == VELOCITY_OPEN_LOOP)
     {
-        motor1.target = -goalVelocity;
+        motor1.target = goalVelocity;
     }
 
     else if (motor1.controlType == ANGLE)
     {
         motor1.target = goalVelocity / 3;
+    }
+    else if (motor1.controlType == TORQUE)
+    {
+        if (motor1.torqueType == VOLTAGE)
+            motor1.target = goalTorqueV;
+        else
+            motor1.target = goalTorqueC;
     }
 
     switch (devState)
@@ -199,7 +208,7 @@ static void working(void)
 
 void txDataProcess()
 {
-    sprintf(txBuffer, "target:%f fullAngle:%.2f, velocity:%.2f, Uq:%f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq);
+    sprintf(txBuffer, "target:%f fullAngle:%.2f, velocity:%.2f, Uq:%.2f, Ud:%.2f, Iq:%.2f, Id:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id);
     // sprintf(txBuffer, "target:%f Uq:%f\n", motor1.target, motor1.Uq);
     // sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
 }
@@ -216,13 +225,13 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 
 #if SHOW_WAVE
 #if SHOW_SVPWM
-        // load_data[0] = motor1.Ta;
-        // load_data[1] = motor1.Tb;
-        // load_data[2] = motor1.Tc;
-        // load_data[3] = motor1.Id;
-        // load_data[4] = motor1.Iq;
-        // load_data[5] = motor1.Ud;
-        // load_data[6] = motor1.Uq;
+        load_data[0] = motor1.Ta;
+        load_data[1] = motor1.Tb;
+        load_data[2] = motor1.Tc;
+        load_data[3] = motor1.Id;
+        load_data[4] = motor1.Iq;
+        load_data[5] = motor1.Ud;
+        load_data[6] = motor1.Uq;
 #elif CALI_PID
 
         load_data[0] = motor1.target;
