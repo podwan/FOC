@@ -85,7 +85,7 @@ void alignSensor(FocMotor *motor)
     FOC_log("[zeroAngleOffset]:%f\n", motor->zeroElectricAngleOffSet);
     FOC_log("[zeroAngle]:%f\n", motor->angle_el);
     // // make sure the angle_el is about zero
-  
+
     // delay(200);
 }
 
@@ -107,7 +107,7 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
     else
     {
 
-        float IqRef;
+        float IqRef, velocityRef;
         float velocityErr, angleErr;
 
         getPhaseCurrents(motor, adc_a, adc_b);
@@ -122,15 +122,6 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
         if (motor->state == MOTOR_READY)
         {
-            // if (zeroReset == 0)
-            // {
-            //     zeroReset = 1;
-            //     setTorque(motor, 0, OPEN_LOOP_TORQUE, 0);
-            // }
-            // else
-            // {
-            //     motor->stopPwm();
-            // }
         }
         else if (motor->state == MOTOR_START)
         {
@@ -145,8 +136,6 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 }
                 else
                 {
-                    // motor->Uq = 0;
-                    // motor->Ud = pidOperator(&motor->pidId, motor->target - motor->Id);
                     motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
                     motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
                 }
@@ -165,11 +154,12 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 }
                 else
                 {
-                    velocityErr = (motor->target - motor->magEncoder.velocity) * 180 / _PI;
+                    velocityErr = motor->target - motor->magEncoder.velocity;
                     IqRef = pidOperator(&motor->velocityPID, velocityErr);
-                    //                    motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+
+                    motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+                    motor->Uq = pidOperator(&motor->pidIq, IqRef - motor->Iq);
                 }
-                // setTorque(motor, motor->Uq, 0, motor->angle_el);
                 break;
 
             case ANGLE:
@@ -180,18 +170,15 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 }
                 else
                 {
-                    float velocityRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
-                    velocityErr = (velocityRef - motor->magEncoder.velocity) * 180 * _PI;
-                    IqRef = pidOperator(&motor->velocityPID, velocityErr);
-                    //                    motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
+                    angleErr = motor->target - motor->magEncoder.fullAngle;
+                    velocityRef = pidOperator(&motor->anglePID, angleErr);
+                    IqRef = pidOperator(&motor->velocityPID, velocityRef - motor->magEncoder.velocity);
+                    motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+                    motor->Uq = pidOperator(&motor->pidIq, IqRef - motor->Iq);
                 }
-                // IqRef = pidOperator(&motor->anglePID, motor->target - motor->magEncoder.fullAngle);
-                // motor->Uq = pidOperator(&motor->currentPID, IqRef - motor->Iq);
-
                 break;
             }
             setTorque(motor, motor->Uq, motor->Ud, motor->angle_el);
         }
-        // setTorque(motor, OPEN_LOOP_TORQUE, 0, _3PI_2);
     }
 }

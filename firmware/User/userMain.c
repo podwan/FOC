@@ -30,7 +30,7 @@ float HallThetaAdd = 0;
 float HallTheta = 0;
 float HallSpeed = 0;
 uint8_t HallReadTemp = 0;
-static bool powerLost;
+//static bool powerLost;
 void userMain(void)
 {
 

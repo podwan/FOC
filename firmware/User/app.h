@@ -5,7 +5,7 @@
 
 #define CALI_PID 1
 
-#define CURRENT_MAX 0.15f
+#define CURRENT_MAX 0.8f
 #define MAX_VELOCITY 300
 
 #define WORK_INIT                   \
