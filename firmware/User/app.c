@@ -58,7 +58,7 @@ static void motorInit()
     motor1.stopPwm = stopPwm1;
     motor1.zeroElectricAngleOffSet = 0;
     motor1.Ts = 100 * 1e-6f;
-    motor1.torqueType = CURRENT;
+    motor1.torqueType = VOLTAGE;
     motor1.controlType = ANGLE;
     motor1.state = MOTOR_CALIBRATE;
     encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
@@ -92,9 +92,11 @@ static void motorInit()
     {
         if (motor1.torqueType == CURRENT)
         {
-            pidInit(&motor1.anglePID, 3, 0.03, 0, 0, MAX_VELOCITY, motor1.Ts);
+            pidInit(&motor1.anglePID, 2, 0, 0, 0, MAX_VELOCITY, motor1.Ts);
 
             pidInit(&motor1.velocityPID, -0.02, -0.01, 0, 0, CURRENT_MAX, motor1.Ts);
+
+            // pidInit(&motor1.anglePID, -0.001, -0.0001, 0, 0, CURRENT_MAX / 2, motor1.Ts);
 
             float kp, ki;
             kp = -200;

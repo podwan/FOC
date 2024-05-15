@@ -173,6 +173,7 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                     angleErr = motor->target - motor->magEncoder.fullAngle;
                     velocityRef = pidOperator(&motor->anglePID, angleErr);
                     IqRef = pidOperator(&motor->velocityPID, velocityRef - motor->magEncoder.velocity);
+                    // IqRef = pidOperator(&motor->anglePID, angleErr);
                     motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
                     motor->Uq = pidOperator(&motor->pidIq, IqRef - motor->Iq);
                 }

@@ -1,0 +1,12 @@
+*~
+*.fcstd?
+*.b#?
+*.l#?
+*.s#?
+*.pyc
+*.FCStd?
+fw/BUILD/
+fw/.mbedignore
+
+/bazel-*
+hw/c1/#auto_saved_files#

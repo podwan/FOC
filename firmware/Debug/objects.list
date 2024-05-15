@@ -49,6 +49,7 @@
 "./User/encoder.o"
 "./User/focMotor.o"
 "./User/key.o"
+"./User/knob.o"
 "./User/led.o"
 "./User/lowpass_filter.o"
 "./User/math_utils.o"
