@@ -36,7 +36,7 @@ typedef unsigned long ulong;
 #define DEBUG_KEY 0
 #define MAX_LEN 20
 #define SHOW_WAVE 0
-#define SHOW_SVPWM 1
+// #define SHOW_SVPWM 1
 
 /**
  *  Direction structure

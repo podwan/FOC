@@ -1,6 +1,7 @@
 
 #include "current.h"
 #include "math_utils.h"
+#include "comm.h"
 
 // Function finding zero offsets of the ADC
 void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds)
@@ -18,7 +19,11 @@ void getCurrentOffsets(FocMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t
     motor->offset_ia = motor->offset_ia / rounds;
     motor->offset_ib = motor->offset_ib / rounds;
 
-    FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
+    // FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
+    // printf("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
+    FOC_log("[offset_ia]:%f\r\n", motor->offset_ia);
+    FOC_log("[offset_ib]:%f\r\n", motor->offset_ib);
+    // _dbg_printf("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
 }
 
 // read all three phase currents (if possible 2 or 3)

@@ -15,8 +15,8 @@
 static DevState devState;
 static KeyState keyState;
 static uchar flashCnt;
-float load_data[7];
-uint8_t tempData[32] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
+float load_data[8];
+uint8_t tempData[36] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
 float txA, txB, txC;
 static FocMotor motor1;
@@ -67,8 +67,8 @@ static void motorInit()
     {
 
         float kp, ki;
-        kp = 2.5;
-        // ki = 2.5;
+        kp = -200;
+        ki = -20;
         pidInit(&motor1.pidId, kp, ki, 0, 0, UqMAX, motor1.Ts);
         pidInit(&motor1.pidIq, kp, ki, 0, 0, UqMAX, motor1.Ts);
     }
@@ -109,7 +109,7 @@ void appInit()
 {
     motorInit();
 }
-
+static bool zeroReset;
 void appRunning()
 {
 
@@ -170,6 +170,14 @@ void appRunning()
 static void standingBy()
 {
     led1On = 1;
+    // setTorque(&motor1, 0, OPEN_LOOP_TORQUE, 0);
+    if (zeroReset == 0)
+    {
+        goToZeroElecAngle(&motor1);
+        zeroReset = 1;
+    }
+    else
+        motor1.stopPwm();
 
     if (keyState == USER3_SHORT)
     {
@@ -179,6 +187,7 @@ static void standingBy()
 
 static void working(void)
 {
+    zeroReset = 0;
     if (flashCnt < 5)
         led2On = 1;
 
@@ -208,7 +217,8 @@ static void working(void)
 
 void txDataProcess()
 {
-    sprintf(txBuffer, "target:%f fullAngle:%.2f, velocity:%.2f, Uq:%.2f, Ud:%.2f, Iq:%.2f, Id:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id);
+
+    sprintf(txBuffer, "target:%.2f fullAngle:%.2f velocity:%.2f Uq:%.2f Ud:%.2f Iq:%.2f Id:%.2f elec_angle:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id, motor1.angle_el);
     // sprintf(txBuffer, "target:%f Uq:%f\n", motor1.target, motor1.Uq);
     // sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
 }
@@ -224,38 +234,39 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
         dealPer100us();
 
 #if SHOW_WAVE
-#if SHOW_SVPWM
-        load_data[0] = motor1.Ta;
-        load_data[1] = motor1.Tb;
-        load_data[2] = motor1.Tc;
-        load_data[3] = motor1.Id;
-        load_data[4] = motor1.Iq;
-        load_data[5] = motor1.Ud;
-        load_data[6] = motor1.Uq;
-#elif CALI_PID
+        // #if SHOW_SVPWM
+        //         load_data[0] = motor1.Ta;
+        //         load_data[1] = motor1.Tb;
+        //         load_data[2] = motor1.Tc;
+        //         load_data[3] = motor1.Id;
+        //         load_data[4] = motor1.Iq;
+        //         load_data[5] = motor1.angle_el;
+        //         load_data[6] = motor1.Uq;
+        //         load_data[7] = motor1.target;
+        // #elif CALI_PID
 
-        load_data[0] = motor1.target;
-        if (motor1.controlType == VELOCITY || motor1.controlType == VELOCITY_OPEN_LOOP)
-            load_data[1] = motor1.magEncoder.velocity;
-        else if (motor1.controlType == ANGLE)
-            load_data[1] = motor1.magEncoder.fullAngle;
+        //         load_data[0] = motor1.target;
+        //         if (motor1.controlType == VELOCITY || motor1.controlType == VELOCITY_OPEN_LOOP)
+        //             load_data[1] = motor1.magEncoder.velocity;
+        //         else if (motor1.controlType == ANGLE)
+        //             load_data[1] = motor1.magEncoder.fullAngle;
 
-        load_data[2] = motor1.Uq;
+        //         load_data[2] = motor1.Uq;
 
-#endif
+        // show current
 
-        // load_data[0] = hadc1.Instance->JDR1;
-        // load_data[1] = hadc2.Instance->JDR1;
-        // load_data[2] = hadc1.Instance->JDR2;
+        load_data[0] = hadc1.Instance->JDR1;
+        load_data[1] = hadc2.Instance->JDR1;
+        load_data[2] = hadc1.Instance->JDR2;
 
-        // load_data[3] = motor1.Ialpha;
-        // load_data[4] = motor1.Ibeta;
+        load_data[3] = motor1.Ialpha;
+        load_data[4] = motor1.Ibeta;
 
-        // load_data[5] = motor1.Id;
-        // load_data[6] = motor1.Iq;
+        load_data[5] = motor1.Id;
+        load_data[6] = motor1.Iq;
 
         memcpy(tempData, (uint8_t *)&load_data, sizeof(load_data));
-        HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, 8 * 4);
+        HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, sizeof(tempData));
 #endif
     }
     HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);

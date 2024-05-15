@@ -10,6 +10,11 @@
 #include "lowpass_filter.h"
 #include "app.h"
 
+void goToZeroElecAngle(FocMotor *motor)
+{
+    setTorque(motor, 0, OPEN_LOOP_TORQUE, 0);
+    delay(700);
+}
 void alignSensor(FocMotor *motor)
 {
     for (int i = 0; i <= 500; i++)
@@ -64,31 +69,25 @@ void alignSensor(FocMotor *motor)
 
     // align the electrical phases of the motor and sensor
     // set angle -90(270 = 3PI/2) degrees
-    setTorque(motor, OPEN_LOOP_TORQUE, 0, _3PI_2);
-    delay(700);
+    goToZeroElecAngle(motor);
     // read the sensor
     encoderUpdate(&motor->magEncoder);
     // get the current zero electric angle
+    motor->zeroElectricAngleOffSet = 0;
     getElecAngle(motor);
     motor->zeroElectricAngleOffSet = motor->angle_el;
     // zero_electric_angle =  _normalizeAngle(_electricalAngle(sensor_direction*sensor->getAngle(), pole_pairs));
-    delay(20);
+    // delay(20);
+    // encoderUpdate(&motor->magEncoder);
     getElecAngle(motor);
-
-    FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
-    // make sure the angle_el is about zero
-    setTorque(motor, 0, 0, 0);
-    delay(200);
+    // motor->zeroElectricAngleOffSet = 0;
+    // FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
+    FOC_log("[zeroAngleOffset]:%f\n", motor->zeroElectricAngleOffSet);
+    FOC_log("[zeroAngle]:%f\n", motor->angle_el);
+    // // make sure the angle_el is about zero
+  
+    // delay(200);
 }
-
-// void getZeroElecAngle(FocMotor *motor)
-// {
-//     setTorque(motor, 0.0f, U_DC / 4, 0.0f);
-//     delay(500);
-//     encoderUpdate(&motor->magEncoder);
-//     motor->zeroElectricAngleOffSet = _normalizeAngle(motor->pole_pairs * motor->magEncoder.shaftAngle); // 测量电角度零位偏差
-//     setTorque(motor, 0.0f, 0.0f, 0.0f);
-// }
 
 void getElecAngle(FocMotor *motor)
 {
@@ -97,15 +96,17 @@ void getElecAngle(FocMotor *motor)
 
 void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
+
     if (motor->state == MOTOR_CALIBRATE)
     {
         getCurrentOffsets(motor, adc_a, adc_b, 100);
         alignSensor(motor);
-        motor->stopPwm();
         motor->state = MOTOR_READY;
+        motor->stopPwm();
     }
     else
     {
+
         float IqRef;
         float velocityErr, angleErr;
 
@@ -116,10 +117,24 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
         motor->Id = lpfOperator(&motor->IdFilter, motor->Id);
         encoderUpdate(&motor->magEncoder);
         motor->magEncoder.velocity = lpfOperator(&motor->velocityFilter, motor->magEncoder.velocity);
+
         getElecAngle(motor);
 
-        if (motor->state == MOTOR_START)
+        if (motor->state == MOTOR_READY)
         {
+            // if (zeroReset == 0)
+            // {
+            //     zeroReset = 1;
+            //     setTorque(motor, 0, OPEN_LOOP_TORQUE, 0);
+            // }
+            // else
+            // {
+            //     motor->stopPwm();
+            // }
+        }
+        else if (motor->state == MOTOR_START)
+        {
+
             switch (motor->controlType)
             {
             case TORQUE:
@@ -130,9 +145,10 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 }
                 else
                 {
-                    motor->Uq = 0;
-                    motor->Ud = pidOperator(&motor->pidId, motor->target - motor->Id);
-                    // motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
+                    // motor->Uq = 0;
+                    // motor->Ud = pidOperator(&motor->pidId, motor->target - motor->Id);
+                    motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+                    motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
                 }
                 break;
             case VELOCITY_OPEN_LOOP: // 用于验证setTorque（SVPWM)函数及编码器测速（驱动）方向
@@ -174,8 +190,8 @@ void foc(FocMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
                 break;
             }
-
             setTorque(motor, motor->Uq, motor->Ud, motor->angle_el);
         }
+        // setTorque(motor, OPEN_LOOP_TORQUE, 0, _3PI_2);
     }
 }
