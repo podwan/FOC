@@ -41,7 +41,13 @@ User/knob.o: ../User/knob.c ../User/knob.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
- ../Core/Inc/usart.h ../Core/Inc/spi.h
+ ../Core/Inc/usart.h ../Core/Inc/spi.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h
 ../User/knob.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -90,3 +96,9 @@ User/knob.o: ../User/knob.c ../User/knob.h ../User/userMain.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h:
+C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h:
