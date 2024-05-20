@@ -73,7 +73,7 @@ void printLog()
 #endif
 }
 
-void commander_run(FocMotor *motor)
+void commander_run(BldcMotor *motor)
 {
   if (toProcessData == 1)
   {

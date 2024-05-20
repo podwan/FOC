@@ -2,9 +2,9 @@
 
 #include "userMain.h"
 #include "userTimer.h"
-#include "focMotor.h"
+#include "bldcMotor.h"
 #include "math_utils.h"
-#include "focMotor.h"
+#include "bldcMotor.h"
 #include "voltage.h"
 #include "comm.h"
 #include "app.h"

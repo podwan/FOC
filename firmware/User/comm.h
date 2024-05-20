@@ -2,14 +2,14 @@
 #define __COMM_H
 
 #include "userMain.h"
-
+#include "bldcMotor.h"
 #define UART_SEND_BYTE(STUFF) UART0_Send_Byte(STUFF)
 
 #define USART_BUFFER_SIZE 100
 
 void printLog(void);
 void uartRcv(const char buf);
-void commander_run(FocMotor *motor);
+void commander_run(BldcMotor *motor);
 void communicationLoop(void *argument);
 void FOC_log(const char *format, ...);
 void log_DMA_TX(const char *format, ...);

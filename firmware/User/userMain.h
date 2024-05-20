@@ -38,118 +38,15 @@ typedef unsigned long ulong;
 #define SHOW_WAVE 0
 
 
-/**
- *  Direction structure
- */
-typedef enum
-{
-    CW = 1,     // clockwise
-    CCW = -1,   // counter clockwise
-    UNKNOWN = 0 // not yet known or invalid state
-} Direction;
-
-typedef struct
-{
-    float angle_prev;           // 最后一次调用 getSensorAngle() 的输出结果，用于得到完整的圈数和速度
-    float vel_angle_prev;       // 最后一次调用 getVelocity 时的角度
-    int32_t full_rotations;     // 总圈数计数
-    int32_t vel_full_rotations; // 用于速度计算的先前完整旋转圈数
-    float shaftAngle;
-    float fullAngle;
-    float velocity;
-    float Ts; // update period in microsecond
-    Direction direction;
-    float (*getRawAngle)(void);
-} MagEncoder;
-/*===========================================================================*/
-typedef struct
-{
-    float Tf;     //!< Low pass filter time constant
-    float dt;     // 0.0f ~ 0.3f(300ms)
-    float y_prev; //!< filtered value in previous execution step
-} LowPassFilter;
 
 /*===========================================================================*/
 
-typedef struct
-{
-    float P;             //!< Proportional gain
-    float I;             //!< Integral gain
-    float D;             //!< Derivative gain
-    float output_ramp;   //!< Maximum speed of change of the output value
-    float limit;         //!< Maximum output value
-    float error_prev;    //!< last tracking error value
-    float output_prev;   //!< last pid output value
-    float integral_prev; //!< last integral component value
-    float Ts;            // PID调节周期
-} PidController;
 /*===========================================================================*/
-typedef enum
-{
-    TORQUE,
-    VELOCITY_OPEN_LOOP,
-    VELOCITY,
-    ANGLE,
-} ControlType;
-/*===========================================================================*/
-typedef enum
-{
-    VOLTAGE,
-    CURRENT,
-} TorqueType;
+
 
 /*===========================================================================*/
-typedef enum
-{
-    MOTOR_CALIBRATE,
-    MOTOR_READY,
-    MOTOR_START,
-} MotorState;
-/*===========================================================================*/
-typedef struct
-{
-    MagEncoder magEncoder;
-    MotorState state;
-    ControlType controlType;
-    TorqueType torqueType;
-    float Ts;
-    float target;
-    //  angle
-    float zeroElectricAngleOffSet;
-    uint8_t pole_pairs;
-    float angle_el;
-    // currents
-    float offset_ia;
-    float offset_ib;
-    float Ia;
-    float Ib;
-    float Ialpha;
-    float Ibeta;
-    float Id;
-    float Iq;
-    // float IdGoal;
-    // float IqGoal;
-    // pid
-    PidController pidId;
-    PidController pidIq;
-    // PidController currentPID;
-    PidController velocityPID;
-    PidController anglePID;
-    // filter
-    LowPassFilter IqFilter;
-    LowPassFilter IdFilter;
-    LowPassFilter velocityFilter;
 
-    // volatges
-    float Ud;
-    float Uq;
-    float Ualpha;
-    float Ubeta;
-    float Ta, Tb, Tc;
-    void (*updatePwm)(unsigned short int, unsigned short int, unsigned short int);
-    void (*startPwm)();
-    void (*stopPwm)();
-} FocMotor;
+/*===========================================================================*/
 
 /*===========================================================================*/
 typedef enum

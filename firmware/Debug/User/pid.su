@@ -1,3 +1,0 @@
-../User/pid.c:4:6:pidInit	40	static
-../User/pid.c:18:7:pidOperator	48	static
-../User/pid.c:58:6:reset	16	static

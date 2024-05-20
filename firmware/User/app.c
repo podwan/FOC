@@ -4,7 +4,7 @@
 #include "key.h"
 #include "comm.h"
 #include "mt6701.h"
-#include "focMotor.h"
+#include "bldcMotor.h"
 #include "encoder.h"
 #include "pid.h"
 #include "lowpass_filter.h"
@@ -19,7 +19,7 @@ float load_data[8];
 uint8_t tempData[36] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x80, 0x7F};
 
 float txA, txB, txC;
-static FocMotor motor1;
+static BldcMotor motor1;
 
 static void standingBy();
 static void working(void);
@@ -49,6 +49,7 @@ static void updatePwm1(unsigned short int a, unsigned short int b, unsigned shor
     TIM1->CCR3 = c;
 }
 // should be called before interruption enabled
+
 static void motorInit()
 {
     motor1.pole_pairs = 7;

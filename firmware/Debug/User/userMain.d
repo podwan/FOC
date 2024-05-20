@@ -42,8 +42,16 @@ User/userMain.o: ../User/userMain.c ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h ../User/userTimer.h \
- ../User/focMotor.h ../User/math_utils.h ../User/voltage.h ../User/comm.h \
- ../User/app.h ../User/key.h
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/voltage.h \
+ C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h \
+ ../User/comm.h ../User/app.h ../User/key.h
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
@@ -92,9 +100,15 @@ User/userMain.o: ../User/userMain.c ../User/userMain.h \
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
 ../User/userTimer.h:
-../User/focMotor.h:
-../User/math_utils.h:
-../User/voltage.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h:
+C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/voltage.h:
+C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h:
 ../User/comm.h:
 ../User/app.h:
 ../User/key.h:
