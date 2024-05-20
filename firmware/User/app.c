@@ -49,6 +49,7 @@ static void updatePwm1(unsigned short int a, unsigned short int b, unsigned shor
     TIM1->CCR3 = c;
 }
 // should be called before interruption enabled
+
 static void motorInit()
 {
     motor1.pole_pairs = 7;
