@@ -11,6 +11,7 @@
         "math_utils.h": "c",
         "usertimer.h": "c",
         "bldcmotor.h": "c",
-        "foclib.h": "c"
+        "foclib.h": "c",
+        "mpu6050.h": "c"
     }
 }

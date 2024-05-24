@@ -11,7 +11,7 @@
 #include "current.h"
 #include "userTimer.h"
 #include "voltage.h"
-
+#include "mpu6050.h"
 static DevState devState;
 static KeyState keyState;
 static uchar flashCnt;
@@ -118,6 +118,8 @@ static void motorInit()
 void appInit()
 {
     motorInit();
+    // MPU6050_Init();
+    MPU6050_Init(Sensor_I2C2_Serch());
 }
 static bool zeroReset;
 void appRunning()
@@ -227,15 +229,23 @@ static void working(void)
 
 void txDataProcess()
 {
+    MPU6050_Read_Accel();
+    MPU6050_Read_Gyro();
+    MPU6050_Read_Temp();
+    sprintf(txBuffer, "AX:%.2f AY:%.2f AZ:%.2f GX:%.2f GY:%.2f GZ:%.2f\n", Mpu6050_Data.Accel_X, Mpu6050_Data.Accel_Y, Mpu6050_Data.Accel_Z, Mpu6050_Data.Gyro_X, Mpu6050_Data.Gyro_Y, Mpu6050_Data.Gyro_Z);
 
-    sprintf(txBuffer, "target:%.2f fullAngle:%.2f velocity:%.2f Uq:%.2f Ud:%.2f Iq:%.2f Id:%.2f elec_angle:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id, motor1.angle_el);
+    //     int16_t AX,
+    //     AY, AZ, GX, GY, GZ;                        // 定义用于存放各个数据的变量
+    // MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ); // 获取MPU6050的数据
+    // sprintf(txBuffer, "AX:%df AY:%d AZ:%d GX:%d GY:%d GZ:%d\n", AX, AY, AZ, GX, GY, GZ);
+    // sprintf(txBuffer, "target:%.2f fullAngle:%.2f velocity:%.2f Uq:%.2f Ud:%.2f Iq:%.2f Id:%.2f elec_angle:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id, motor1.angle_el);
     // sprintf(txBuffer, "target:%f Uq:%f\n", motor1.target, motor1.Uq);
     // sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
 }
 
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_SET);
+    // HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_SET);
     if (hadc == &hadc1)
     {
 
@@ -279,5 +289,5 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
         HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, sizeof(tempData));
 #endif
     }
-    HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);
+    // HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);
 }

@@ -1,0 +1,9 @@
+../User/myI2C.c:16:6:MyI2C_W_SCL	1
+../User/myI2C.c:28:6:MyI2C_W_SDA	1
+../User/myI2C.c:40:15:MyI2C_R_SDA	1
+../User/myI2C.c:56:6:MyI2C_Start	1
+../User/myI2C.c:69:6:MyI2C_Stop	1
+../User/myI2C.c:81:6:MyI2C_SendByte	2
+../User/myI2C.c:98:15:MyI2C_ReceiveByte	3
+../User/myI2C.c:118:6:MyI2C_SendAck	1
+../User/myI2C.c:130:15:MyI2C_ReceiveAck	1

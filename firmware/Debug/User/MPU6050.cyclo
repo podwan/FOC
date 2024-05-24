@@ -1,0 +1,7 @@
+../User/mpu6050.c:6:8:Sensor_I2C2_Read	1
+../User/mpu6050.c:11:8:Sensor_I2C2_Write	1
+../User/mpu6050.c:16:9:Sensor_I2C2_Serch	3
+../User/mpu6050.c:29:8:MPU6050_Init	2
+../User/mpu6050.c:48:6:MPU6050_Read_Accel	1
+../User/mpu6050.c:64:6:MPU6050_Read_Gyro	1
+../User/mpu6050.c:80:6:MPU6050_Read_Temp	1
