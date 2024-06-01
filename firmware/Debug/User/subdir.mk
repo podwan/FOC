@@ -8,7 +8,6 @@ C_SRCS += \
 ../User/app.c \
 ../User/comm.c \
 ../User/key.c \
-../User/knob.c \
 ../User/led.c \
 ../User/mt6701.c \
 ../User/time_utils.c \
@@ -19,7 +18,6 @@ OBJS += \
 ./User/app.o \
 ./User/comm.o \
 ./User/key.o \
-./User/knob.o \
 ./User/led.o \
 ./User/mt6701.o \
 ./User/time_utils.o \
@@ -30,7 +28,6 @@ C_DEPS += \
 ./User/app.d \
 ./User/comm.d \
 ./User/key.d \
-./User/knob.d \
 ./User/led.d \
 ./User/mt6701.d \
 ./User/time_utils.d \
@@ -45,7 +42,7 @@ User/%.o User/%.su User/%.cyclo: ../User/%.c User/subdir.mk
 clean: clean-User
 
 clean-User:
-	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/key.cyclo ./User/key.d ./User/key.o ./User/key.su ./User/knob.cyclo ./User/knob.d ./User/knob.o ./User/knob.su ./User/led.cyclo ./User/led.d ./User/led.o ./User/led.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/time_utils.cyclo ./User/time_utils.d ./User/time_utils.o ./User/time_utils.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su
+	-$(RM) ./User/app.cyclo ./User/app.d ./User/app.o ./User/app.su ./User/comm.cyclo ./User/comm.d ./User/comm.o ./User/comm.su ./User/key.cyclo ./User/key.d ./User/key.o ./User/key.su ./User/led.cyclo ./User/led.d ./User/led.o ./User/led.su ./User/mt6701.cyclo ./User/mt6701.d ./User/mt6701.o ./User/mt6701.su ./User/time_utils.cyclo ./User/time_utils.d ./User/time_utils.o ./User/time_utils.su ./User/userMain.cyclo ./User/userMain.d ./User/userMain.o ./User/userMain.su ./User/userTimer.cyclo ./User/userTimer.d ./User/userTimer.o ./User/userTimer.su
 
 .PHONY: clean-User
 

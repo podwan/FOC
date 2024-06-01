@@ -12,7 +12,7 @@
 #define HALP_PWM_PERIOD (PWM_PERIOD_VALUE / 2.0f)        // PWM period * 2
 #define U_DC 12.0f
 #define UqMAX (U_DC * _1_SQRT3)
-#define OPEN_LOOP_TORQUE UqMAX / 2.0f
+#define OPEN_LOOP_TORQUE UqMAX / 2.0
 
 #define MOTOR1_MAX_RPM 3000.0f
 #define GET_MAX_VELOCITY(MAX_RPM) MAX_RPM / 60.0f * _2PI
