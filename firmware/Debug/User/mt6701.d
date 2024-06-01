@@ -30,6 +30,8 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h \
+ ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_opamp.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_opamp_ex.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h \
@@ -42,9 +44,8 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
- C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
- ../User/time_utils.h
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/18575/Desktop/FOC/firmware/User/userMain.h ../User/time_utils.h
 ../User/mt6701.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -78,6 +79,8 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_flash_ramfunc.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c.h:
+../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_i2c_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_opamp.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_opamp_ex.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_pwr.h:
@@ -93,6 +96,6 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
-C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/18575/Desktop/FOC/firmware/User/userMain.h:
 ../User/time_utils.h:
