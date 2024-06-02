@@ -119,7 +119,7 @@ void appInit()
 {
     motorInit();
     // MPU6050_Init();
-    MPU6050_Init(Sensor_I2C2_Serch());
+    //  MPU6050_Init(Sensor_I2C2_Serch());
 }
 static bool zeroReset;
 void appRunning()
@@ -229,10 +229,10 @@ static void working(void)
 
 void txDataProcess()
 {
-    MPU6050_Read_Accel();
-    MPU6050_Read_Gyro();
-    MPU6050_Read_Temp();
-    sprintf(txBuffer, "AX:%.2f AY:%.2f AZ:%.2f GX:%.2f GY:%.2f GZ:%.2f\n", Mpu6050_Data.Accel_X, Mpu6050_Data.Accel_Y, Mpu6050_Data.Accel_Z, Mpu6050_Data.Gyro_X, Mpu6050_Data.Gyro_Y, Mpu6050_Data.Gyro_Z);
+    // MPU6050_Read_Accel();
+    // MPU6050_Read_Gyro();
+    // MPU6050_Read_Temp();
+    // sprintf(txBuffer, "AX:%.2f AY:%.2f AZ:%.2f GX:%.2f GY:%.2f GZ:%.2f\n", Mpu6050_Data.Accel_X, Mpu6050_Data.Accel_Y, Mpu6050_Data.Accel_Z, Mpu6050_Data.Gyro_X, Mpu6050_Data.Gyro_Y, Mpu6050_Data.Gyro_Z);
 
     //     int16_t AX,
     //     AY, AZ, GX, GY, GZ;                        // 定义用于存放各个数据的变量
@@ -249,8 +249,8 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
     if (hadc == &hadc1)
     {
 
-        foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
-        // svpwm_test(&motor1, 4.0f, 0.07f);
+       // foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
+        svpwm_test(&motor1, 6.0f, 0.01f);
         dealPer100us();
 
 #if SHOW_WAVE

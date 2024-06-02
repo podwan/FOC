@@ -6,5 +6,5 @@
 ../User/app.c:125:6:appRunning	32	static
 ../User/app.c:182:13:standingBy	8	static
 ../User/app.c:200:13:working	4	static
-../User/app.c:230:6:txDataProcess	88	static
+../User/app.c:230:6:txDataProcess	4	static
 ../User/app.c:246:6:HAL_ADCEx_InjectedConvCpltCallback	16	static
