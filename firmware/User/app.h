@@ -34,7 +34,7 @@ extern "C"
 #endif
 
 void appRunning();
-// void txDataProcess();
+ void txDataProcess();
 extern float txA, txB, txC;
 extern float load_data[];
 #endif

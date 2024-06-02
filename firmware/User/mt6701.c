@@ -1,5 +1,4 @@
 #include "mt6701.h"
-#include "math_utils.h"
 #include "time_utils.h"
 // static unsigned int rotationCount, rotationCount_Last;
 

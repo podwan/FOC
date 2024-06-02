@@ -1,7 +1,0 @@
-../User/mpu6050.c:6:8:Sensor_I2C2_Read	40	static
-../User/mpu6050.c:11:8:Sensor_I2C2_Write	40	static
-../User/mpu6050.c:16:9:Sensor_I2C2_Serch	16	static
-../User/mpu6050.c:29:8:MPU6050_Init	40	static
-../User/mpu6050.c:48:6:MPU6050_Read_Accel	16	static
-../User/mpu6050.c:64:6:MPU6050_Read_Gyro	16	static
-../User/mpu6050.c:80:6:MPU6050_Read_Temp	16	static

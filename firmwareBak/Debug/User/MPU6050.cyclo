@@ -1,5 +1,0 @@
-../User/MPU6050.c:13:6:MPU6050_WriteReg	1
-../User/MPU6050.c:30:9:MPU6050_ReadReg	1
-../User/MPU6050.c:55:6:MPU6050_Init	1
-../User/MPU6050.c:71:9:MPU6050_GetID	1
-../User/MPU6050.c:82:6:MPU6050_GetData	1
