@@ -1,9 +1,8 @@
 #include "voltage.h"
 #include "math_utils.h"
-#include "comm.h"
 #include "bldcMotor.h"
 #include "pid.h"
-#include "app.h"
+#include "focLib.h"
 const char sectorRemap[] = {0, 2, 6, 1, 4, 3, 5};
 void getDQVoltages(BldcMotor *motor)
 {

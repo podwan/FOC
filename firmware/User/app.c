@@ -4,14 +4,8 @@
 #include "key.h"
 #include "comm.h"
 #include "mt6701.h"
-#include "bldcMotor.h"
-#include "encoder.h"
-#include "pid.h"
-#include "lowpass_filter.h"
-#include "current.h"
 #include "userTimer.h"
-#include "voltage.h"
-#include "mpu6050.h"
+
 static DevState devState;
 static KeyState keyState;
 static uchar flashCnt;
@@ -60,10 +54,10 @@ static void motorInit()
     motor1.zeroElectricAngleOffSet = 0;
     motor1.Ts = 100 * 1e-6f;
     motor1.torqueType = VOLTAGE;
-    motor1.controlType = ANGLE;
+    motor1.controlType = VELOCITY_OPEN_LOOP;
     motor1.state = MOTOR_CALIBRATE;
     encoderInit(&motor1.magEncoder, motor1.Ts, MT6701_GetRawAngle);
-
+    // encoderUpdate(&motor1.magEncoder);
     if (motor1.controlType == TORQUE && motor1.torqueType == CURRENT)
     {
         float kp, ki;
@@ -118,8 +112,11 @@ static void motorInit()
 void appInit()
 {
     motorInit();
+<<<<<<< HEAD
     // MPU6050_Init();
     //  MPU6050_Init(Sensor_I2C2_Serch());
+=======
+>>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
 }
 static bool zeroReset;
 void appRunning()
@@ -132,7 +129,7 @@ void appRunning()
 
     led1On = 0;
     led2On = 0;
-
+#if USE_COMM_TARGET == 0
     uint32_t Vpoten, adc_vbus;
     float Vbus, goalVelocity;
     HAL_ADC_Start(&hadc1);
@@ -165,7 +162,7 @@ void appRunning()
         else
             motor1.target = goalTorqueC;
     }
-
+#endif
     switch (devState)
     {
     case STANDBY:
@@ -229,35 +226,39 @@ static void working(void)
 
 void txDataProcess()
 {
+<<<<<<< HEAD
     // MPU6050_Read_Accel();
     // MPU6050_Read_Gyro();
     // MPU6050_Read_Temp();
     // sprintf(txBuffer, "AX:%.2f AY:%.2f AZ:%.2f GX:%.2f GY:%.2f GZ:%.2f\n", Mpu6050_Data.Accel_X, Mpu6050_Data.Accel_Y, Mpu6050_Data.Accel_Z, Mpu6050_Data.Gyro_X, Mpu6050_Data.Gyro_Y, Mpu6050_Data.Gyro_Z);
+=======
+>>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
 
-    //     int16_t AX,
-    //     AY, AZ, GX, GY, GZ;                        // 定义用于存放各个数据的变量
-    // MPU6050_GetData(&AX, &AY, &AZ, &GX, &GY, &GZ); // 获取MPU6050的数据
-    // sprintf(txBuffer, "AX:%df AY:%d AZ:%d GX:%d GY:%d GZ:%d\n", AX, AY, AZ, GX, GY, GZ);
-    // sprintf(txBuffer, "target:%.2f fullAngle:%.2f velocity:%.2f Uq:%.2f Ud:%.2f Iq:%.2f Id:%.2f elec_angle:%.2f\n", motor1.target, motor1.magEncoder.fullAngle, motor1.magEncoder.velocity, motor1.Uq, motor1.Ud, motor1.Iq, motor1.Id, motor1.angle_el);
-    // sprintf(txBuffer, "target:%f Uq:%f\n", motor1.target, motor1.Uq);
-    // sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
+    sprintf(txBuffer, "target:%.2f  velocity:%.2f  full_angle:%.2f  elec_angle:%.2f\n", motor1.target, motor1.magEncoder.velocity,motor1.magEncoder.fullAngle, motor1.angle_el);
+    // sprintf(txBuffer, "target:%.2f Uq:%.2f velocity:%.2f\n", motor1.target, motor1.Uq, motor1.magEncoder.velocity);
+    //  sprintf(txBuffer, "offset_ia:%f offset_ib:%f, Ia:%f, Ib:%f\n", motor1.offset_ia, motor1.offset_ib, motor1.Ia, motor1.Ib);
 }
 
 void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 {
-    // HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_SET);
     if (hadc == &hadc1)
     {
 
+<<<<<<< HEAD
        // foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
         svpwm_test(&motor1, 6.0f, 0.01f);
+=======
+        foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
+        // svpwm_test(&motor1, UqMAX, 0.035f);
+>>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
         dealPer100us();
 
 #if SHOW_WAVE
         // #if SHOW_SVPWM
-        //         load_data[0] = motor1.Ta;
-        //         load_data[1] = motor1.Tb;
-        //         load_data[2] = motor1.Tc;
+                load_data[0] = motor1.Ta;
+                load_data[1] = motor1.Tb;
+                load_data[2] = motor1.Tc;
         //         load_data[3] = motor1.Id;
         //         load_data[4] = motor1.Iq;
         //         load_data[5] = motor1.angle_el;
@@ -275,9 +276,9 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 
         // show current
 
-        load_data[0] = hadc1.Instance->JDR1;
-        load_data[1] = hadc2.Instance->JDR1;
-        load_data[2] = hadc1.Instance->JDR2;
+        // load_data[0] = hadc1.Instance->JDR1;
+        // load_data[1] = hadc2.Instance->JDR1;
+        // load_data[2] = hadc1.Instance->JDR2;
 
         load_data[3] = motor1.Ialpha;
         load_data[4] = motor1.Ibeta;
@@ -289,5 +290,5 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
         HAL_UART_Transmit_DMA(&huart3, (uint8_t *)tempData, sizeof(tempData));
 #endif
     }
-    // HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(TEST_GPIO_Port, TEST_Pin, GPIO_PIN_RESET);
 }

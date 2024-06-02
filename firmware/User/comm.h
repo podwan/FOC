@@ -2,7 +2,7 @@
 #define __COMM_H
 
 #include "userMain.h"
-#include "bldcMotor.h"
+
 #define UART_SEND_BYTE(STUFF) UART0_Send_Byte(STUFF)
 
 #define USART_BUFFER_SIZE 100

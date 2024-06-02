@@ -1,6 +1,5 @@
 #ifndef __CURRENT_H
 #define __CURRENT_H
-#include "userMain.h"
 #include "bldcMotor.h"
 #define SHUNT_RESISTOR 0.005f                         // 5mR
 #define GAIN 7.3333f                                  // opAmp

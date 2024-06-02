@@ -1,12 +1,10 @@
 #ifndef MATHUTILS_LIB_H
 #define MATHUTILS_LIB_H
 
-#include "userMain.h"
-
 // sign function
 #define _sign(a) (((a) < 0) ? -1 : ((a) > 0))
 #ifndef _round
-#define _round(x) ((x) >= 0 ? (long)((x) + 0.5f) : (long)((x)-0.5f))
+#define _round(x) ((x) >= 0 ? (long)((x) + 0.5f) : (long)((x) - 0.5f))
 #endif
 #define _constrain(amt, low, high) ((amt) < (low) ? (low) : ((amt) > (high) ? (high) : (amt)))
 #define _sqrt(a) (_sqrtApprox(a))
@@ -36,7 +34,8 @@
 #define _NC (NOT_SET)
 
 #define MIN_ANGLE_DETECT_MOVEMENT (_2PI / 101.0f)
-
+#define max(a, b) (((a) > (b)) ? (a) : (b))
+#define min(a, b) (((a) < (b)) ? (a) : (b))
 /**
  *  Function approximating the sine calculation by using fixed size array
  * - execution time ~40us (Arduino UNO)

@@ -1,8 +1,6 @@
 #ifndef PID_H
 #define PID_H
 
-#include "userMain.h"
-
 typedef struct
 {
     float P;             //!< Proportional gain

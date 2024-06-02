@@ -1,7 +1,7 @@
 
 #include "current.h"
 #include "math_utils.h"
-#include "comm.h"
+#include "focLib.h"
 
 // Function finding zero offsets of the ADC
 void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_t rounds)

@@ -1,6 +1,7 @@
 
 #include "encoder.h"
 #include "math_utils.h"
+#include "focLib.h"
 void encoderInit(MagEncoder *encoder, float _Ts, float (*_getRawAngle)(void))
 {
     encoder->angle_prev = 0;
@@ -21,7 +22,7 @@ void encoderUpdate(MagEncoder *encoder)
 
     float d_angle = val - encoder->angle_prev;
     // 圈数检测
-    if (abs(d_angle) > (0.8f * _2PI))
+    if (fabsf(d_angle) > (0.8f * _2PI))
         encoder->full_rotations += (d_angle > 0) ? -1 : 1;
 
     // angle

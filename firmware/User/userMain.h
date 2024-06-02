@@ -14,6 +14,7 @@ typedef unsigned long ulong;
 #include "adc.h"
 #include "usart.h"
 #include "spi.h"
+#include "focLib.h"
 
 #define TOUCH_KEY 0
 #define FEED_WATCH_DOG 0
@@ -35,14 +36,12 @@ typedef unsigned long ulong;
 #define DEBUG_DISPLAY 0
 #define DEBUG_KEY 0
 #define MAX_LEN 20
-#define SHOW_WAVE 0
-
-
-
-/*===========================================================================*/
+#define SHOW_WAVE 1
+#define USE_COMM_TARGET 0
 
 /*===========================================================================*/
 
+/*===========================================================================*/
 
 /*===========================================================================*/
 
@@ -59,10 +58,6 @@ typedef enum
 {
     STANDBY,
     WORK,
-    TEST,
-    FAULT,
-    CLEAN,
-    VERSION
 } DevState;
 
 typedef enum

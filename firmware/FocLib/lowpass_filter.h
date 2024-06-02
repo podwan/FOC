@@ -1,6 +1,6 @@
 #ifndef LOWPASS_FILTER_H
 #define LOWPASS_FILTER_H
-#include "userMain.h"
+
 typedef struct
 {
     float Tf;     //!< Low pass filter time constant
