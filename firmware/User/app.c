@@ -112,11 +112,7 @@ static void motorInit()
 void appInit()
 {
     motorInit();
-<<<<<<< HEAD
-    // MPU6050_Init();
-    //  MPU6050_Init(Sensor_I2C2_Serch());
-=======
->>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
+
 }
 static bool zeroReset;
 void appRunning()
@@ -226,13 +222,7 @@ static void working(void)
 
 void txDataProcess()
 {
-<<<<<<< HEAD
-    // MPU6050_Read_Accel();
-    // MPU6050_Read_Gyro();
-    // MPU6050_Read_Temp();
-    // sprintf(txBuffer, "AX:%.2f AY:%.2f AZ:%.2f GX:%.2f GY:%.2f GZ:%.2f\n", Mpu6050_Data.Accel_X, Mpu6050_Data.Accel_Y, Mpu6050_Data.Accel_Z, Mpu6050_Data.Gyro_X, Mpu6050_Data.Gyro_Y, Mpu6050_Data.Gyro_Z);
-=======
->>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
+
 
     sprintf(txBuffer, "target:%.2f  velocity:%.2f  full_angle:%.2f  elec_angle:%.2f\n", motor1.target, motor1.magEncoder.velocity,motor1.magEncoder.fullAngle, motor1.angle_el);
     // sprintf(txBuffer, "target:%.2f Uq:%.2f velocity:%.2f\n", motor1.target, motor1.Uq, motor1.magEncoder.velocity);
@@ -245,13 +235,9 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
     if (hadc == &hadc1)
     {
 
-<<<<<<< HEAD
-       // foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
-        svpwm_test(&motor1, 6.0f, 0.01f);
-=======
+
         foc(&motor1, hadc1.Instance->JDR1, hadc2.Instance->JDR1);
-        // svpwm_test(&motor1, UqMAX, 0.035f);
->>>>>>> 738d6e0fb0dc4ef03a71b3056ee5532e9eda53f0
+
         dealPer100us();
 
 #if SHOW_WAVE

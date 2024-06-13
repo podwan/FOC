@@ -45,14 +45,14 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/opamp.h ../Core/Inc/spi.h ../Core/Inc/tim.h \
  ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Src/../../User/app.h \
  ../Core/Src/../../User/userMain.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h \
- C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h \
+ C:/Users/18575/Desktop/FOC/firmware/User/userMain.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/bldcMotor.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h \
  ../Core/Src/../../User/userMain.h ../Core/Src/../../User/comm.h
 ../Core/Inc/main.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -109,13 +109,13 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/gpio.h:
 ../Core/Src/../../User/app.h:
 ../Core/Src/../../User/userMain.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h:
-C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h:
+C:/Users/18575/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/bldcMotor.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
 ../Core/Src/../../User/userMain.h:
 ../Core/Src/../../User/comm.h:

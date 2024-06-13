@@ -52,6 +52,7 @@
 "./FocLib/voltage.o"
 "./User/app.o"
 "./User/comm.o"
+"./User/hall.o"
 "./User/key.o"
 "./User/led.o"
 "./User/mt6701.o"

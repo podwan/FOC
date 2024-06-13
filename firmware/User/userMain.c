@@ -19,12 +19,7 @@ uint8_t ADC_offset = 0;
 uint8_t RxData[8] = {NULL};
 uint8_t TxData[8] = {NULL};
 
-float HallTemp = 0;
-float HallThetaAdd = 0;
-float HallTheta = 0;
-float HallSpeed = 0;
-uint8_t HallReadTemp = 0;
-//static bool powerLost;
+// static bool powerLost;
 void userMain(void)
 {
 
@@ -57,56 +52,4 @@ int fputc(int ch, FILE *f)
 		;
 	USART3->TDR = (uint8_t)ch;
 	return ch;
-}
-
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-	/* Prevent unused argument(s) compilation warning */
-	// UNUSED(htim);
-	// if (htim == &htim4)
-	// {
-	// 	HallTemp = HAL_TIM_ReadCapturedValue(&htim4, TIM_CHANNEL_1);
-	// 	;
-	// 	HallThetaAdd = (PI / 3) / (HallTemp / 1000000) / 10000;
-	// 	HallSpeed = (PI / 3) / (HallTemp / 1000000) * 30 / PI;
-	// 	HallReadTemp = HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8);
-	// 	HallReadTemp |= HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_7) << 1;
-	// 	HallReadTemp |= HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_6) << 2;
-	// 	if (HallReadTemp == 0x05)
-	// 	{
-	// 		HallTheta = 0.0f + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	else if (HallReadTemp == 0x04)
-	// 	{
-	// 		HallTheta = (PI / 3.0f) + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	else if (HallReadTemp == 0x06)
-	// 	{
-	// 		HallTheta = (PI * 2.0f / 3.0f) + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	else if (HallReadTemp == 0x02)
-	// 	{
-	// 		HallTheta = PI + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	else if (HallReadTemp == 0x03)
-	// 	{
-	// 		HallTheta = (PI * 4.0f / 3.0f) + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	else if (HallReadTemp == 0x01)
-	// 	{
-	// 		HallTheta = (PI * 5.0f / 3.0f) + PHASE_SHIFT_ANGLE;
-	// 	}
-	// 	if (HallTheta < 0.0f)
-	// 	{
-	// 		HallTheta += 2.0f * PI;
-	// 	}
-	// 	else if (HallTheta > (2.0f * PI))
-	// 	{
-	// 		HallTheta -= 2.0f * PI;
-	// 	}
-	// }
-
-	/* NOTE : This function should not be modified, when the callback is needed,
-			  the HAL_TIM_IC_CaptureCallback could be implemented in the user file
-	 */
 }

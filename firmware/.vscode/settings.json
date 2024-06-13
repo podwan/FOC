@@ -14,6 +14,9 @@
         "foclib.h": "c",
         "mpu6050.h": "c",
         "pid.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "hall.h": "c",
+        "lowpass_filter.h": "c",
+        "encoder.h": "c"
     }
 }

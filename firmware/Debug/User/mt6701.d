@@ -42,14 +42,14 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h \
- C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h \
+ C:/Users/18575/Desktop/FOC/firmware/User/userMain.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/bldcMotor.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h \
  ../User/time_utils.h
 ../User/mt6701.h:
 ../User/userMain.h:
@@ -99,12 +99,12 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h:
-C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/bldcMotor.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/math_utils.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/pid.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/encoder.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h:
+C:/Users/18575/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/bldcMotor.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
 ../User/time_utils.h:

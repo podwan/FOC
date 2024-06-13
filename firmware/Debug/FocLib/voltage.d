@@ -1,6 +1,6 @@
 FocLib/voltage.o: ../FocLib/voltage.c ../FocLib/voltage.h \
  ../FocLib/bldcMotor.h ../FocLib/focLib.h \
- C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h \
+ C:/Users/18575/Desktop/FOC/firmware/User/userMain.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h \
  ../Core/Inc/stm32g4xx_hal_conf.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h \
@@ -44,13 +44,12 @@ FocLib/voltage.o: ../FocLib/voltage.c ../FocLib/voltage.h \
  ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/adc.h \
  ../Core/Inc/usart.h ../Core/Inc/spi.h \
- C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h \
- ../FocLib/pid.h ../FocLib/lowpass_filter.h ../FocLib/encoder.h \
- ../FocLib/math_utils.h
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h ../FocLib/pid.h \
+ ../FocLib/lowpass_filter.h ../FocLib/encoder.h ../FocLib/math_utils.h
 ../FocLib/voltage.h:
 ../FocLib/bldcMotor.h:
 ../FocLib/focLib.h:
-C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
+C:/Users/18575/Desktop/FOC/firmware/User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
 ../Core/Inc/stm32g4xx_hal_conf.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_rcc.h:
@@ -97,7 +96,7 @@ C:/Users/Administrator/Desktop/FOC/firmware/User/userMain.h:
 ../Core/Inc/adc.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/spi.h:
-C:/Users/Administrator/Desktop/FOC/firmware/FocLib/focLib.h:
+C:/Users/18575/Desktop/FOC/firmware/FocLib/focLib.h:
 ../FocLib/pid.h:
 ../FocLib/lowpass_filter.h:
 ../FocLib/encoder.h:
