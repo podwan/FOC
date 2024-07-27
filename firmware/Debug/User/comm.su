@@ -1,5 +1,4 @@
 ../User/comm.c:12:6:HAL_UARTEx_RxEventCallback	16	static
-../User/comm.c:23:6:FOC_log	272	static
-../User/comm.c:48:6:t_log	16	static
-../User/comm.c:66:6:printLog	8	static
-../User/comm.c:75:6:commander_run	16	static
+../User/comm.c:24:6:printLog	272	static
+../User/comm.c:54:6:uartTx	4	static
+../User/comm.c:63:6:commander_run	16	static

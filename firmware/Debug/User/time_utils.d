@@ -49,7 +49,7 @@ User/time_utils.o: ../User/time_utils.c ../User/time_utils.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../Core/Inc/dac.h
 ../User/time_utils.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -106,3 +106,4 @@ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
+../Core/Inc/dac.h:

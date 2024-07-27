@@ -49,7 +49,7 @@ User/mt6701.o: ../User/mt6701.c ../User/mt6701.h ../User/userMain.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h \
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../Core/Inc/dac.h \
  ../User/time_utils.h
 ../User/mt6701.h:
 ../User/userMain.h:
@@ -107,4 +107,5 @@ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
+../Core/Inc/dac.h:
 ../User/time_utils.h:

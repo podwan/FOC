@@ -7,6 +7,7 @@
 #include "lowpass_filter.h"
 #include "focLib.h"
 
+
 void goToZeroElecAngle(BldcMotor *motor)
 {
     setTorque(motor, 0, OPEN_LOOP_TORQUE, 0);
@@ -18,7 +19,7 @@ int alignSensor(BldcMotor *motor)
     // delay(200);
     // encoderUpdate(&motor->magEncoder);
     // float start_angle = motor->magEncoder.fullAngle;
-    // FOC_log("start_angle:%f\n", start_angle);
+    // printLog("start_angle:%f\n", start_angle);
     for (int i = 0; i <= 500; i++)
     {
         float angle = _3PI_2 + _2PI * i / 500.0f;
@@ -29,7 +30,7 @@ int alignSensor(BldcMotor *motor)
     // encoderUpdate(&motor->magEncoder);
 
     float mid_angle = motor->magEncoder.fullAngle;
-    FOC_log("mid_angle:%f\n", mid_angle);
+    printLog("mid_angle:%f\n", mid_angle);
     // move one electrical revolution backwards
     for (int i = 500; i >= 0; i--)
     {
@@ -41,37 +42,37 @@ int alignSensor(BldcMotor *motor)
     // encoderUpdate(&motor->magEncoder);
 
     float end_angle = motor->magEncoder.fullAngle;
-    FOC_log("end_angle:%f\n", end_angle);
+    printLog("end_angle:%f\n", end_angle);
     // setPhaseVoltage(0, 0, 0);
     delay(200);
 
     // determine the direction the sensor moved
     float moved = fabsf(mid_angle - end_angle);
-    FOC_log("moved:%f\n", moved);
+    printLog("moved:%f\n", moved);
     if (moved < MIN_ANGLE_DETECT_MOVEMENT)
     { // minimum angle to detect movement
-        FOC_log("Failed to notice movement\n");
+        printLog("Failed to notice movement\n");
         return 0; // failed calibration
     }
     else if (mid_angle < end_angle)
     {
-        FOC_log("sensor_direction==CCW\n");
+        printLog("sensor_direction==CCW\n");
         motor->magEncoder.direction = CCW;
     }
     else
     {
-        FOC_log("sensor_direction==CW\n");
+        printLog("sensor_direction==CW\n");
         motor->magEncoder.direction = CW;
     }
     // check pole pair number
     bool pp_check_result = !(fabsf(moved * motor->pole_pairs - _2PI) > 0.5f); // 0.5f is arbitrary number it can be lower or higher!
     if (pp_check_result == false)
     {
-        FOC_log("PP check: fail - estimated pp: %d\n", (int)(_2PI / moved));
+        printLog("PP check: fail - estimated pp: %d\n", (int)(_2PI / moved));
     }
     else
     {
-        FOC_log("PP check: OK!\n");
+        printLog("PP check: OK!\n");
     }
 
     // align the electrical phases of the motor and sensor
@@ -88,9 +89,9 @@ int alignSensor(BldcMotor *motor)
     // encoderUpdate(&motor->magEncoder);
     getElecAngle(motor);
     // motor->zeroElectricAngleOffSet = 0;
-    // FOC_log("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
-    FOC_log("[zeroAngleOffset]:%f\n", motor->zeroElectricAngleOffSet);
-    FOC_log("[zeroAngle]:%f\n", motor->angle_el);
+    // printLog("[zeroAngleOffset]:%f  [zeroAngle]:%f\r\n", motor->zeroElectricAngleOffSet, motor->angle_el);
+    printLog("[zeroAngleOffset]:%f\n", motor->zeroElectricAngleOffSet);
+    printLog("[zeroAngle]:%f\n", motor->angle_el);
     // // make sure the angle_el is about zero
 
     // delay(200);
@@ -98,7 +99,7 @@ int alignSensor(BldcMotor *motor)
 
 void getElecAngle(BldcMotor *motor)
 {
-    motor->angle_el = _normalizeAngle(motor->magEncoder.direction * motor->pole_pairs * motor->magEncoder.shaftAngle - motor->zeroElectricAngleOffSet);
+    motor->angle_el = _normalizeAngle(motor->pole_pairs * motor->magEncoder.shaftAngle - motor->zeroElectricAngleOffSet);
 }
 
 void foc(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
@@ -135,29 +136,34 @@ void foc(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
 
             switch (motor->controlType)
             {
-            case TORQUE:
-
-                if (motor->torqueType == VOLTAGE)
-                {
-                    motor->Uq = motor->target;
-                }
-                else
-                {
-                    motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
-                    motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
-                }
-                break;
             case VELOCITY_OPEN_LOOP:
                 // 用于验证setTorque（SVPWM马鞍波)函数、编码器测速（方向）及相电流采样（正弦波）的验证，
                 // 避免长时间运行（发热）
                 static float shaftAngle;
+                motor->target = 50;
                 shaftAngle = _normalizeAngle(shaftAngle + motor->target * motor->Ts);
                 motor->angle_el = _electricalAngle(shaftAngle, motor->pole_pairs);
                 motor->Uq = OPEN_LOOP_TORQUE;
                 break;
+            case TORQUE:
+
+                if (motor->torqueType == VOLTAGE)
+                {
+                    // motor->target = UqMAX;
+                    motor->Uq = motor->target;
+                }
+                else
+                {
+                    // motor->target = 0;
+                    motor->Ud = pidOperator(&motor->pidId, 0 - motor->Id);
+                    motor->Uq = pidOperator(&motor->pidIq, motor->target - motor->Iq);
+                }
+                break;
+
             case VELOCITY:
                 if (motor->torqueType == VOLTAGE)
                 {
+                    // motor->target = 190;
                     velocityErr = motor->target - motor->magEncoder.velocity;
                     motor->Uq = pidOperator(&motor->velocityPID, velocityErr);
                 }

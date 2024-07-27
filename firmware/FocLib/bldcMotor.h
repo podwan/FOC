@@ -44,6 +44,7 @@ typedef struct
     float offset_ib;
     float Ia;
     float Ib;
+    float Ic;
     float Ialpha;
     float Ibeta;
     float Id;

@@ -23,3 +23,12 @@ goal:库与应用进行解耦，面向对象让不同的电机进行解耦
 1. void FOC_log(const char *format, ...):用于串口打印状态参数等信息
 2. uint16_t、int32_t等类型的定义
 3. void delay(uint32_t ms);毫秒延时
+
+
+
+调试方法：
+1. 首先使用controlType = VELOCITY_OEPN_LOOP  用于验证setTorque（SVPWM马鞍波)函数、编码器测 速（方向）及相电流采样（正弦波）的验证， 避免长时间运行（发热）
+2. 使 torqueType = VOLTAGE; controlType = TORQUE; Uq = UqMax让电机最大转速运行（正反转），观察电流波形是否正确(Id基本保持不变，Iq符号在换向后发生翻转)
+3. 使 torqueType = CURRENT; controlType = TORQUE;
+a. 先单独调静态参数Id的PID，PID先设定P值，后加入I值消除稳态误差，确保Id是否能够根据设定的值进行响应后将目标值设为0
+b. 加入Iq控制闭环，PID参数可以和Id一致

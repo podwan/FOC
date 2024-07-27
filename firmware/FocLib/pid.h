@@ -11,7 +11,7 @@ typedef struct
     float error_prev;    //!< last tracking error value
     float output_prev;   //!< last pid output value
     float integral_prev; //!< last integral component value
-    float Ts;            // PID调节周期
+    float Ts;            // PID调节周期 secondary
 } PidController;
 
 void pidInit(PidController *pidController, float _P, float _I, float _D, float _ramp, float _limit, float _Ts);

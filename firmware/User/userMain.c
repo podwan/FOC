@@ -33,8 +33,7 @@ void userMain(void)
 		appRunning();
 	}
 #if SHOW_WAVE == 0 //&& COMMAMNDER == 0
-	// if (get500MsFlag())
-	if (getOneSecFlag())
+	 if (get500MsFlag())
 	{
 		printLog();
 	}

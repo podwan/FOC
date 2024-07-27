@@ -9,7 +9,7 @@ typedef enum
 {
     CW = 1,     // clockwise
     CCW = -1,   // counter clockwise
-    UNKNOWN = 0 // not yet known or invalid state
+    UNKNOWN = 1 // not yet known or invalid state
 } Direction;
 
 typedef struct
@@ -26,7 +26,7 @@ typedef struct
     float (*getRawAngle)(void);
 } MagEncoder;
 
-void encoderInit(MagEncoder *encoder, float _Ts, float (*_getRawAngle)(void));
+void encoderInit(MagEncoder *encoder, float _Ts, float (*_getRawAngle)(void), Direction _direction);
 // void encoderUpdate(MagEncoder *encoder);
 void getVelocity(MagEncoder *encoder);
 void encoderUpdate(MagEncoder *encoder);

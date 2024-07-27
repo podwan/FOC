@@ -49,8 +49,9 @@ User/app.o: ../User/app.c ../User/app.h ../User/userMain.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../User/led.h \
- ../User/key.h ../User/comm.h ../User/mt6701.h ../User/userTimer.h
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../Core/Inc/dac.h \
+ ../User/led.h ../User/key.h ../User/comm.h ../User/mt6701.h \
+ ../User/userTimer.h
 ../User/app.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -107,6 +108,7 @@ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
+../Core/Inc/dac.h:
 ../User/led.h:
 ../User/key.h:
 ../User/comm.h:

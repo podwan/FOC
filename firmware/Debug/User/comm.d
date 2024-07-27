@@ -49,8 +49,8 @@ User/comm.o: ../User/comm.c ../User/comm.h ../User/userMain.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h \
  C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h \
- C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../User/mt6701.h \
- ../User/app.h
+ C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h ../Core/Inc/dac.h \
+ ../User/mt6701.h ../User/app.h
 ../User/comm.h:
 ../User/userMain.h:
 ../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal.h:
@@ -107,5 +107,6 @@ C:/Users/18575/Desktop/FOC/firmware/FocLib/math_utils.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/pid.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/lowpass_filter.h:
 C:/Users/18575/Desktop/FOC/firmware/FocLib/encoder.h:
+../Core/Inc/dac.h:
 ../User/mt6701.h:
 ../User/app.h:

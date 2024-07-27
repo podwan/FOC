@@ -1,4 +1,4 @@
-../FocLib/bldcMotor.c:10:6:goToZeroElecAngle	1
-../FocLib/bldcMotor.c:15:5:alignSensor	6
-../FocLib/bldcMotor.c:99:6:getElecAngle	1
-../FocLib/bldcMotor.c:104:6:foc	11
+../FocLib/bldcMotor.c:11:6:goToZeroElecAngle	1
+../FocLib/bldcMotor.c:16:5:alignSensor	6
+../FocLib/bldcMotor.c:100:6:getElecAngle	1
+../FocLib/bldcMotor.c:105:6:foc	11

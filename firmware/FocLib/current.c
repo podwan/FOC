@@ -19,10 +19,10 @@ void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_
     motor->offset_ia = motor->offset_ia / rounds;
     motor->offset_ib = motor->offset_ib / rounds;
 
-    // FOC_log("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
+    // printLog("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
     // printf("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
-    FOC_log("[offset_ia]:%f\r\n", motor->offset_ia);
-    FOC_log("[offset_ib]:%f\r\n", motor->offset_ib);
+    printLog("[offset_ia]:%f\r\n", motor->offset_ia);
+    printLog("[offset_ib]:%f\r\n", motor->offset_ib);
     // _dbg_printf("[offset_ia]:%f  [offset_ib]:%f\r\n", motor->offset_ia, motor->offset_ib);
 }
 
@@ -30,7 +30,8 @@ void getCurrentOffsets(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b, uint32_
 void getPhaseCurrents(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
 {
     motor->Ia = ADC_2_CURRENT(adc_a) - motor->offset_ia; // amps
-    motor->Ib = ADC_2_CURRENT(adc_b) - motor->offset_ib;
+    motor->Ic = ADC_2_CURRENT(adc_b) - motor->offset_ib;
+    motor->Ib = 0 - motor->Ia - motor->Ic;
 }
 
 /*============================================================================*/

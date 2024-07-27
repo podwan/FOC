@@ -127,13 +127,10 @@ int main(void)
   HAL_ADCEx_InjectedStart_IT(&hadc1);
   HAL_ADCEx_InjectedStart(&hadc2);
 
-  HAL_TIM_Base_Start(&htim1);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
-
-  // HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 3000);
-  // HAL_DAC_Start(&hdac3, DAC_CHANNEL_1);
-  // //  HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
-  // HAL_COMP_Start(&hcomp1);
+  HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2400);
+  HAL_DAC_Start(&hdac3, DAC_CHANNEL_1);
+  // HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
+  HAL_COMP_Start(&hcomp1);
   // HAL_TIMEx_HallSensor_Start_IT(&htim4);
   // FDCAN_Config();
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -142,6 +139,8 @@ int main(void)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+  HAL_TIM_Base_Start(&htim1);
+  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
   /* USER CODE END 2 */
 
