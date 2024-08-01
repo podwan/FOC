@@ -127,7 +127,7 @@ int main(void)
   HAL_ADCEx_InjectedStart_IT(&hadc1);
   HAL_ADCEx_InjectedStart(&hadc2);
 
-  HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 2400);
+  HAL_DAC_SetValue(&hdac3, DAC_CHANNEL_1, DAC_ALIGN_12B_R, 3000);
   HAL_DAC_Start(&hdac3, DAC_CHANNEL_1);
   // HAL_DAC_Start(&hdac1, DAC_CHANNEL_1);
   HAL_COMP_Start(&hcomp1);

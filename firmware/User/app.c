@@ -252,9 +252,9 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 
 #if SHOW_WAVE
         // #if SHOW_SVPWM
-        load_data[0] = motor1.Ta;
-        load_data[1] = motor1.Tb;
-        load_data[2] = motor1.Tc;
+        // load_data[0] = motor1.Ta;
+        // load_data[1] = motor1.Tb;
+        // load_data[2] = motor1.Tc;
         //         load_data[3] = motor1.Id;
         //         load_data[4] = motor1.Iq;
         //         load_data[5] = motor1.angle_el;
@@ -272,9 +272,9 @@ void HAL_ADCEx_InjectedConvCpltCallback(ADC_HandleTypeDef *hadc)
 
         // show current
 
-        // load_data[0] = hadc1.Instance->JDR1;
-        // load_data[1] = hadc2.Instance->JDR1;
-        // load_data[2] = hadc1.Instance->JDR2;
+        load_data[0] = motor1.Ia;
+        load_data[1] = motor1.Ib;
+        load_data[2] = motor1.Ic;
 
         load_data[3] = motor1.Ialpha;
         load_data[4] = motor1.Ibeta;

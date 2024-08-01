@@ -140,7 +140,7 @@ void foc(BldcMotor *motor, uint32_t adc_a, uint32_t adc_b)
                 // 用于验证setTorque（SVPWM马鞍波)函数、编码器测速（方向）及相电流采样（正弦波）的验证，
                 // 避免长时间运行（发热）
                 static float shaftAngle;
-                motor->target = 50;
+                motor->target = 30;
                 shaftAngle = _normalizeAngle(shaftAngle + motor->target * motor->Ts);
                 motor->angle_el = _electricalAngle(shaftAngle, motor->pole_pairs);
                 motor->Uq = OPEN_LOOP_TORQUE;

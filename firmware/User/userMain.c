@@ -35,7 +35,7 @@ void userMain(void)
 #if SHOW_WAVE == 0 //&& COMMAMNDER == 0
 	 if (get500MsFlag())
 	{
-		printLog();
+		 uartTx();
 	}
 #endif
 }
