@@ -6462,6 +6462,186 @@ Discarded input sections
  .text.reset    0x00000000       0x2c ./FocLib/pid.o
  .debug_macro   0x00000000      0xab4 ./FocLib/pid.o
  .debug_macro   0x00000000       0xb2 ./FocLib/pid.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .group         0x00000000        0xc ./FocLib/pll.o
+ .text          0x00000000        0x0 ./FocLib/pll.o
+ .data          0x00000000        0x0 ./FocLib/pll.o
+ .bss           0x00000000        0x0 ./FocLib/pll.o
+ .text.anglePLL
+                0x00000000      0x13c ./FocLib/pll.o
+ .bss.lastIalpha.1
+                0x00000000        0x4 ./FocLib/pll.o
+ .bss.lastIbeta.0
+                0x00000000        0x4 ./FocLib/pll.o
+ .debug_info    0x00000000      0x5e9 ./FocLib/pll.o
+ .debug_abbrev  0x00000000      0x19e ./FocLib/pll.o
+ .debug_aranges
+                0x00000000       0x20 ./FocLib/pll.o
+ .debug_rnglists
+                0x00000000       0x14 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x440 ./FocLib/pll.o
+ .debug_macro   0x00000000      0xab4 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x22 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x5b ./FocLib/pll.o
+ .debug_macro   0x00000000       0x2a ./FocLib/pll.o
+ .debug_macro   0x00000000       0x94 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x43 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x34 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x57 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x9e ./FocLib/pll.o
+ .debug_macro   0x00000000      0x369 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x10b ./FocLib/pll.o
+ .debug_macro   0x00000000       0x10 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x43 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x34 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x10 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x58 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x8e ./FocLib/pll.o
+ .debug_macro   0x00000000       0x1c ./FocLib/pll.o
+ .debug_macro   0x00000000      0x177 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x146 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x35 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x20 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x4c ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x16 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x29 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x17f ./FocLib/pll.o
+ .debug_macro   0x00000000       0x2e ./FocLib/pll.o
+ .debug_macro   0x00000000       0x28 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x103 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x6a ./FocLib/pll.o
+ .debug_macro   0x00000000      0x1df ./FocLib/pll.o
+ .debug_macro   0x00000000       0x1c ./FocLib/pll.o
+ .debug_macro   0x00000000       0x22 ./FocLib/pll.o
+ .debug_macro   0x00000000       0xfb ./FocLib/pll.o
+ .debug_macro   0x00000000     0x1011 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x11f ./FocLib/pll.o
+ .debug_macro   0x00000000    0x11350 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x6d ./FocLib/pll.o
+ .debug_macro   0x00000000     0x354d ./FocLib/pll.o
+ .debug_macro   0x00000000       0x56 ./FocLib/pll.o
+ .debug_macro   0x00000000     0x141d ./FocLib/pll.o
+ .debug_macro   0x00000000      0x535 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x1b6 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x288 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x41d ./FocLib/pll.o
+ .debug_macro   0x00000000      0x18b ./FocLib/pll.o
+ .debug_macro   0x00000000       0x43 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x23d ./FocLib/pll.o
+ .debug_macro   0x00000000     0x1112 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x72e ./FocLib/pll.o
+ .debug_macro   0x00000000      0x391 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x11d ./FocLib/pll.o
+ .debug_macro   0x00000000      0x401 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x209 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x108 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x211 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x6bd ./FocLib/pll.o
+ .debug_macro   0x00000000      0x401 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x107 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x1ae ./FocLib/pll.o
+ .debug_macro   0x00000000      0x122 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x3d1 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x2fe ./FocLib/pll.o
+ .debug_macro   0x00000000      0xbda ./FocLib/pll.o
+ .debug_macro   0x00000000      0x47e ./FocLib/pll.o
+ .debug_macro   0x00000000      0x693 ./FocLib/pll.o
+ .debug_macro   0x00000000       0xa6 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x306 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x3a ./FocLib/pll.o
+ .debug_macro   0x00000000       0x97 ./FocLib/pll.o
+ .debug_macro   0x00000000       0x70 ./FocLib/pll.o
+ .debug_macro   0x00000000      0x19b ./FocLib/pll.o
+ .debug_macro   0x00000000       0xb2 ./FocLib/pll.o
+ .debug_line    0x00000000      0xbaa ./FocLib/pll.o
+ .debug_str     0x00000000    0xe36a6 ./FocLib/pll.o
+ .comment       0x00000000       0x44 ./FocLib/pll.o
+ .debug_frame   0x00000000       0x34 ./FocLib/pll.o
+ .ARM.attributes
+                0x00000000       0x34 ./FocLib/pll.o
  .group         0x00000000        0xc ./FocLib/voltage.o
  .group         0x00000000        0xc ./FocLib/voltage.o
  .group         0x00000000        0xc ./FocLib/voltage.o
@@ -8601,6 +8781,7 @@ LOAD ./FocLib/encoder.o
 LOAD ./FocLib/lowpass_filter.o
 LOAD ./FocLib/math_utils.o
 LOAD ./FocLib/pid.o
+LOAD ./FocLib/pll.o
 LOAD ./FocLib/voltage.o
 LOAD ./User/app.o
 LOAD ./User/comm.o

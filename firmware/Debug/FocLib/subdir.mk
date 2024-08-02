@@ -11,6 +11,7 @@ C_SRCS += \
 ../FocLib/lowpass_filter.c \
 ../FocLib/math_utils.c \
 ../FocLib/pid.c \
+../FocLib/pll.c \
 ../FocLib/voltage.c 
 
 OBJS += \
@@ -20,6 +21,7 @@ OBJS += \
 ./FocLib/lowpass_filter.o \
 ./FocLib/math_utils.o \
 ./FocLib/pid.o \
+./FocLib/pll.o \
 ./FocLib/voltage.o 
 
 C_DEPS += \
@@ -29,6 +31,7 @@ C_DEPS += \
 ./FocLib/lowpass_filter.d \
 ./FocLib/math_utils.d \
 ./FocLib/pid.d \
+./FocLib/pll.d \
 ./FocLib/voltage.d 
 
 
@@ -39,7 +42,7 @@ FocLib/%.o FocLib/%.su FocLib/%.cyclo: ../FocLib/%.c FocLib/subdir.mk
 clean: clean-FocLib
 
 clean-FocLib:
-	-$(RM) ./FocLib/bldcMotor.cyclo ./FocLib/bldcMotor.d ./FocLib/bldcMotor.o ./FocLib/bldcMotor.su ./FocLib/current.cyclo ./FocLib/current.d ./FocLib/current.o ./FocLib/current.su ./FocLib/encoder.cyclo ./FocLib/encoder.d ./FocLib/encoder.o ./FocLib/encoder.su ./FocLib/lowpass_filter.cyclo ./FocLib/lowpass_filter.d ./FocLib/lowpass_filter.o ./FocLib/lowpass_filter.su ./FocLib/math_utils.cyclo ./FocLib/math_utils.d ./FocLib/math_utils.o ./FocLib/math_utils.su ./FocLib/pid.cyclo ./FocLib/pid.d ./FocLib/pid.o ./FocLib/pid.su ./FocLib/voltage.cyclo ./FocLib/voltage.d ./FocLib/voltage.o ./FocLib/voltage.su
+	-$(RM) ./FocLib/bldcMotor.cyclo ./FocLib/bldcMotor.d ./FocLib/bldcMotor.o ./FocLib/bldcMotor.su ./FocLib/current.cyclo ./FocLib/current.d ./FocLib/current.o ./FocLib/current.su ./FocLib/encoder.cyclo ./FocLib/encoder.d ./FocLib/encoder.o ./FocLib/encoder.su ./FocLib/lowpass_filter.cyclo ./FocLib/lowpass_filter.d ./FocLib/lowpass_filter.o ./FocLib/lowpass_filter.su ./FocLib/math_utils.cyclo ./FocLib/math_utils.d ./FocLib/math_utils.o ./FocLib/math_utils.su ./FocLib/pid.cyclo ./FocLib/pid.d ./FocLib/pid.o ./FocLib/pid.su ./FocLib/pll.cyclo ./FocLib/pll.d ./FocLib/pll.o ./FocLib/pll.su ./FocLib/voltage.cyclo ./FocLib/voltage.d ./FocLib/voltage.o ./FocLib/voltage.su
 
 .PHONY: clean-FocLib
 
