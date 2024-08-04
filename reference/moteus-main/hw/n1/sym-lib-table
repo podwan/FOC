@@ -1,4 +1,0 @@
-(sym_lib_table
-  (version 0)
-  (lib (name "moteus_n1-eagle-import")(type "KiCad")(uri "${KIPRJMOD}/moteus_n1-eagle-import.kicad_sym")(options "")(descr ""))
-)
