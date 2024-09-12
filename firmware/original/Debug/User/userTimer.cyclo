@@ -1,0 +1,10 @@
+../User/userTimer.c:6:6:dealPer100us	2
+../User/userTimer.c:16:13:dealPerMs	8
+../User/userTimer.c:64:6:getOneSecFlag	2
+../User/userTimer.c:75:6:getOneMsFlag	2
+../User/userTimer.c:87:6:get5MsFlag	2
+../User/userTimer.c:100:6:get10MsFlag	2
+../User/userTimer.c:113:6:get20MsFlag	2
+../User/userTimer.c:126:6:get30MsFlag	2
+../User/userTimer.c:139:6:get100MsFlag	2
+../User/userTimer.c:152:6:get500MsFlag	2

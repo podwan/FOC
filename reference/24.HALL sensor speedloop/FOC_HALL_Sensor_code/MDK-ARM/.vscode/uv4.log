@@ -1,0 +1,345 @@
+*** Using Compiler 'V6.21', folder: 'D:\Program Files\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'STM32G4_GPIO'
+../Core/Src/tim.c(21): warning: In file included from...../Core/Inc\tim.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling tim.c...
+compiling FOC_Model.c...
+../Core/Src/dac.c(21): warning: In file included from...../Core/Inc\dac.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling dac.c...
+../Core/Src/stm32g4xx_it.c(22): warning: In file included from...../Core/Inc\main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_it.c...
+../Core/Src/main.c(21): warning: In file included from...../Core/Inc\main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling main.c...
+../Core/Src/usart.c(21): warning: In file included from...../Core/Inc\usart.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling usart.c...
+../Core/Src/gpio.c(22): warning: In file included from...../Core/Inc\gpio.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling gpio.c...
+../Core/Src/fdcan.c(21): warning: In file included from...../Core/Inc\fdcan.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling fdcan.c...
+../Core/Src/stm32g4xx_hal_msp.c(23): warning: In file included from...../Core/Inc\main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_msp.c...
+../Core/Src/adc.c(21): warning: In file included from...../Core/Inc\adc.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling adc.c...
+../Core/Src/comp.c(21): warning: In file included from...../Core/Inc\comp.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling comp.c...
+../Core/Src/dma.c(22): warning: In file included from...../Core/Inc\dma.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling dma.c...
+../Core/Src/opamp.c(21): warning: In file included from...../Core/Inc\opamp.h(29): warning: In file included from...../Core/Inc/main.h(31): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling opamp.c...
+../app/hall_speed_pos_fdbk.c(14): warning: In file included from...../app/hall_speed_pos_fdbk.h(17): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling hall_speed_pos_fdbk.c...
+compiling stm32g4xx_ll_adc.c...
+../app/uart_comm_func.c(17): warning: In file included from...../app/uart_comm_func.h(20): warning: In file included from...../app/motor_struct.h(20): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling uart_comm_func.c...
+../app/motor_struct.c(17): warning: In file included from...../app/motor_struct.h(20): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling motor_struct.c...
+../app/motor_board_func.c(17): warning: In file included from...../app/motor_board_func.h(20): warning: In file included from...../app/uart_comm_func.h(20): warning: In file included from...../app/motor_struct.h(20): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling motor_board_func.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc.c(297): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_adc.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal.c(35): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ramfunc.c(49): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_flash_ramfunc.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash.c(88): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_flash.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_gpio.c(106): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_gpio.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc_ex.c(25): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_rcc_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_adc_ex.c(33): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_adc_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_rcc.c(52): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_rcc.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_flash_ex.c(71): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_flash_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_exti.c(87): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_exti.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma_ex.c(43): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_dma_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dma.c(90): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_dma.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr.c(25): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_pwr.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_pwr_ex.c(25): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_pwr_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_cortex.c(104): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_cortex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_comp.c(154): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_comp.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dac.c(346): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_dac.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_opamp_ex.c(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_opamp_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_opamp.c(229): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_opamp.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_dac_ex.c(69): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_dac_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_uart_ex.c(44): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_uart_ex.c...
+../Core/Src/system_stm32g4xx.c(79): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling system_stm32g4xx.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_fdcan.c(168): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_fdcan.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim_ex.c(89): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_tim_ex.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_uart.c(162): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_uart.c...
+../Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_hal_tim.c(191): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal.h(29): warning: In file included from...../Core/Inc\stm32g4xx_hal_conf.h(212): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc\stm32g4xx_hal_rcc.h(27): warning: In file included from...../Drivers/STM32G4xx_HAL_Driver/Inc/stm32g4xx_hal_def.h(29): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include\stm32g4xx.h(107): warning: In file included from...../Drivers/CMSIS/Device/ST/STM32G4xx/Include/stm32g431xx.h(51): warning: '__FPU_PRESENT' macro redefined [-Wmacro-redefined]
+   51 | #define __FPU_PRESENT             1U       /*!< FPU present                                   */
+      |         ^
+<command line>(8): note: previous definition is here
+    8 | #define __FPU_PRESENT 1
+      |         ^
+1 warning generated.
+compiling stm32g4xx_hal_tim.c...
+linking...
+Program Size: Code=55824 RO-data=616 RW-data=52 ZI-data=3284  
+FromELF: creating hex file...
+"STM32G4_GPIO\STM32G4_GPIO.axf" - 0 Error(s), 42 Warning(s).
+Build Time Elapsed:  00:00:02

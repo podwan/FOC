@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "motor_struct.h": "c",
+        "main.h": "c",
+        "stdio.h": "c",
+        "uart_comm_func.h": "c",
+        "motor_board_func.h": "c",
+        "hall_speed_pos_fdbk.h": "c"
+    }
+}

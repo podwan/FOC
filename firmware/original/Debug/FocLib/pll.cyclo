@@ -1,0 +1,2 @@
+../FocLib/pll.c:5:6:pllInit	1
+../FocLib/pll.c:16:6:anglePLL	1
